@@ -36,19 +36,22 @@ exports.signin =(req,res) => {
   const {email,password,name} = req.body;
   const errors = validationResult(req);
 
+  console.log("Signin",email,password)
+
   if(!errors.isEmpty()) {
     return res.status(422).json({
         error:errors.array()[0].msg
     })
 }
 User.findOne({email},(err,user) => {
-    if(err){
+    if(err || !user){
         res.status(400).json({
             error:"USER email does not exists"
         })
     }
+    // console.log(user)
     if(!user.authenticate(password)){
-return res.status(403).json({
+return res.status(401).json({
     error:"User Password and Email does not match"
 })
     };
@@ -60,6 +63,7 @@ const token = jwt.sign({_id:user._id},process.env.SECRET);
 res.cookie("token",token,{expire:new Date() + 9999})
 
 //sending res to frontend
+console.log(user);
 const {_id,role,name,email} = user;
 res.send({token,user:{_id,name,email,role}})
 
@@ -75,11 +79,14 @@ res.json({messege:"User Signout successfully"})
 
 exports.isSignedIn = expressJwt({
     secret:process.env.SECRET,
-    userProperty:'auth'
+    userProperty:'auth',
+    algorithms: ['sha1', 'RS256', 'HS256'],
+
 })
 
 exports.isAuthenticated = (req,res,next) => {
-    let checker = req.profile&&req.auth&&req.profile_id == req.auth_id;
+    console.log(req.profile._id,req.auth._id)
+    let checker = req.profile&&req.auth&&req.profile._id == req.auth._id;
     if(!checker)
     {
         return res.status(403).json({error:"ACCESS DENIED"})
@@ -95,5 +102,6 @@ exports.isAdmin = (req,res,next) => {
             error:"You are not Admin, Access Denied"
         }) 
     }
+    console.log("Admin check")
 next();
 }

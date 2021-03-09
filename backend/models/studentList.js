@@ -23,6 +23,20 @@ const studentList = mongoose.Schema({
         type:String,
         required:true,
         trim:true
+    },
+    roll:{
+        type:Number,
+        required:true,
+        trim:true,
+    },
+    department:{
+        type:String,
+        required:true,
+        trim:true
+    },
+    bookissue:{
+        type:Number,
+        trim:true
     }
 })
 

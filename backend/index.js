@@ -1,12 +1,17 @@
+require("dotenv").config()
 const express= require ("express")
 const adminRoutes = require ("./routes/admin")
+const studentRoutes = require ("./routes/studentList")
+
 const app=express();
 const bodyParser = require('body-parser')
 const mongoose = require("mongoose")
 const cors = require("cors")
 
+//NwuJcfEAyXRyqq6k
+
 //DATABASE CONNEVITY
-mongoose.connect('mongodb://localhost:27017/mymis',
+mongoose.connect(process.env.DATABASE,
  {
 useNewUrlParser: true, 
  useUnifiedTopology: true,
@@ -26,6 +31,7 @@ app.use(express.json())
 app.use(cors())
 //routes
 app.use("/api",adminRoutes)
+app.use("/api",studentRoutes)
 
 
 app.listen(8000,()=>{

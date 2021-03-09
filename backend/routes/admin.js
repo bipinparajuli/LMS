@@ -1,7 +1,7 @@
 var express = require("express")
 var router =express.Router();
 const {check,validationResult} =require ('express-validator');
-const { signup, signin } = require("../controllers/auth");
+const { signup, signin, isSignedIn } = require("../controllers/auth");
 
 
 router.post("/signup",[
@@ -12,5 +12,9 @@ signup
 )
 
 router.post("/signin",[],signin)
+
+router.get("/testroute",isSignedIn,(req,res)=>{
+    res.send("Signed in")
+})
 
 module.exports = router

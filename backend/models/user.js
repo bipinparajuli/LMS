@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema({
         type:Number,
         default:0
     }
-})
+});
 
 userSchema.virtual("password")
 .set(function(password){
@@ -39,12 +39,12 @@ this.enc_password=this.securePassword(password)
 
 userSchema.methods={
 
-authenticate:(plainpassword)=>{
+authenticate:function (plainpassword){
 return this.securePassword(plainpassword) === this.enc_password
 },
 
-    securePassword:function (plainpassword){
-if(!plainpassword) return ""
+securePassword:function (plainpassword){
+if(!plainpassword) return "Something is wrong"
 try{
         return crypto.createHmac('sha256', this.salt)
         .update(plainpassword)
