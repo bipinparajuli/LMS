@@ -11,10 +11,10 @@ check("password","password should be at least 6 char").isLength({min:6})
 signup
 )
 
-router.post("/signin",[],signin)
 
-router.get("/testroute",isSignedIn,(req,res)=>{
-    res.send("Signed in")
-})
+router.post("/signin",[ check("email","email should be between 5 to 15 char").isLength({min:5,max:15}),
+check("password","password should be at least 6 char").isLength({min:6})],signin)
+
+
 
 module.exports = router
