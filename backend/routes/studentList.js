@@ -17,7 +17,7 @@ router.get("/student/:studentid",isSignedIn,isAuthenticated,isAdmin,getStudent)
 
 router.put("/student/updatestudent/:userid/:studentid",isSignedIn,isAuthenticated,updateStudent)
 
-router.put("/student/deletestudent/:userid/:studentid",isSignedIn,isAuthenticated,isAdmin,deleteStudent)
+router.delete("/student/deletestudent/:userid/:studentid",isSignedIn,isAuthenticated,isAdmin,deleteStudent)
 
 
 
