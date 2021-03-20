@@ -9,13 +9,13 @@ export const Dashboard = () => {
   <h1> Welcome to Dashboard Page</h1> 
   <div className="row">
       <div className="col-4">
-      <Card/>
+      <Card title="Total Books" />
       </div>
       <div className="col-4">
-      <Card/>
+      <Card title="Book Issued" />
       </div>
       <div className="col-4">
-      <Card/>
+      <Card title="Book Returned" />
       </div>
   </div>
 <Chart />

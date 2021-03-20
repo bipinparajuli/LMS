@@ -6,7 +6,6 @@ const AddUser = () => {
         <div>
             <h1>Add User</h1>
             <Form labelone="Roll No" labeltwo="User Name" labelthree="Department" labelfour="Address" labelfive="Email" labelsix="Phone" labelseven="Stocks"  />
-
         </div>
     )
 }

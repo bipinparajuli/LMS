@@ -10,24 +10,29 @@ import AllUser from './Admin/AllUser/AllUser';
 import IssueRetuenRequest from './Admin/IssueReturnRequest/IssueRetuenRequest';
 import AddBook from './Admin/Addbook/AddBook'
 import AddUser from './Admin/AddUser/AddUser'
+import AdminRoute from './auth/AdminRoutes'
+
 
 function App() {
   return (
     <div className="App">
-      <Navbar />
+<Route exact path="/" component={Signin} />
+<Navbar />
+
 <Layout>
-  <Switch>
-<Route exact path="/" component={Dashboard} />
+<Switch>
 
-<Route exact path="/allbook" component={AllBook} />
+<AdminRoute exact path="/dashboard" component={Dashboard} />
 
-<Route exact path="/alluser" component={AllUser} />
+<AdminRoute exact path="/allbook" component={AllBook} />
 
-<Route exact path="/issuebook" component={IssueRetuenRequest} />
+<AdminRoute exact path="/alluser" component={AllUser} />
 
-<Route exact path="/addbook" component={AddBook} />
+<AdminRoute exact path="/issuebook" component={IssueRetuenRequest} />
 
-<Route exact path="/adduser" component={AddUser} />
+<AdminRoute exact path="/addbook" component={AddBook} />
+
+<AdminRoute exact path="/adduser" component={AddUser} />
 
   </Switch>
 </Layout>

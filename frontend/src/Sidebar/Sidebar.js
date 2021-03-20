@@ -17,7 +17,7 @@ const data = ['Dashboard','All User','All Books','Add User','Add Book','Renew/Is
 <SidebarContent>
     <Menu>
         <MenuItem>
-        <NavLink exact to="/">Dashboard</NavLink>
+        <NavLink exact to="dashboard">Dashboard</NavLink>
         </MenuItem>
         <MenuItem>
         <NavLink exact to="allbook">All Book</NavLink>
