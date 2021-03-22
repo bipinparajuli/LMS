@@ -80,9 +80,6 @@ studentList.findByIdAndUpdate(
     }
     )
 
-
-
-
 }
 
 exports.deleteStudent = (req,res) => {

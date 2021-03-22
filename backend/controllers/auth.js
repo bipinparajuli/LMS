@@ -85,7 +85,7 @@ exports.isSignedIn = expressJwt({
 })
 
 exports.isAuthenticated = (req,res,next) => {
-    console.log(req.profile._id,req.auth._id)
+    console.log(req.profile,req.auth)
     let checker = req.profile&&req.auth&&req.profile._id == req.auth._id;
     if(!checker)
     {

@@ -15,7 +15,7 @@ req.book = book
 exports.createBook = (req,res) => {
 
     const book = new bookList(req.body);
-
+// console.log(book)
     book.save((err,book)=>{
         if(err)
         {
