@@ -14,12 +14,12 @@ const Form = ({labelone,labeltwo,labelthree,labelfour,labelfive,labelsix,labelse
     // formData:""
   })
 
-  const {name,publication,stock,author,department,formData} = values;
+  const {authorname,bookname,publication,stocks,department} = values;
 
   const onsubmit = e =>{
 e.preventDefault();
 console.log(values)
-addBook(user._id,token,values)
+addBook(user._id,token,{bookname,publication,stocks,authorname,department})
 .then(d=>console.log(d))
 .catch(e=>console.log(e))
 
@@ -37,25 +37,25 @@ setvalues({...values,[name]:value})
             <form class="row g-3">
   <div class="col-md-6">
     <label for="inputEmail4" class="form-label">{labelone}</label>
-    <input type="text" class="form-control" onChange={handleChange("bookname")}  />
+    <input type="text" class="form-control" onChange={e=>setvalues({...values,bookname:e.target.value})}  />
   </div>
 
   <div class="col-md-6">
     <label for="inputEmail4" class="form-label">{labelfour}</label>
-    <input type="text" class="form-control" onChange={handleChange("publication")} />
+    <input type="text" class="form-control" onChange={e=>setvalues({...values,publication:e.target.value})} />
   </div>
 
   <div class="col-md-6">
     <label for="inputEmail4" class="form-label">{labelseven}</label>
-    <input type="text" class="form-control" onChange={handleChange("stocks")} />
+    <input type="text" class="form-control" onChange={e=>setvalues({...values,stocks:e.target.value})} />
   </div>
   <div class="col-md-6">
     <label for="inputPassword4" class="form-label">{labelsix}</label>
-    <input type="text" class="form-control" onChange={handleChange("authorname")} />
+    <input type="text" class="form-control" onChange={e=>setvalues({...values,authorname:e.target.value})} />
   </div>
   <div class="col-md-4">
     <label for="inputState" class="form-label">{labelthree}</label>
-    <select id="inputState" class="form-select" onChange={handleChange("department")}>
+    <select id="inputState" class="form-select" onChange={e=>setvalues({...values,department:e.target.value})}>
       <option value="BCA">BCA</option>
       <option value="BBM">BBM</option>
       <option value="BBS">BBS</option>

@@ -14,9 +14,9 @@ next();
 
 
 exports.createBook = (req,res) => {
+    console.log(req.body)
 
     const book = new bookList(req.body);
-// console.log(book)
     book.save((err,book)=>{
         if(err)
         {
