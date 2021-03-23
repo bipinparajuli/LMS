@@ -8,6 +8,7 @@ if(err)
     err.status(403).json({error:"Could not find Book by id"})
 }
 req.book = book
+next();
 })
 }
 
@@ -19,7 +20,7 @@ exports.createBook = (req,res) => {
     book.save((err,book)=>{
         if(err)
         {
-            res.status(403).json({error:"Error in creating Book"})
+            res.status(403).json({error:err})
         }
         res.json(book)
     })
@@ -59,6 +60,7 @@ bookList.findByIdAndUpdate(
 
 exports.deleteBook = (req,res) => {
 const book = req.book;
+console.log(book)
 bookList.remove(book,(err,data)=>{
     if(err)
     {

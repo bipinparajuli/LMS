@@ -16,15 +16,15 @@ authorname:{
     required:true,
     trim:true
 },
-bookId:{
-    type:Number,
-    trim:true,
-    required:true
-},
 publication:{
     type:String,
     trim:true,
     required:true
+},
+department:{
+    type:String,
+    trim:true,
+    enum:["BCA","BBM","BSW","BBS"]
 }
 },{timestamps:true})
 

@@ -13,7 +13,6 @@ if(typeof window == "undefined")
 {
     return false
 }
-console.log("Checking")
 
     if(localStorage.getItem("jwt"))
     {
