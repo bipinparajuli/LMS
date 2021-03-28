@@ -20,3 +20,15 @@ if(typeof window == "undefined")
     }
     else return false
 }
+
+export const signout = (next) => {
+ if(typeof window !== "undefined")
+ {
+     localStorage.removeItem("jwt");
+    //  next();
+
+     return fetch(`http://localhost:8000/api/signout`,{
+         method:"GET"
+     }).then(e => console.log("signout successfuly"))
+ }   
+}

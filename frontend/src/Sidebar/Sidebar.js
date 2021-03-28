@@ -2,8 +2,7 @@ import  React from 'react'
 import {Menu,MenuItem,SidebarHeader,SidebarContent,SidebarFooter,ProSidebar} from "react-pro-sidebar"
 import {NavLink} from 'react-router-dom'
 import {} from 'react-icons'
-
-
+import {signout} from "../auth/index"
 
 const Sidebar = () => {
 const data = ['Dashboard','All User','All Books','Add User','Add Book','Renew/Issue request',];
@@ -35,7 +34,7 @@ const data = ['Dashboard','All User','All Books','Add User','Add Book','Renew/Is
         <NavLink to='adduser' exact>Add User</NavLink>
         </MenuItem>
         <MenuItem>
-        <NavLink exact to='addbook'>Log Out</NavLink>
+        <NavLink exact to='/' onClick={signout}>Log Out</NavLink>
         </MenuItem>
     </Menu>
 </SidebarContent>

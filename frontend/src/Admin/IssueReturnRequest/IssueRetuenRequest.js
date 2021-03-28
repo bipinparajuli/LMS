@@ -1,8 +1,9 @@
 import React from 'react'
-
+import Layout from '../../Layout/Layout'
 const IssueRetuenRequest = () => {
     return (
-        <div>
+<Layout>
+<div>
             <h3>Issue and Return Request</h3>
             <table class="table table-dark table-hover">
   <thead>
@@ -31,6 +32,7 @@ const IssueRetuenRequest = () => {
 </table>
 
         </div>
+        </Layout>
     )
 }
 
