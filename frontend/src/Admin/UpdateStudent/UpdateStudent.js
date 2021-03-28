@@ -9,14 +9,14 @@ const {user,token} = isAuthenticate()
 
 const UpdateBook = ({labelone,labeltwo,labelthree,labelfour,labelfive,labelsix,labelseven,match}) => {
     const [values, setvalues] = useState({
-      authorname:"",
-      bookname:"",
-      publication:"",
-      stocks:"",
-      department:"",
-      // formData:""
+        name:"",
+        email:"",
+        phone:"",
+        roll:"",
+        address:"",
+        department:"",
     })
-    const {authorname,bookname,publication,stocks,department} = values;
+    const {name,email,phone,roll,address,department} = values;
 
 
     const preload = (bookid) =>{
@@ -28,11 +28,12 @@ if(data.error)
 }
     setvalues({
         ...values,
-        authorname:data.authorname,
-        bookname:data.bookname,
-        publication:data.publication,
-        stocks:data.stocks,
-        department:data.department
+        name:data.name,
+        email:data.email,
+        address:data.address,
+        contact:data.contact,
+        department:data.department,
+        roll:data.roll
     })
 }).catch()
     }
@@ -42,7 +43,7 @@ if(data.error)
 e.preventDefault()
 
 console.log("Updating . . .")
-      updateBook(user._id,match.params.bookid,token,{authorname,bookname,publication,stocks,department})
+      updateBook(user._id,match.params.bookid,token,{name,email,phone,roll,address,department})
       .then(data=>console.log(data))
       .catch(e=> console.log(e))
 
@@ -59,22 +60,26 @@ console.log("Updating . . .")
         <div>
                <form class="row g-3">
   <div class="col-md-6">
-    <label for="inputEmail4" class="form-label">{labelone}</label>
-    <input type="text" value={bookname} class="form-control" onChange={e=>setvalues({...values,bookname:e.target.value})}  />
+    <label for="inputEmail4" class="form-label">Student Name</label>
+    <input type="text" value={name} class="form-control" onChange={e=>setvalues({...values,name:e.target.value})}  />
   </div>
 
   <div class="col-md-6">
-    <label for="inputEmail4" class="form-label">{labelfour}</label>
-    <input type="text" class="form-control" value={publication} onChange={e=>setvalues({...values,publication:e.target.value})} />
+    <label for="inputEmail4" class="form-label">Email</label>
+    <input type="text" class="form-control" value={email} onChange={e=>setvalues({...values,email:e.target.value})} />
   </div>
 
   <div class="col-md-6">
-    <label for="inputEmail4" class="form-label">{labelseven}</label>
-    <input type="text" class="form-control" value={stocks} onChange={e=>setvalues({...values,stocks:e.target.value})} />
+    <label for="inputEmail4" class="form-label">Phone</label>
+    <input type="text" class="form-control" value={phone} onChange={e=>setvalues({...values,phone:e.target.value})} />
   </div>
   <div class="col-md-6">
-    <label for="inputPassword4" class="form-label">{labelsix}</label>
-    <input type="text" class="form-control" value={authorname} onChange={e=>setvalues({...values,authorname:e.target.value})} />
+    <label for="inputPassword4" class="form-label">Address</label>
+    <input type="text" class="form-control" value={address} onChange={e=>setvalues({...values,address:e.target.value})} />
+  </div>
+  <div class="col-md-6">
+    <label for="inputPassword4" class="form-label">Roll</label>
+    <input type="text" class="form-control" value={roll} onChange={e=>setvalues({...values,roll:e.target.value})} />
   </div>
   <div class="col-md-4">
     <label for="inputState" class="form-label">{labelthree}</label>
@@ -87,7 +92,7 @@ console.log("Updating . . .")
   </div>
 
   <div class="col-12">
-    <button  class="btn btn-success" onClick={onsubmit} >Update Book</button>
+    <button  class="btn btn-success" onClick={onsubmit} >Update Student</button>
   </div>
 </form>
 

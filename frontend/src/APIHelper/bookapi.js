@@ -42,3 +42,34 @@ export const addBook = (id,token,data) => {
     })
     .catch(err => console.log(err))
 }
+
+//getting book by id 
+export const getBookById = (id)=> {
+  return fetch(`http://localhost:8000/api/book/getbook/${id}`,
+  {
+    method:"GET",
+  
+  }
+  ).then(response => 
+    {
+console.log(response)
+      return response.json()
+    })
+    
+    
+  .catch(e=>console.log(e))
+}
+
+//update book 
+
+export const updateBook = (uid,bid,token,data) => {
+  return fetch(`http://localhost:8000/api/book/updatebook/${uid}/${bid}`,
+  {
+    method:"PUT",
+    headers:{
+ "Content-Type":"application/json",
+ "Authorization":`Bearer ${token}`     
+    },
+    body:JSON.stringify(data)
+  })
+}

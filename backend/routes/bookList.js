@@ -12,11 +12,11 @@ router.param("userid",getUserByID)
 
 router.post("/book/createbook/:userid",isSignedIn,isAuthenticated,isAdmin,createBook)
 
-router.put("/book/updatebook/:userid/:bookId",isSignedIn,isAuthenticated,isAdmin,updateBook)
+router.put("/book/updatebook/:userid/:bookid",isSignedIn,isAuthenticated,isAdmin,updateBook)
 
 router.get("/book/getallbooks",getAllBooks)
 
-router.get("/book/getbook/:bookId",getBook)
+router.get("/book/getbook/:bookid",getBook)
 
 router.delete("/book/deletebook/:userid/:bookid",isSignedIn,isAuthenticated,isAdmin,deleteBook)
 // router.delete("/student/deletestudent/:userid/:studentid",isSignedIn,isAuthenticated,isAdmin,deleteStudent)

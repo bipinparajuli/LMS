@@ -11,16 +11,17 @@ import IssueRetuenRequest from './Admin/IssueReturnRequest/IssueRetuenRequest';
 import AddBook from './Admin/Addbook/AddBook'
 import AddUser from './Admin/AddUser/AddUser'
 import AdminRoute from './auth/AdminRoutes'
-
+import UpdateBook from './Admin/UpdateBook/UpdateBook';
+import UpdateStudent from './Admin/UpdateStudent/UpdateStudent';
+import StudentHome from './Student/StudentHome';
 
 function App() {
   return (
     <div className="App">
 <Route exact path="/" component={Signin} />
-<Navbar />
 
-<Layout>
 <Switch>
+<Route exact path="/student/home" component={StudentHome} />
 
 <AdminRoute exact path="/dashboard" component={Dashboard} />
 
@@ -34,8 +35,11 @@ function App() {
 
 <AdminRoute exact path="/adduser" component={AddUser} />
 
+<AdminRoute exact path="/admin/book/updatebook/:bookid" component={UpdateBook} />
+
+<AdminRoute exact path="/admin/student/updatestudent/:studentid" component={UpdateStudent} />
+
   </Switch>
-</Layout>
     </div>
   );
 }

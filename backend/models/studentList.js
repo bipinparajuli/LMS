@@ -7,6 +7,12 @@ const studentList = mongoose.Schema({
         required:true,
         maxlength:32
     },
+    password:{
+    type:String,
+    trim:true,
+    required:true,
+    default:"Xavier123"
+    },
     phone:{
         type:Number,
         trim:true,

@@ -15,3 +15,42 @@ export const Login  = (user) => {
  .catch(e=>console.log(e))
     
 }
+
+export const getallusers = () => {
+    return fetch(`http://localhost:8000/api/students`,
+    {
+        method:"GET",
+    headers:{
+        "Content-Type":"application/json"
+    }
+}
+    )
+    .then(response =>  {return response.json()})
+    .catch(e=> console.log(e))
+}
+
+//adding student by admin
+export const addStudent = (id,token,data) => {
+    return fetch(`http://localhost:8000/api/addstudent/${id}`,{
+method:"POST",
+headers:{
+    "Content-Type":"Application/json",
+    Authorization:`Bearer ${token}`
+},
+body:JSON.stringify(data)
+    }).then(data=> data.json())
+    .catch(e=> console.log(e))
+}
+//deleting student by admin
+export const deleteStudent = (uid,sid,token) => {
+    return fetch(`http://localhost:8000/api/student/deletestudent/${uid}/${sid}`,
+    {
+        method:"DELETE",
+        headers:{
+            "Content-Type":"Application/json",
+            Authorization:`Bearer ${token}`
+        }
+    }
+    
+    )
+}

@@ -2,10 +2,11 @@ const { json } = require("body-parser")
 const bookList = require("../models/bookList")
 
 exports.getBookById = (req,res,next,id) => {
+    // console.log("fire me")
     bookList.findById(id,(err,book)=> {
 if(err)
 {
-    err.status(403).json({error:"Could not find Book by id"})
+    res.status(403).json({error:"Could not find Book by id"})
 }
 req.book = book
 next();
@@ -28,6 +29,7 @@ exports.createBook = (req,res) => {
 }
 
 exports.getBook = (req,res) => {
+    console.log(req.book)
 res.json(req.book)
 }
 
@@ -43,6 +45,7 @@ bookList.find((err,books)=> {
 }
 
 exports.updateBook = (req,res) => {
+    console.log(req.book)
 bookList.findByIdAndUpdate(
     {_id:req.book._id},
     {$set:req.body},

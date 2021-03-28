@@ -1,11 +1,12 @@
 import React from 'react'
+import Layout from '../../Layout/Layout'
 import { Card } from '../../UI/Card/Card'
 import Chart from "../../UI/Chart/Chart"
 
-
 export const Dashboard = () => {
     return (
-        <div>
+<Layout>
+     <div>
   <h1> Welcome to Dashboard Page</h1> 
   <div className="row">
       <div className="col-4">
@@ -20,5 +21,7 @@ export const Dashboard = () => {
   </div>
 <Chart />
         </div>
+        </Layout>
+
     )
 }

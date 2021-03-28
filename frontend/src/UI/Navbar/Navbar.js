@@ -1,6 +1,6 @@
 import React from 'react'
 import {FaBookOpen} from 'react-icons/fa'
-const Navbar = () => {
+const Navbar = ({name}) => {
     return (
         <div>
             <nav class="navbar navbar-light bg-light">
@@ -19,7 +19,7 @@ const Navbar = () => {
     </div>
     </a>
     <div>
-        <h3>Admin</h3>
+        <h3>{name}</h3>
     </div>
   </div>
 </nav>

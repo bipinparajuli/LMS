@@ -1,6 +1,8 @@
 import React from 'react'
 import { deleteBook } from '../../APIHelper/bookapi';
 import { isAuthenticate } from '../../auth';
+import {Link} from "react-router-dom"
+
 
 const Table = ({firsthead,secondhead,thirdhead,fourthead,data}) => {
     const {user,token} = isAuthenticate();
@@ -36,7 +38,7 @@ const Table = ({firsthead,secondhead,thirdhead,fourthead,data}) => {
                 <td>{d.stocks}</td>
                 <td>{d.createdAt}</td>
           
-                <td><button type="button" class="btn btn-danger mr-1" onClick={()=>deleteHandler(d._id)}>Delete</button><button type="button" class="btn btn-primary">Edit</button></td>
+                <td><button type="button" class="btn btn-danger mr-1" onClick={()=>deleteHandler(d._id)}>Delete</button><Link className="btn btn-primary" to={`admin/book/updatebook/${d._id}`}>Update</Link></td>
           
             </tr>
             </tbody>
