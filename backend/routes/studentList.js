@@ -13,7 +13,7 @@ router.post('/addstudent/:userid',isSignedIn,isAuthenticated,isAdmin,addStudent)
 
 router.get("/students",getAllStudents)
 
-router.get("/student/:studentid",isSignedIn,isAuthenticated,isAdmin,getStudent)
+router.get("/student/:studentid",getStudent)
 
 router.put("/student/updatestudent/:userid/:studentid",isSignedIn,isAuthenticated,updateStudent)
 

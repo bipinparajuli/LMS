@@ -32,6 +32,11 @@ exports.getStudentByID = (req,res,next,id) => {
 //get single student
 
 exports.getStudent = (req,res)=>{
+if(!req.student)
+{
+    res.json({error:"Unable to find user"})
+}
+
     res.json(req.student)
 }
 

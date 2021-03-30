@@ -24,7 +24,8 @@ publication:{
 department:{
     type:String,
     trim:true,
-    enum:["BCA","BBM","BSW","BBS"]
+    enum:["BCA","BBM","BSW","BBS"],
+    required:true
 }
 },{timestamps:true})
 
