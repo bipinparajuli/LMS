@@ -1,16 +1,45 @@
-import React from 'react'
-import { deleteBook } from '../../APIHelper/bookapi';
+import React,{useState,useEffect} from 'react'
+import { deleteBook, getAllBook } from '../../APIHelper/bookapi';
 import { isAuthenticate } from '../../auth';
 import {Link} from "react-router-dom"
-
+import { toast } from 'react-toastify';
 
 const Table = ({firsthead,secondhead,thirdhead,fourthead,data}) => {
+    const [book, setbook] = useState([]);
+
+
     const {user,token} = isAuthenticate();
 
     const deleteHandler = (book_id) => {
 
-        deleteBook(user._id,book_id,token).then(d=>console.log("Deleted")).catch(e=>console.log(e))
+        deleteBook(user._id,book_id,token)
+        .then(
+               d=>
+            {
+            
+                toast("Deleted",{type:"success"})
+  preload()          
+            }
+            
+            )
+        .catch(e=>toast(e,{type:"error"}))
     }
+    
+    const preload =()=> {
+        getAllBook().then(data=>{
+            if(data)
+            {
+                setbook(data)
+                console.log(data)
+            }
+            else console.log(data)
+        })
+    }
+    
+    useEffect(() => {
+preload()        
+    }, [])
+
 
     return (
         <div>
@@ -26,7 +55,7 @@ const Table = ({firsthead,secondhead,thirdhead,fourthead,data}) => {
                 </tr>
             </thead>
 {
-    data.map((d,i)=>{
+    book.map((d,i)=>{
         return (
             <>
            

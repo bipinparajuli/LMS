@@ -33,7 +33,9 @@ addStudent(user._id,token,{name,email,phone,roll,address,department})
     }
 setvalues({...values,name:" ",email:" ",phone:" ",roll:" ",address:" ",department:"",adding:false})
 toast("Successfully added user",{type:"success"})
-
+Array.from(document.querySelectorAll("input")).forEach(
+  input => (input.value = "")
+)
 
   }
   )

@@ -73,6 +73,8 @@ studentList.find().exec((err,student)=> {
 
 
 exports.updateStudent = (req,res) => {
+
+    console.log(req.body)
 studentList.findByIdAndUpdate(
     {_id:req.student._id},
     {$set:req.body},
@@ -88,6 +90,7 @@ studentList.findByIdAndUpdate(
 }
 
 exports.deleteStudent = (req,res) => {
+ console.log(req.student)
     const student = req.student;
     studentList.remove(student,(err,data)=>{
         if(err){

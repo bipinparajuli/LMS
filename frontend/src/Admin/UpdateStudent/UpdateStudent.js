@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from 'react'
-import { getBookById, updateBook } from '../../APIHelper/bookapi'
+import { toast } from 'react-toastify'
+import { getStudentById, updateStudent } from '../../APIHelper/Studentapi'
 import { isAuthenticate } from '../../auth/index'
 import Layout from '../../Layout/Layout'
 
@@ -11,18 +12,20 @@ const UpdateBook = ({labelone,labeltwo,labelthree,labelfour,labelfive,labelsix,l
     const [values, setvalues] = useState({
         name:"",
         email:"",
-        phone:"",
+        contact:"",
         roll:"",
         address:"",
         department:"",
     })
-    const {name,email,phone,roll,address,department} = values;
+    const {name,email,contact,roll,address,department} = values;
 
 
-    const preload = (bookid) =>{
-        console.log(bookid)
-getBookById(bookid).then(data=>{
-if(data.error)
+    const preload = (studentid) =>{
+      getStudentById(studentid).then(data=>{
+
+        console.log(data)
+
+        if(data.error)
 {
     console.log("ERROR")
 }
@@ -31,7 +34,7 @@ if(data.error)
         name:data.name,
         email:data.email,
         address:data.address,
-        contact:data.contact,
+        contact:data.phone,
         department:data.department,
         roll:data.roll
     })
@@ -43,16 +46,27 @@ if(data.error)
 e.preventDefault()
 
 console.log("Updating . . .")
-      updateBook(user._id,match.params.bookid,token,{name,email,phone,roll,address,department})
-      .then(data=>console.log(data))
-      .catch(e=> console.log(e))
+      updateStudent(user._id,match.params.studentid,token,{name,email,contact,roll,address,department})
+      .then(data=>
+        {
+if(data.error)
+{
+  toast(data.error,{type:"error"})
+}
+toast("Updated Successfully",{type:"success"})
+
+        }
+        
+        )
+      .catch(e=>  toast(e,{type:"error"})
+      )
 
     }
 
     //GETTING PRODUCT
     useEffect(() => {
 
-        preload(match.params.bookid)
+        preload(match.params.studentid)
     }, [])
 
     return (
@@ -71,7 +85,7 @@ console.log("Updating . . .")
 
   <div class="col-md-6">
     <label for="inputEmail4" class="form-label">Phone</label>
-    <input type="text" class="form-control" value={phone} onChange={e=>setvalues({...values,phone:e.target.value})} />
+    <input type="text" class="form-control" value={contact} onChange={e=>setvalues({...values,contact:e.target.value})} />
   </div>
   <div class="col-md-6">
     <label for="inputPassword4" class="form-label">Address</label>
@@ -93,6 +107,7 @@ console.log("Updating . . .")
 
   <div class="col-12">
     <button  class="btn btn-success" onClick={onsubmit} >Update Student</button>
+    <a class="btn btn-primary" href="/dashboard" role="button" style={{marginLeft:"10px"}}>Go Back</a>
   </div>
 </form>
 

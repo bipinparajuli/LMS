@@ -63,6 +63,7 @@ console.log(response)
 //update book 
 
 export const updateBook = (uid,bid,token,data) => {
+  console.log(data)
   return fetch(`http://localhost:8000/api/book/updatebook/${uid}/${bid}`,
   {
     method:"PUT",

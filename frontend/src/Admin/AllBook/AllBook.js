@@ -6,17 +6,7 @@ import Table from '../../UI/Table/Table'
 
 const AllBook = () => {
 
-    const [book, setbook] = useState([]);
-    useEffect(() => {
-        getAllBook().then(data=>{
-            if(data)
-            {
-                setbook(data)
-                console.log(data)
-            }
-            else console.log(data)
-        })
-    }, [])
+    
 const bookNotAvailable = () => {
     return(
         <div>
@@ -30,7 +20,7 @@ return (
     <div>
     <Search placeholder="Search Books" />
            
-<Table firsthead="Book ID" secondhead="Book Name" thirdhead="Stocks" fourthead="Created at" data={book} />
+<Table firsthead="Book ID" secondhead="Book Name" thirdhead="Stocks" fourthead="Created at"  />
 </div>
 </Layout>
 )
@@ -39,7 +29,7 @@ return (
     return (
         <div>
 
-{book==undefined ? bookNotAvailable():bookAvailable()}
+{bookAvailable()}
 
         </div>
     )

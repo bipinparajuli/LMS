@@ -41,10 +41,14 @@ addBook(user._id,token,{bookname,publication,stocks,authorname,department})
     if(d.error)
     {
       setvalues({...values,error:d.error})
+      toast(`${d.error}`,{type:'error'})
   
     }
     toast("Book Added",{type:'success'})
     setvalues({...values,adding:false})
+    Array.from(document.querySelectorAll("input")).forEach(
+      input => (input.value = "")
+    )
   }
 )
   

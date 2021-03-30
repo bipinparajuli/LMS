@@ -2,7 +2,7 @@ import React,{useState,useEffect} from 'react'
 import { getBookById, updateBook } from '../../APIHelper/bookapi'
 import { isAuthenticate } from '../../auth/index'
 import Layout from '../../Layout/Layout'
-
+import {toast} from 'react-toastify'
 
 const {user,token} = isAuthenticate()
 
@@ -14,9 +14,9 @@ const UpdateBook = ({labelone,labeltwo,labelthree,labelfour,labelfive,labelsix,l
       publication:"",
       stocks:"",
       department:"",
-      // formData:""
+updating:false
     })
-    const {authorname,bookname,publication,stocks,department} = values;
+    const {authorname,bookname,publication,stocks,department,updating} = values;
 
 
     const preload = (bookid) =>{
@@ -24,7 +24,7 @@ const UpdateBook = ({labelone,labeltwo,labelthree,labelfour,labelfive,labelsix,l
 getBookById(bookid).then(data=>{
 if(data.error)
 {
-    console.log("ERROR")
+    toast(`${data.error}`,{type:"error"})
 }
     setvalues({
         ...values,
@@ -40,11 +40,19 @@ if(data.error)
 //SUBMITING THE UPDATED TO BACKEND
     const onsubmit = (e) => {
 e.preventDefault()
+setvalues({...values,updating:true})
 
-console.log("Updating . . .")
-      updateBook(user._id,match.params.bookid,token,{authorname,bookname,publication,stocks,department})
-      .then(data=>console.log(data))
-      .catch(e=> console.log(e))
+updateBook(user._id,match.params.bookid,token,{authorname,bookname,publication,stocks,department})
+ 
+.then(data=>
+
+{      toast(`Updated successfully`,{type:"success"})
+      setvalues({...values,updating:false})
+  }
+      )
+  
+      .catch(e=> toast(`${e}`,{type:"success"})
+      )
 
     }
 
@@ -87,7 +95,9 @@ console.log("Updating . . .")
   </div>
 
   <div class="col-12">
-    <button  class="btn btn-success" onClick={onsubmit} >Update Book</button>
+{updating? <button  class="btn btn-secondary"  >Updating Book</button> : <button  class="btn btn-success" onClick={onsubmit} >Update Book</button>}
+<a class="btn btn-primary" href="/dashboard" role="button" style={{marginLeft:"10px"}}>Go Back</a>
+
   </div>
 </form>
 

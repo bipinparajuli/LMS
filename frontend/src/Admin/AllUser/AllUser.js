@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import {Link} from 'react-router-dom'
+import { toast } from 'react-toastify'
 import { deleteStudent, getallusers } from '../../APIHelper/auth'
 import { isAuthenticate } from '../../auth'
 import Layout from '../../Layout/Layout'
@@ -13,30 +14,43 @@ function AllUser() {
     const [value, setvalue] = useState([])
     
     const deleteHandler = (sid) => {
-deleteStudent(user._id,sid,token)
-.then(d=> console.log("Deleted Successfuly"))
-.catch(e=>console.log(e))
+console.log(sid)
+        deleteStudent(user._id,sid,token)
+.then(d=>
+    { 
+    
+    toast("Deleted Successfuly",{type:"success"})
+        preload()
+}
+
+)
+.catch(e=>toast(e,{type:"error"}))
 
     }
 
-
-    useEffect(() => {
-        getallusers().then(data =>
+const preload = ()=> {
+console.log("inital load")
+    getallusers().then(data =>
+        {
+            if(data)
             {
-                if(data)
-                {
-                    setvalue(data)
-
-                }
-                else{
-                    return (
-                        <h1>No user Found</h1>
-                    )
-                }
+                setvalue(data)
 
             }
+            else{
+                return (
+                    <h1>No user Found</h1>
                 )
+            }
+
+        }
+            )
 .catch(e=>console.log(e))
+}
+
+
+    useEffect(() => {
+        preload()
     }, [])
     
     return (
