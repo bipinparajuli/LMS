@@ -3,7 +3,7 @@ import { addStudent } from '../../APIHelper/auth'
 import {addBook} from '../../APIHelper/bookapi'
 import { isAuthenticate } from '../../auth'
 import Layout from '../../Layout/Layout'
-
+import {toast} from 'react-toastify'
 const AddUser = () => {
 
   const {user,token} = isAuthenticate()
@@ -14,17 +14,31 @@ const AddUser = () => {
     roll:"",
     address:"",
     department:"",
-    // formData:""
+    adding:false
   })
 
-  const {name,email,phone,roll,address,department} = values;
+  const {name,email,phone,roll,address,department,adding} = values;
 
   const onsubmit = e =>{
 e.preventDefault();
-console.log(values)
+
+setvalues({...values,adding:true})
+
 addStudent(user._id,token,{name,email,phone,roll,address,department})
-.then(d=>console.log(d))
-.catch(e=>console.log(e))
+.then(d=>
+  {
+    if(d.error)
+    {
+      toast("Failed to add user",{type:"error"})
+    }
+setvalues({...values,name:" ",email:" ",phone:" ",roll:" ",address:" ",department:"",adding:false})
+toast("Successfully added user",{type:"success"})
+
+
+  }
+  )
+.catch(e=>      toast("Failed to add user",{type:"error"})
+)
 
   }
 
@@ -72,7 +86,7 @@ setvalues({...values,[name]:value})
   </div>
 
   <div class="col-12">
-    <button  class="btn btn-success" onClick={onsubmit} >Add User</button>
+{adding ? <button  class="btn btn-secondary"  >Adding User</button> : <button  class="btn btn-success" onClick={onsubmit} >Add User</button>}    
   </div>
 </form>
         </div>

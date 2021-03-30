@@ -12,23 +12,23 @@ import ClipLoader from "react-spinners/ClipLoader";
 
 const Signin =  () => {
 const [values,setvalue] = useState({
-    // email:"",
+    email:"",
     password:"",
     didredirect:false,
     loader:false,
-    error:false,
+    error:"",
     messege:""
 })
-const [email, setemail] = useState("")
+// const [email, setemail] = useState("")
 
-const {password,didredirect,loader,error,messege} = values;
+const {email,password,didredirect,loader,error,messege} = values;
 
 const errorMessege = () => {
     return (
     <div className="row">
     <div className="col-md-6 offset-sm-3 text-left" style={{display: error ? "" : "none"}}>
     <div className="alert alert-danger" >
-    {messege}
+    {error}
     </div>
     </div>
     </div>
@@ -40,21 +40,19 @@ const errorMessege = () => {
 const {user} =isAuthenticate();
 
 
-const Submit = async ()=> {
-    console.log(email,password)
-  await  setvalue({...values,loader:true,password:"",email:""})
+const Submit = async (e)=> {
+e.preventDefault()
+     setvalue({...values,error:false,loader:true})
 
-      await  Login({email,password}).then(data=>{
+        Login({email,password}).then((data)=>{
 
     if(data.error)
     {
-        console.log("error")
-setemail("")
- setvalue({...values,password:""})
+        console.log(data.error)
+ setvalue({...values,error:data.error,loading:false})
     }   
 else{
     Authenticate(data,()=>{
-setemail("")
         setvalue({...values,didredirect:true})
     
     })
@@ -62,7 +60,7 @@ setemail("")
 
     
 })
-.catch(e=>console.log(e),setvalue({...values,password:"",error:true,loader:true}))
+// .catch(e=>console.log(e),setvalue({...values,password:"",error:true,loader:true}))
     }
 
 const performRedirect = () =>{
@@ -82,17 +80,22 @@ const performRedirect = () =>{
 
 const signinForm = () => {
     return (
-        <div className=".container-fluid signin">
+        <>
+<div className=".container-fluid signin">
 <Card>
             <ClipLoader color={"red"} loading={loader}  size={150} /> 
+            {errorMessege()}
+<form>
 <div className="login_main color-black">
 <FaUser style={{height:"100px",width:"100px"}}  />
-<TextField required rounded="true"   placeholder="Email" color="black" type="email" value={email} onChange={e=>setemail(e.value)} />
+<TextField required rounded="true"   placeholder="Email" color="black" type="email" value={email} onChange={e=>setvalue({...values,email:e.value})} />
 <TextField required rounded="true" type="password" placeholder="Password" value={password} onChange={e=>setvalue({...values,password:e.value})} />
 <Button type="submit" onClick={Submit}>Login</Button>
 </div>
+</form>
 </Card>
         </div>
+</>
     )
 }
 
@@ -101,7 +104,6 @@ const signinForm = () => {
 
     return (
 <>
-{errorMessege()}
     {signinForm()}
     {performRedirect()}
  </>

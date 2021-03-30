@@ -14,10 +14,15 @@ import AdminRoute from './auth/AdminRoutes'
 import UpdateBook from './Admin/UpdateBook/UpdateBook';
 import UpdateStudent from './Admin/UpdateStudent/UpdateStudent';
 import StudentHome from './Student/StudentHome';
+import {ToastContainer} from 'react-toastify'
+
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
     <div className="App">
+
+      <ToastContainer />
 <Route exact path="/" component={Signin} />
 
 <Switch>

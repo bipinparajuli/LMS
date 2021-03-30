@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import {addBook} from '../../APIHelper/bookapi'
 import { isAuthenticate } from '../../auth'
+import {toast} from 'react-toastify'
 
 const Form = ({labelone,labeltwo,labelthree,labelfour,labelfive,labelsix,labelseven}) => {
 
@@ -11,16 +12,42 @@ const Form = ({labelone,labeltwo,labelthree,labelfour,labelfive,labelsix,labelse
     publication:"",
     stocks:"",
     department:"",
-    // formData:""
+adding:false,
+error:""
   })
 
-  const {authorname,bookname,publication,stocks,department} = values;
+  const {authorname,bookname,publication,stocks,department,adding,error} = values;
+
+  const errorMessege = () => {
+    return (
+    <div className="row">
+    <div className="col-md-6 offset-sm-3 text-left" style={{display: error ? "" : "none"}}>
+    <div className="alert alert-danger" >
+    {error}
+    </div>
+    </div>
+    </div>
+    )
+    
+    }
+
 
   const onsubmit = e =>{
 e.preventDefault();
-console.log(values)
+setvalues({...values,adding:true})
 addBook(user._id,token,{bookname,publication,stocks,authorname,department})
-.then(d=>console.log(d))
+.then(d=> 
+  {
+    if(d.error)
+    {
+      setvalues({...values,error:d.error})
+  
+    }
+    toast("Book Added",{type:'success'})
+    setvalues({...values,adding:false})
+  }
+)
+  
 .catch(e=>console.log(e))
 
   }
@@ -34,6 +61,7 @@ setvalues({...values,[name]:value})
 }
   return (
         <div>
+          {errorMessege()}
             <form class="row g-3">
   <div class="col-md-6">
     <label for="inputEmail4" class="form-label">{labelone}</label>
@@ -64,7 +92,7 @@ setvalues({...values,[name]:value})
   </div>
 
   <div class="col-12">
-    <button  class="btn btn-success" onClick={onsubmit} >Add Book</button>
+{adding? <button  class="btn btn-secondary" >Adding . . .</button> :<button  class="btn btn-success" onClick={onsubmit} >Add Book</button>}    
   </div>
 </form>
         </div>

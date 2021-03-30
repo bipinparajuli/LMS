@@ -11,7 +11,7 @@ export const Login  = (user) => {
      body:JSON.stringify(user)
  })
  .then(data=> {return data.json()})
- .catch(e=>console.log(e))
+ .catch(e=> {return e})
     
 }
 
