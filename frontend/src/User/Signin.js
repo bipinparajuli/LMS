@@ -10,20 +10,24 @@ import { css } from "@emotion/core";
 import ClipLoader from "react-spinners/ClipLoader";
 
 
-const Signin = () => {
+const Signin =  () => {
+const [values,setvalue] = useState({
+    // email:"",
+    password:"",
+    didredirect:false,
+    loader:false,
+    error:false,
+    messege:""
+})
 const [email, setemail] = useState("")
-const [password, setpassword] = useState("")
-const [didredirect, setdidredirect] = useState(false)
-const [loader, setloader] = useState(false)
-const [error, seterror] = useState(false)
-const [messege, setmessege] = useState(false)
 
+const {password,didredirect,loader,error,messege} = values;
 
 const errorMessege = () => {
     return (
     <div className="row">
-    <div className="col-md-6 offset-sm-3 text-left">
-    <div className="alert alert-danger" style={{display: error ? "" : "none"}}>
+    <div className="col-md-6 offset-sm-3 text-left" style={{display: error ? "" : "none"}}>
+    <div className="alert alert-danger" >
     {messege}
     </div>
     </div>
@@ -34,67 +38,73 @@ const errorMessege = () => {
     
 
 const {user} =isAuthenticate();
-    const Submit =()=> {
-        setloader(true)
-Login({email,password}).then(data=>{
+
+
+const Submit = async ()=> {
+    console.log(email,password)
+  await  setvalue({...values,loader:true,password:"",email:""})
+
+      await  Login({email,password}).then(data=>{
 
     if(data.error)
     {
-        setemail("")
-        setpassword("")
-        setloader(false)
-        seterror(true)
-        setmessege(data.error)
-    }
+        console.log("error")
+setemail("")
+ setvalue({...values,password:""})
+    }   
+else{
+    Authenticate(data,()=>{
+setemail("")
+        setvalue({...values,didredirect:true})
+    
+    })
+}
 
-Authenticate(data,()=>{
-    setemail("");
-    setpassword("");
-    // console.log(user.role)
-   
-    setdidredirect(true)
-})
     
 })
-.catch(err=>console.log(err))
+.catch(e=>console.log(e),setvalue({...values,password:"",error:true,loader:true}))
     }
 
-
+const performRedirect = () =>{
     if(didredirect)
- {
-    if(user && user.role == 1)
     {
-        // setloader(false)
-        return <Redirect to="/dashboard" />
-    }
+       if(user && user.role == 1)
+       {
+   
+           return <Redirect to="/dashboard" />
+       }
+   }
 }
-    return (
-<div className=".container-fluid signin">
-{
-error ?
-<> {errorMessege()}
-<Card>
-{/* <ClipLoader color={"red"} loading={loader}  size={150} />  */}
-<div className="login_main color-black">
-<FaUser style={{height:"100px",width:"100px"}}  />
-<TextField required rounded="true"   placeholder="Email" color="black" type="email" value={email} onChange={e=>setemail(e.value)} />
-<TextField required rounded="true" type="password" placeholder="Password" value={password} onChange={e=>setpassword(e.value)} />
-<Button onClick={Submit}>Login</Button>
-</div>
-</Card>
-</>
-:<Card>
-            <ClipLoader color={"red"} loading={loader}  size={150} /> 
 
+
+    
+
+
+const signinForm = () => {
+    return (
+        <div className=".container-fluid signin">
+<Card>
+            <ClipLoader color={"red"} loading={loader}  size={150} /> 
 <div className="login_main color-black">
 <FaUser style={{height:"100px",width:"100px"}}  />
 <TextField required rounded="true"   placeholder="Email" color="black" type="email" value={email} onChange={e=>setemail(e.value)} />
-<TextField required rounded="true" type="password" placeholder="Password" value={password} onChange={e=>setpassword(e.value)} />
-<Button onClick={Submit}>Login</Button>
+<TextField required rounded="true" type="password" placeholder="Password" value={password} onChange={e=>setvalue({...values,password:e.value})} />
+<Button type="submit" onClick={Submit}>Login</Button>
 </div>
 </Card>
-}
         </div>
+    )
+}
+
+
+
+
+    return (
+<>
+{errorMessege()}
+    {signinForm()}
+    {performRedirect()}
+ </>
     )
 }
 
