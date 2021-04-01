@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState,useEffect,Suspense} from 'react'
 import { deleteBook, getAllBook } from '../../APIHelper/bookapi';
 import { isAuthenticate } from '../../auth';
 import {Link} from "react-router-dom"
@@ -42,23 +42,15 @@ preload()
 
 
     return (
-        <div>
-<table class="table table-dark table-hover">
-<thead>
-            <tr>
-                <th>{firsthead}</th>
-                <th>{secondhead}</th>
-                <th>{thirdhead}</th>
-                <th>{fourthead}</th>
-                <th></th>
-          
-                </tr>
-            </thead>
+        <>
+           
+           
 {
     book.map((d,i)=>{
         return (
             <>
-           
+           <Suspense fallback={<h1>Loading profile...</h1>}>
+
             <tbody key={i}>
             <tr>
                 <td>{d._id}</td>
@@ -71,13 +63,15 @@ preload()
           
             </tr>
             </tbody>
+
+            </Suspense>
+
 </>
         )
     })
 }
 
-</table>
-        </div>
+        </>
     )
 }
 

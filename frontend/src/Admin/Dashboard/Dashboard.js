@@ -1,9 +1,10 @@
-import React from 'react'
-import Layout from '../../Layout/Layout'
+import React, { lazy } from 'react'
 import { Card } from '../../UI/Card/Card'
 import Chart from "../../UI/Chart/Chart"
+const Layout = lazy(()=> import("../../Layout/Layout")) 
 
-export const Dashboard = () => {
+
+ const Dashboard = () => {
     return (
 <Layout>
      <div>
@@ -25,3 +26,5 @@ export const Dashboard = () => {
 
     )
 }
+
+export default Dashboard

@@ -1,5 +1,5 @@
 export const getStudentById =(studentid) => {
-    return fetch(`http://localhost:8000/api/student/${studentid}`,{
+    return fetch(`https://mysterious-woodland-24801.herokuapp.com/api/student/${studentid}`,{
         method:"GET"
     }).then(response => {return response.json()})
     .catch(err => console.log(err))
@@ -8,7 +8,7 @@ export const getStudentById =(studentid) => {
 
     export const updateStudent = (uid,sid,token,data) => {
         console.log(data)
-        return fetch(`http://localhost:8000/api/student/updatestudent/${uid}/${sid}`
+        return fetch(`https://mysterious-woodland-24801.herokuapp.com/api/student/updatestudent/${uid}/${sid}`
         ,{
           method:"PUT",
           headers:{

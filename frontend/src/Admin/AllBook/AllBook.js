@@ -1,8 +1,8 @@
-import React,{useState,useEffect} from 'react'
+import React,{Suspense,lazy} from 'react'
 import { getAllBook } from '../../APIHelper/bookapi'
 import Layout from '../../Layout/Layout'
 import Search from '../../UI/Search/Search'
-import Table from '../../UI/Table/Table'
+const Table = lazy(() => import('../../UI/Table/Table'))
 
 const AllBook = () => {
 
@@ -16,13 +16,28 @@ const bookNotAvailable = () => {
 }
 const bookAvailable  = () => {
 return (
-    <Layout>
+<Suspense fallback={<h1>Book list ...</h1>}>
+<Layout>
     <div>
     <Search placeholder="Search Books" />
-           
-<Table firsthead="Book ID" secondhead="Book Name" thirdhead="Stocks" fourthead="Created at"  />
+    <table class="table table-dark table-hover">
+<thead>
+            <tr>
+                <th>Book ID</th>
+                <th>Book Name</th>
+                <th>Stocks</th>
+                <th>Created at</th>
+                <th></th>
+          
+                </tr>
+            </thead>
+            <Suspense fallback={<h1>Loading profile...</h1>}>
+<Table   />
+            </Suspense>
+</table>
 </div>
 </Layout>
+</Suspense>
 )
 }
 

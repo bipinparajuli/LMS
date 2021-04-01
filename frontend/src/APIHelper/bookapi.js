@@ -28,7 +28,7 @@ export const deleteBook = (userid,bookid,token) => {
 //add book
 export const addBook = (id,token,data) => {
  console.log(JSON.stringify(data))
-  return fetch(`http://localhost:8000/api/book/createbook/${id}`, {
+  return fetch(`https://mysterious-woodland-24801.herokuapp.com/api/book/createbook/${id}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -45,7 +45,7 @@ export const addBook = (id,token,data) => {
 
 //getting book by id 
 export const getBookById = (id)=> {
-  return fetch(`http://localhost:8000/api/book/getbook/${id}`,
+  return fetch(`https://mysterious-woodland-24801.herokuapp.com/api/book/getbook/${id}`,
   {
     method:"GET",
   
@@ -64,7 +64,7 @@ console.log(response)
 
 export const updateBook = (uid,bid,token,data) => {
   console.log(data)
-  return fetch(`http://localhost:8000/api/book/updatebook/${uid}/${bid}`,
+  return fetch(`https://mysterious-woodland-24801.herokuapp.com/api/book/updatebook/${uid}/${bid}`,
   {
     method:"PUT",
     headers:{

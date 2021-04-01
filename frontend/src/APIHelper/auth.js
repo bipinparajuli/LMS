@@ -16,7 +16,7 @@ export const Login  = (user) => {
 }
 
 export const getallusers = () => {
-    return fetch(`http://localhost:8000/api/students`,
+    return fetch(`https://mysterious-woodland-24801.herokuapp.com/api/students`,
     {
         method:"GET",
     headers:{
@@ -30,7 +30,7 @@ export const getallusers = () => {
 
 //adding student by admin
 export const addStudent = (id,token,data) => {
-    return fetch(`http://localhost:8000/api/addstudent/${id}`,{
+    return fetch(`https://mysterious-woodland-24801.herokuapp.com/api/addstudent/${id}`,{
 method:"POST",
 headers:{
     "Content-Type":"Application/json",
