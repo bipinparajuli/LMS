@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import { addStudent } from '../../APIHelper/auth'
-import {addBook} from '../../APIHelper/bookapi'
+// import {addBook} from '../../APIHelper/bookapi'
 import { isAuthenticate } from '../../auth'
 import Layout from '../../Layout/Layout'
 import {toast} from 'react-toastify'
@@ -45,12 +45,12 @@ Array.from(document.querySelectorAll("input")).forEach(
   }
 
 
-  const handleChange = name => event=> {
-const value = event.target.value;
-// console.log(value,name)
-// formData.set(name,value)
-setvalues({...values,[name]:value})
-}
+//   const handleChange = name => event=> {
+// const value = event.target.value;
+// // console.log(value,name)
+// // formData.set(name,value)
+// setvalues({...values,[name]:value})
+// }
   return (
 <Layout>
 <div>

@@ -13,6 +13,26 @@ next();
 })
 }
 
+exports.geBookByName = (req,res,next,name) => {
+const regx = new RegExp(name,'i')
+
+    bookList.find({bookname:regx},(err,book)=> {
+if(err)
+{
+    res.status(403).json({error:"Could not find Book by id"})
+}
+req.bookname = book
+next();
+})
+}
+
+exports.searchBook =(req,res) => {
+
+    res.json(req.bookname)
+    
+}
+
+
 
 exports.createBook = (req,res) => {
     console.log(req.body)

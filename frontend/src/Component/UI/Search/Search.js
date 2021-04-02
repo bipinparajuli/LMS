@@ -1,7 +1,10 @@
 import React from 'react'
 
+
 const Search = ({placeholder}) => {
-    return (
+
+
+  return (
         <div>
             <nav class="navbar navbar-light">
   <div class="container-fluid">

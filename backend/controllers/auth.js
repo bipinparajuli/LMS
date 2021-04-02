@@ -57,8 +57,8 @@ return res.status(401).json({
     };
 
     //creating a Token
-
 const token = jwt.sign({_id:user._id},process.env.SECRET);
+
     //sending tokem into cookies
 res.cookie("token",token,{expire:new Date() + 9999})
 

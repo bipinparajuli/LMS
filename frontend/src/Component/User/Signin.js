@@ -6,7 +6,7 @@ import {FaUser} from 'react-icons/fa'
 import {Login} from '../APIHelper/auth'
 import {Redirect} from 'react-router-dom';
 import { Authenticate, isAuthenticate } from '../auth';
-import { css } from "@emotion/core";
+// import { css } from "@emotion/core";
 import ClipLoader from "react-spinners/ClipLoader";
 
 
@@ -17,11 +17,11 @@ const [values,setvalue] = useState({
     didredirect:false,
     loader:false,
     error:"",
-    messege:""
+    // messege:""
 })
 // const [email, setemail] = useState("")
 
-const {email,password,didredirect,loader,error,messege} = values;
+const {email,password,didredirect,loader,error} = values;
 
 const errorMessege = () => {
     return (
@@ -66,7 +66,7 @@ else{
 const performRedirect = () =>{
     if(didredirect)
     {
-       if(user && user.role == 1)
+       if(user && user.role === 1)
        {
    
            return <Redirect to="/dashboard" />

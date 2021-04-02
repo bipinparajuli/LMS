@@ -22,7 +22,8 @@ updating:false
     const preload = (bookid) =>{
         console.log(bookid)
 getBookById(bookid).then(data=>{
-if(data.error)
+  console.log(data)
+if(data.error || !data)
 {
     toast(`${data.error}`,{type:"error"})
 }

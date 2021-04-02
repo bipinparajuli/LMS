@@ -15,6 +15,32 @@ next();
 })
 }
 
+exports.getStudentByname =(req,res,next,name) => {
+    const regx= new RegExp(name,'i')
+    studentList.find({name:regx}).exec((err,user) => {
+        if(err || !user)
+        {
+            return res.status(400).json({
+                error :"No Student was Found in DB"
+            })
+        }
+const newuser =[...user]
+newuser.password = undefined
+        req.search = user;
+    next();
+    })
+}
+
+exports.searchStudent =(req,res) => {
+if(!req.search)
+{
+    res.json({error:"Ubable to Search"})
+}
+
+res.json(req.search)    
+}
+
+
 
 exports.getStudentByID = (req,res,next,id) => {
     studentList.findById(id).exec((err,user) => {

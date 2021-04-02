@@ -74,3 +74,20 @@ export const updateBook = (uid,bid,token,data) => {
     body:JSON.stringify(data)
   })
 }
+
+//getting book by id 
+export const searchBookByName = (name)=> {
+  return fetch(`http://localhost:8000/api/search/book/${name}`,
+  {
+    method:"GET",
+  
+  }
+  ).then(response => 
+    {
+console.log(response)
+      return response.json()
+    })
+    
+    
+  .catch(e=>console.log(e))
+}

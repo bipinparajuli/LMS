@@ -5,13 +5,13 @@ import { deleteStudent, getallusers } from '../../APIHelper/auth'
 import { isAuthenticate } from '../../auth'
 import Layout from '../../Layout/Layout'
 import Search from '../../UI/Search/Search'
-import Table from '../../UI/Table/Table'
+// import Table from '../../UI/Table/Table'
 
 
 const {user,token} = isAuthenticate();
 
 function AllUser() {
-    const [value, setvalue] = useState([])
+    const [value, setvalue] = useState([{_id:"please wait...",name:"please wait...",address:"please wait...",phone:"please wait...",}])
     
     const deleteHandler = (sid) => {
 console.log(sid)
@@ -75,7 +75,11 @@ console.log("inital load")
             <>
            
             <tbody key={i}>
-            <tr>
+            <tr 
+               data-aos={"flip-left"}
+               data-aos-easing={"ease-out-cubic"}
+               data-aos-duration={"2000"}
+            >
                 <td>{d._id}</td>
                 <td>{d.name}</td>
           
