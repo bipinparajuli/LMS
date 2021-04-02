@@ -5,12 +5,12 @@ import {Link} from "react-router-dom"
 import { toast } from 'react-toastify';
 import {useStateValue} from '../../../Container/Serviceprovider'
 
-const Table = ({firsthead,secondhead,thirdhead,fourthead,data}) => {
+const Table = () => {
     const [book, setbook] = useState([{_id:"please wait...",bookname:"please wait...",stocks:"please wait...",createdAt:"please wait...",}]);
 
 const [{search},dispatch] = useStateValue()
 
-console.log(search.value)
+// console.log(search.value)
 
 const Searchdata = () => {
 
@@ -34,7 +34,7 @@ const Searchdata = () => {
                d=>
             {
             
-                toast("Deleted",{type:"success"})
+                toast("Deleted",{type:"error"})
   preload()          
             }
             
@@ -44,7 +44,7 @@ const Searchdata = () => {
     
     const preload =()=> {
         getAllBook().then(data=>{
-            console.log(data)
+            // console.log(data)
             if(data)
             {
                 setbook(data)
@@ -72,8 +72,8 @@ book == [] || undefined ? console.log("loading..") :
 
     book.map((d,i)=>{
         return (
-            <>
-           <Suspense fallback={<h1>Loading profile...</h1>}>
+            < >
+           {/* <Suspense fallback={<h1>Loading profile...</h1>}> */}
 
             <tbody key={i}>
             <tr 
@@ -87,12 +87,12 @@ book == [] || undefined ? console.log("loading..") :
                 <td>{d.stocks}</td>
                 <td>{d.createdAt}</td>
           
-                <td><button type="button" class="btn btn-danger mr-1" onClick={()=>deleteHandler(d._id)}>Delete</button><Link className="btn btn-primary" to={`admin/book/updatebook/${d._id}`}>Update</Link></td>
+                <td><button type="button" className="btn btn-danger mr-1" onClick={()=>deleteHandler(d._id)}>Delete</button><Link className="btn btn-primary" to={`admin/book/updatebook/${d._id}`}>Update</Link></td>
           
             </tr>
             </tbody>
 
-            </Suspense>
+            {/* </Suspense> */}
 
 </>
         )

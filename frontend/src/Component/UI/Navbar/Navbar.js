@@ -3,9 +3,9 @@ import {FaBookOpen} from 'react-icons/fa'
 const Navbar = ({name}) => {
     return (
         <div>
-            <nav class="navbar navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand">
+            <nav className="navbar navbar-light bg-light">
+  <div className="container-fluid">
+    <a className="navbar-brand">
     <div className="row">
     <div className="col-6">
 <FaBookOpen />

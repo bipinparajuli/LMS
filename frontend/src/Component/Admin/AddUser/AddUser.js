@@ -7,6 +7,8 @@ import {toast} from 'react-toastify'
 const AddUser = () => {
 
   const {user,token} = isAuthenticate()
+
+
   const [values, setvalues] = useState({
     name:"",
     email:"",
@@ -20,7 +22,8 @@ const AddUser = () => {
   const {name,email,phone,roll,address,department,adding} = values;
 
   const onsubmit = e =>{
-e.preventDefault();
+
+    e.preventDefault();
 
 setvalues({...values,adding:true})
 
@@ -54,32 +57,32 @@ Array.from(document.querySelectorAll("input")).forEach(
   return (
 <Layout>
 <div>
-            <form class="row g-3">
-  <div class="col-md-6">
-    <label  class="form-label">Student Name</label>
-    <input type="text" class="form-control" onChange={e=>setvalues({...values,name:e.target.value})}  />
+            <form className="row g-3">
+  <div className="col-md-6">
+    <label  className="form-label">Student Name</label>
+    <input type="text" className="form-control" onChange={e=>setvalues({...values,name:e.target.value})}  />
   </div>
-  <div class="col-md-6">
-    <label  class="form-label">Email</label>
-    <input type="text" class="form-control" onChange={e=>setvalues({...values,email:e.target.value})}  />
-  </div>
-
-  <div class="col-md-6">
-    <label  class="form-label">Address</label>
-    <input type="text" class="form-control" onChange={e=>setvalues({...values,address:e.target.value})} />
+  <div className="col-md-6">
+    <label  className="form-label">Email</label>
+    <input type="text" className="form-control" onChange={e=>setvalues({...values,email:e.target.value})}  />
   </div>
 
-  <div class="col-md-6">
-    <label  class="form-label">Phone No.</label>
-    <input type="text" class="form-control" onChange={e=>setvalues({...values,phone:e.target.value})} />
+  <div className="col-md-6">
+    <label  className="form-label">Address</label>
+    <input type="text" className="form-control" onChange={e=>setvalues({...values,address:e.target.value})} />
   </div>
-  <div class="col-md-6">
-    <label  class="form-label">Roll no.</label>
-    <input type="text" class="form-control" onChange={e=>setvalues({...values,roll:e.target.value})} />
+
+  <div className="col-md-6">
+    <label  className="form-label">Phone No.</label>
+    <input type="text" className="form-control" onChange={e=>setvalues({...values,phone:e.target.value})} />
   </div>
-  <div class="col-md-4">
-    <label  class="form-label">Department</label>
-    <select id="inputState" class="form-select" onChange={e=>setvalues({...values,department:e.target.value})}>
+  <div className="col-md-6">
+    <label  className="form-label">Roll no.</label>
+    <input type="text" className="form-control" onChange={e=>setvalues({...values,roll:e.target.value})} />
+  </div>
+  <div className="col-md-4">
+    <label  className="form-label">Department</label>
+    <select id="inputState" className="form-select" onChange={e=>setvalues({...values,department:e.target.value})}>
       <option value="BCA">BCA</option>
       <option value="BBM">BBM</option>
       <option value="BBS">BBS</option>
@@ -87,8 +90,8 @@ Array.from(document.querySelectorAll("input")).forEach(
     </select>
   </div>
 
-  <div class="col-12">
-{adding ? <button  class="btn btn-secondary"  >Adding User</button> : <button  class="btn btn-success" onClick={onsubmit} >Add User</button>}    
+  <div className="col-12">
+{adding ? <button  className="btn btn-secondary"  >Adding User</button> : <button  class="btn btn-success" onClick={onsubmit} >Add User</button>}    
   </div>
 </form>
         </div>

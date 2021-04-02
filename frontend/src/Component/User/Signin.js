@@ -48,7 +48,7 @@ e.preventDefault()
 
     if(data.error)
     {
-        console.log(data.error)
+        // console.log(data.error)
  setvalue({...values,error:data.error,loading:false})
     }   
 else{
@@ -88,9 +88,9 @@ const signinForm = () => {
 <form>
 <div className="login_main color-black">
 <FaUser style={{height:"100px",width:"100px"}}  />
-<TextField required rounded="true"   placeholder="Email" color="black" type="email" value={email} onChange={e=>setvalue({...values,email:e.value})} />
-<TextField required rounded="true" type="password" placeholder="Password" value={password} onChange={e=>setvalue({...values,password:e.value})} />
-<Button type="submit" onClick={Submit}>Login</Button>
+<TextField required rounded   placeholder="Email" color="black" type="email" value={email} onChange={e=>setvalue({...values,email:e.value})} />
+<TextField required rounded type="password" placeholder="Password" value={password} onChange={e=>setvalue({...values,password:e.value})} />
+<Button  onClick={Submit}>Login</Button>
 </div>
 </form>
 </Card>

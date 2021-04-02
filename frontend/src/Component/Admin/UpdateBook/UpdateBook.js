@@ -8,7 +8,8 @@ const {user,token} = isAuthenticate()
 
 
 const UpdateBook = ({labelone,labeltwo,labelthree,labelfour,labelfive,labelsix,labelseven,match}) => {
-    const [values, setvalues] = useState({
+
+  const [values, setvalues] = useState({
       authorname:"",
       bookname:"",
       publication:"",
@@ -16,13 +17,14 @@ const UpdateBook = ({labelone,labeltwo,labelthree,labelfour,labelfive,labelsix,l
       department:"",
 updating:false
     })
+
     const {authorname,bookname,publication,stocks,department,updating} = values;
 
 
     const preload = (bookid) =>{
-        console.log(bookid)
+        // console.log(bookid)
 getBookById(bookid).then(data=>{
-  console.log(data)
+  // console.log(data)
 if(data.error || !data)
 {
     toast(`${data.error}`,{type:"error"})
@@ -66,28 +68,28 @@ updateBook(user._id,match.params.bookid,token,{authorname,bookname,publication,s
     return (
       <Layout>
         <div>
-               <form class="row g-3">
-  <div class="col-md-6">
-    <label for="inputEmail4" class="form-label">{labelone}</label>
-    <input type="text" value={bookname} class="form-control" onChange={e=>setvalues({...values,bookname:e.target.value})}  />
+               <form className="row g-3">
+  <div className="col-md-6">
+    <label for="inputEmail4" className="form-label">Book Name</label>
+    <input type="text" value={bookname} className="form-control" onChange={e=>setvalues({...values,bookname:e.target.value})}  />
   </div>
 
-  <div class="col-md-6">
-    <label for="inputEmail4" class="form-label">{labelfour}</label>
-    <input type="text" class="form-control" value={publication} onChange={e=>setvalues({...values,publication:e.target.value})} />
+  <div className="col-md-6">
+    <label for="inputEmail4" className="form-label">Publication</label>
+    <input type="text" className="form-control" value={publication} onChange={e=>setvalues({...values,publication:e.target.value})} />
   </div>
 
-  <div class="col-md-6">
-    <label for="inputEmail4" class="form-label">{labelseven}</label>
-    <input type="text" class="form-control" value={stocks} onChange={e=>setvalues({...values,stocks:e.target.value})} />
+  <div className="col-md-6">
+    <label for="inputEmail4" className="form-label">Stocks</label>
+    <input type="text" className="form-control" value={stocks} onChange={e=>setvalues({...values,stocks:e.target.value})} />
   </div>
-  <div class="col-md-6">
-    <label for="inputPassword4" class="form-label">{labelsix}</label>
-    <input type="text" class="form-control" value={authorname} onChange={e=>setvalues({...values,authorname:e.target.value})} />
+  <div className="col-md-6">
+    <label for="inputPassword4" className="form-label">Author Name</label>
+    <input type="text" className="form-control" value={authorname} onChange={e=>setvalues({...values,authorname:e.target.value})} />
   </div>
-  <div class="col-md-4">
-    <label for="inputState" class="form-label">{labelthree}</label>
-    <select id="inputState" class="form-select" onChange={e=>setvalues({...values,department:e.target.value})}>
+  <div className="col-md-4">
+    <label for="inputState" className="form-label">Department</label>
+    <select id="inputState" className="form-select" onChange={e=>setvalues({...values,department:e.target.value})}>
       <option value="BCA">BCA</option>
       <option value="BBM">BBM</option>
       <option value="BBS">BBS</option>
@@ -95,9 +97,9 @@ updateBook(user._id,match.params.bookid,token,{authorname,bookname,publication,s
     </select>
   </div>
 
-  <div class="col-12">
-{updating? <button  class="btn btn-secondary"  >Updating Book</button> : <button  class="btn btn-success" onClick={onsubmit} >Update Book</button>}
-<a class="btn btn-primary" href="/dashboard" role="button" style={{marginLeft:"10px"}}>Go Back</a>
+  <div className="col-12">
+{updating? <button  className="btn btn-secondary"  >Updating Book</button> : <button  className="btn btn-success" onClick={onsubmit} >Update Book</button>}
+<a className="btn btn-primary" href="/dashboard" role="button" style={{marginLeft:"10px"}}>Go Back</a>
 
   </div>
 </form>

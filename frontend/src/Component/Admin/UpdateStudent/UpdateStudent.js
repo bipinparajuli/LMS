@@ -23,11 +23,11 @@ const UpdateBook = ({labelone,labeltwo,labelthree,labelfour,labelfive,labelsix,l
     const preload = (studentid) =>{
       getStudentById(studentid).then(data=>{
 
-        console.log(data)
+        // console.log(data)
 
         if(data.error)
 {
-    console.log("ERROR")
+    // console.log("ERROR")
 }
     setvalues({
         ...values,
@@ -72,32 +72,32 @@ toast("Updated Successfully",{type:"success"})
     return (
       <Layout>
         <div>
-               <form class="row g-3">
-  <div class="col-md-6">
-    <label for="inputEmail4" class="form-label">Student Name</label>
-    <input type="text" value={name} class="form-control" onChange={e=>setvalues({...values,name:e.target.value})}  />
+               <form className="row g-3">
+  <div className="col-md-6">
+    <label for="inputEmail4" className="form-label">Student Name</label>
+    <input type="text" value={name} className="form-control" onChange={e=>setvalues({...values,name:e.target.value})}  />
   </div>
 
-  <div class="col-md-6">
-    <label for="inputEmail4" class="form-label">Email</label>
-    <input type="text" class="form-control" value={email} onChange={e=>setvalues({...values,email:e.target.value})} />
+  <div className="col-md-6">
+    <label for="inputEmail4" className="form-label">Email</label>
+    <input type="text" className="form-control" value={email} onChange={e=>setvalues({...values,email:e.target.value})} />
   </div>
 
-  <div class="col-md-6">
-    <label for="inputEmail4" class="form-label">Phone</label>
-    <input type="text" class="form-control" value={contact} onChange={e=>setvalues({...values,contact:e.target.value})} />
+  <div className="col-md-6">
+    <label for="inputEmail4" className="form-label">Phone</label>
+    <input type="text" className="form-control" value={contact} onChange={e=>setvalues({...values,contact:e.target.value})} />
   </div>
-  <div class="col-md-6">
-    <label for="inputPassword4" class="form-label">Address</label>
-    <input type="text" class="form-control" value={address} onChange={e=>setvalues({...values,address:e.target.value})} />
+  <div className="col-md-6">
+    <label for="inputPassword4" className="form-label">Address</label>
+    <input type="text" className="form-control" value={address} onChange={e=>setvalues({...values,address:e.target.value})} />
   </div>
-  <div class="col-md-6">
-    <label for="inputPassword4" class="form-label">Roll</label>
-    <input type="text" class="form-control" value={roll} onChange={e=>setvalues({...values,roll:e.target.value})} />
+  <div className="col-md-6">
+    <label for="inputPassword4" className="form-label">Roll</label>
+    <input type="text" className="form-control" value={roll} onChange={e=>setvalues({...values,roll:e.target.value})} />
   </div>
-  <div class="col-md-4">
-    <label for="inputState" class="form-label">{labelthree}</label>
-    <select id="inputState" class="form-select" onChange={e=>setvalues({...values,department:e.target.value})}>
+  <div className="col-md-4">
+    <label for="inputState" className="form-label">{labelthree}</label>
+    <select id="inputState" className="form-select" onChange={e=>setvalues({...values,department:e.target.value})}>
       <option value="BCA">BCA</option>
       <option value="BBM">BBM</option>
       <option value="BBS">BBS</option>
@@ -105,9 +105,9 @@ toast("Updated Successfully",{type:"success"})
     </select>
   </div>
 
-  <div class="col-12">
-    <button  class="btn btn-success" onClick={onsubmit} >Update Student</button>
-    <a class="btn btn-primary" href="/dashboard" role="button" style={{marginLeft:"10px"}}>Go Back</a>
+  <div className="col-12">
+    <button  className="btn btn-success" onClick={onsubmit} >Update Student</button>
+    <a className="btn btn-primary" href="/dashboard" role="button" style={{marginLeft:"10px"}}>Go Back</a>
   </div>
 </form>
 

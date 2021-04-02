@@ -5,7 +5,7 @@ const IssueRetuenRequest = () => {
 <Layout>
 <div>
             <h3>Issue and Return Request</h3>
-            <table class="table table-dark table-hover">
+            <table className="table table-dark table-hover">
   <thead>
   <tr>
       <th>Book ID</th>
@@ -23,9 +23,9 @@ const IssueRetuenRequest = () => {
       <td>heloo</td>
       <td>heloo</td>
       <td>heloo</td>
-      <td><span class="badge rounded-pill bg-info text-dark">Return</span>
+      <td><span className="badge rounded-pill bg-info text-dark">Return</span>
 </td>
-      <td><button type="button" class="btn btn-danger mr-1">Reject</button><button type="button" class="btn btn-success">Accept</button></td>
+      <td><button type="button" className="btn btn-danger mr-1">Reject</button><button type="button" className="btn btn-success">Accept</button></td>
 
   </tr>
   </tbody>

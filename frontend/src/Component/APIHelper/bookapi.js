@@ -77,7 +77,7 @@ export const updateBook = (uid,bid,token,data) => {
 
 //getting book by id 
 export const searchBookByName = (name)=> {
-  return fetch(`http://localhost:8000/api/search/book/${name}`,
+  return fetch(`https://mysterious-woodland-24801.herokuapp.com/api/search/book/${name}`,
   {
     method:"GET",
   

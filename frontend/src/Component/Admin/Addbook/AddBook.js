@@ -6,6 +6,7 @@ const AddBook = () => {
     return (
 
 <Layout>
+    
 <div>
             <h1>Add Book</h1>
 <Form labelone="Book Name"  labelthree="Department" labelfour="Publication"  labelsix="Author" labelseven="Stocks"  />

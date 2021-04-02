@@ -11,8 +11,10 @@ const Table = lazy(() => import('../../UI/Table/Table'))
 
 
 const AllBook = () => {
-const [value, setvalue] = useState("")
-const [{},dispatch] = useStateValue();
+
+    const [value, setvalue] = useState("")
+
+    const [{},dispatch] = useStateValue();
     
 // const bookNotAvailable = () => {
 //     return(
@@ -23,7 +25,7 @@ const [{},dispatch] = useStateValue();
 // }
 
 const submit = (e)=> {
-    console.log(value)
+    // console.log(value)
     e.preventDefault();
     dispatch({
         type:'SEARCH',
@@ -37,14 +39,13 @@ const submit = (e)=> {
 
 const bookAvailable  = () => {
 return (
-<Suspense fallback={<h1>Book list ...</h1>}>
 <Layout>
     <div>
-    <form class="d-flex">
-      <input class="form-control me-2" type="search" placeholder="Search book" onChange={e=>setvalue(e.target.value)} aria-label="Search" />
-      <button class="btn btn-outline-success" onClick={submit} type="submit">Search</button>
+    <form className="d-flex">
+      <input className="form-control me-2" type="search" placeholder="Search book" onChange={e=>setvalue(e.target.value)} aria-label="Search" />
+      <button className="btn btn-outline-success" onClick={submit} type="submit">Search</button>
     </form>
-    <table class="table table-dark table-hover">
+    <table className="table table-dark table-hover">
 <thead>
             <tr>
                 <th>Book ID</th>
@@ -55,15 +56,14 @@ return (
           
                 </tr>
             </thead>
-            <Suspense fallback={<h1>Loading profile...</h1>}>
+            {/* <Suspense fallback={<h1>Loading profile...</h1>}> */}
 
 
 <Table   />
-            </Suspense>
+            {/* </Suspense> */}
 </table>
 </div>
 </Layout>
-</Suspense>
 )
 }
 

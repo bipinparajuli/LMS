@@ -14,12 +14,12 @@ function AllUser() {
     const [value, setvalue] = useState([{_id:"please wait...",name:"please wait...",address:"please wait...",phone:"please wait...",}])
     
     const deleteHandler = (sid) => {
-console.log(sid)
+// console.log(sid)
         deleteStudent(user._id,sid,token)
 .then(d=>
     { 
     
-    toast("Deleted Successfuly",{type:"success"})
+    toast("Deleted Successfuly",{type:"error"})
         preload()
 }
 
@@ -29,7 +29,7 @@ console.log(sid)
     }
 
 const preload = ()=> {
-console.log("inital load")
+// console.log("inital load")
     getallusers().then(data =>
         {
             if(data)
@@ -57,7 +57,7 @@ console.log("inital load")
         <Layout>
         <div>
 <Search placeholder="Search Users" />
-<table class="table table-dark table-hover">
+<table className="table table-dark table-hover">
 <thead>
             <tr>
                 <th>User id</th>
@@ -70,11 +70,11 @@ console.log("inital load")
             </thead>
 {
     value.map((d,i)=>{
-        console.log(d)
+        // console.log(d)
         return (
             <>
            
-            <tbody key={i}>
+            <tbody key={i + 1}>
             <tr 
                data-aos={"flip-left"}
                data-aos-easing={"ease-out-cubic"}
@@ -86,7 +86,7 @@ console.log("inital load")
                 <td>{d.address}</td>
                 <td>{d.phone}</td>
           
-                <td><button type="button" class="btn btn-danger mr-1" onClick={()=>deleteHandler(d._id)}>Delete</button><Link className="btn btn-primary" to={`admin/student/updatestudent/${d._id}`}>Update</Link></td>
+                <td><button type="button" className="btn btn-danger mr-1" onClick={()=>deleteHandler(d._id)}>Delete</button><Link className="btn btn-primary" to={`admin/student/updatestudent/${d._id}`}>Update</Link></td>
           
             </tr>
             </tbody>

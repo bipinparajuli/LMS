@@ -66,28 +66,28 @@ setvalues({...values,[name]:value})
   return (
         <div>
           {errorMessege()}
-            <form class="row g-3">
-  <div class="col-md-6">
-    <label for="inputEmail4" class="form-label">{labelone}</label>
-    <input type="text" class="form-control" onChange={e=>setvalues({...values,bookname:e.target.value})}  />
+            <form className="row g-3">
+  <div className="col-md-6">
+    <label  className="form-label">{labelone}</label>
+    <input type="text" className="form-control" onChange={e=>setvalues({...values,bookname:e.target.value})}  />
   </div>
 
-  <div class="col-md-6">
-    <label for="inputEmail4" class="form-label">{labelfour}</label>
-    <input type="text" class="form-control" onChange={e=>setvalues({...values,publication:e.target.value})} />
+  <div className="col-md-6">
+    <label  className="form-label">{labelfour}</label>
+    <input type="text" className="form-control" onChange={e=>setvalues({...values,publication:e.target.value})} />
   </div>
 
-  <div class="col-md-6">
-    <label for="inputEmail4" class="form-label">{labelseven}</label>
-    <input type="text" class="form-control" onChange={e=>setvalues({...values,stocks:e.target.value})} />
+  <div className="col-md-6">
+    <label  className="form-label">{labelseven}</label>
+    <input type="text" className="form-control" onChange={e=>setvalues({...values,stocks:e.target.value})} />
   </div>
-  <div class="col-md-6">
-    <label for="inputPassword4" class="form-label">{labelsix}</label>
-    <input type="text" class="form-control" onChange={e=>setvalues({...values,authorname:e.target.value})} />
+  <div className="col-md-6">
+    <label  className="form-label">{labelsix}</label>
+    <input type="text" className="form-control" onChange={e=>setvalues({...values,authorname:e.target.value})} />
   </div>
-  <div class="col-md-4">
-    <label for="inputState" class="form-label">{labelthree}</label>
-    <select id="inputState" class="form-select" onChange={e=>setvalues({...values,department:e.target.value})}>
+  <div className="col-md-4">
+    <label  className="form-label">{labelthree}</label>
+    <select id="inputState" className="form-select" onChange={e=>setvalues({...values,department:e.target.value})}>
       <option value="BCA">BCA</option>
       <option value="BBM">BBM</option>
       <option value="BBS">BBS</option>
@@ -95,8 +95,8 @@ setvalues({...values,[name]:value})
     </select>
   </div>
 
-  <div class="col-12">
-{adding? <button  class="btn btn-secondary" >Adding . . .</button> :<button  class="btn btn-success" onClick={onsubmit} >Add Book</button>}    
+  <div className="col-12">
+{adding? <button  className="btn btn-secondary" >Adding . . .</button> :<button  className="btn btn-success" onClick={onsubmit} >Add Book</button>}    
   </div>
 </form>
         </div>
