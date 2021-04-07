@@ -25,7 +25,7 @@ preload()
    return (
 <Layout>
      <div>
-  <h1> Welcome to Dashboard Page</h1> 
+  <h1 className="animate__animated animate__bounce"> Welcome to Dashboard Page</h1> 
   <div 
    data-aos={"flip-left"}
    data-aos-easing={"ease-out-cubic"}

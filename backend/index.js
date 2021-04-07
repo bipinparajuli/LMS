@@ -34,6 +34,20 @@ app.use("/api",studentRoutes)
 app.use("/api",bookRoutes)
 
 
+app.use((error,req,res,next)=>{
+    console.log('i am error',error)
+    const status = error.statuscode || 500;
+    const messege = error.info;
+
+    res.json({
+        status:status,
+        messege:messege
+    })
+
+})
+
+
+
 
 app.listen (process.env.PORT || 8000,()=>{
     console.log("app is runnig")

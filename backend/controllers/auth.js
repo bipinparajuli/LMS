@@ -32,16 +32,23 @@ res.json({
 }
 
 
-exports.signin =(req,res) => {
+exports.signin =(req,res,next) => {
   const {email,password,name} = req.body;
   const errors = validationResult(req);
 
-  console.log("Signin",email,password)
+//   console.log("Signin",email,password)
 
   if(!errors.isEmpty()) {
-    return res.status(422).json({
-        error:errors.array()[0].msg
-    })
+    // return res.status(422).json({
+    //     error:errors.array()[0].msg
+    // })
+
+    const error = new Error(errors.array()[0].msg)
+     error.info=error.message;
+     error.statuscode= 422;
+
+     throw error 
+    //  next(error)
 }
 User.findOne({email},(err,user) => {
     if(err || !user){
@@ -63,7 +70,7 @@ const token = jwt.sign({_id:user._id},process.env.SECRET);
 res.cookie("token",token,{expire:new Date() + 9999})
 
 //sending res to frontend
-console.log(user);
+// console.log(user);
 const {_id,role,name,email} = user;
 res.send({token,user:{_id,name,email,role}})
 

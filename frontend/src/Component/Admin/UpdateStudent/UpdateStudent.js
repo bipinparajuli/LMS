@@ -1,4 +1,5 @@
 import React,{useState,useEffect} from 'react'
+import {Link} from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { getStudentById, updateStudent } from '../../APIHelper/Studentapi'
 import { isAuthenticate } from '../../auth/index'
@@ -74,29 +75,29 @@ toast("Updated Successfully",{type:"success"})
         <div>
                <form className="row g-3">
   <div className="col-md-6">
-    <label for="inputEmail4" className="form-label">Student Name</label>
+    <label  className="form-label">Student Name</label>
     <input type="text" value={name} className="form-control" onChange={e=>setvalues({...values,name:e.target.value})}  />
   </div>
 
   <div className="col-md-6">
-    <label for="inputEmail4" className="form-label">Email</label>
+    <label  className="form-label">Email</label>
     <input type="text" className="form-control" value={email} onChange={e=>setvalues({...values,email:e.target.value})} />
   </div>
 
   <div className="col-md-6">
-    <label for="inputEmail4" className="form-label">Phone</label>
+    <label  className="form-label">Phone</label>
     <input type="text" className="form-control" value={contact} onChange={e=>setvalues({...values,contact:e.target.value})} />
   </div>
   <div className="col-md-6">
-    <label for="inputPassword4" className="form-label">Address</label>
+    <label  className="form-label">Address</label>
     <input type="text" className="form-control" value={address} onChange={e=>setvalues({...values,address:e.target.value})} />
   </div>
   <div className="col-md-6">
-    <label for="inputPassword4" className="form-label">Roll</label>
+    <label  className="form-label">Roll</label>
     <input type="text" className="form-control" value={roll} onChange={e=>setvalues({...values,roll:e.target.value})} />
   </div>
   <div className="col-md-4">
-    <label for="inputState" className="form-label">{labelthree}</label>
+    <label  className="form-label">{labelthree}</label>
     <select id="inputState" className="form-select" onChange={e=>setvalues({...values,department:e.target.value})}>
       <option value="BCA">BCA</option>
       <option value="BBM">BBM</option>
@@ -107,7 +108,7 @@ toast("Updated Successfully",{type:"success"})
 
   <div className="col-12">
     <button  className="btn btn-success" onClick={onsubmit} >Update Student</button>
-    <a className="btn btn-primary" href="/dashboard" role="button" style={{marginLeft:"10px"}}>Go Back</a>
+  <Link to="/dashboard" style={{marginLeft:"10px"}}>  Go Back</Link>
   </div>
 </form>
 
