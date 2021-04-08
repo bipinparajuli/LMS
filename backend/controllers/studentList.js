@@ -1,10 +1,12 @@
 const studentList = require("../models/studentList")
 const User = require("../models/user")
-
+const bycrypt = require('bcrypt')
 
 exports.getUserByID = (req,res,next,id) => {
-User.findById(id).exec((err,user) => {
-    if(err || !user)
+console.log(id)
+    User.findById(id).exec((err,user) => {
+console.log(user,err)
+        if(err || !user)
     {
         return res.status(400).json({
             error :"No User was Found in DB"
@@ -17,15 +19,17 @@ next();
 
 exports.getStudentByname =(req,res,next,name) => {
     const regx= new RegExp(name,'i')
-    studentList.find({name:regx}).exec((err,user) => {
+    User.find({name:regx}).exec((err,user) => {
         if(err || !user)
         {
             return res.status(400).json({
                 error :"No Student was Found in DB"
             })
         }
+
 const newuser =[...user]
-newuser.password = undefined
+console.log("Newuser",newuser)
+newuser[0].password = undefined
         req.search = user;
     next();
     })
@@ -43,7 +47,7 @@ res.json(req.search)
 
 
 exports.getStudentByID = (req,res,next,id) => {
-    studentList.findById(id).exec((err,user) => {
+    User.findById(id).exec((err,user) => {
         if(err || !user)
         {
             return res.status(400).json({
@@ -68,28 +72,51 @@ if(!req.student)
 
 
 
-exports.addStudent= (req,res)=>{
-    const student = new studentList (req.body);
+exports.addStudent= async (req,res)=>{
+    console.log(req.body)
+
+    const student = new User (req.body);
+
+const {email} = student
+ User.findOne({email})
+.then(data=>{
+if(data == null)
+{
+    bycrypt.hash(student.password,11,  (err,hash)=>{
+        console.log(hash)
+        student.password=hash;
+    })
 
     // if(!roll || !name || !email || !address || !phone || !department)
     // {
     //     res.status(400).json({error:"Please Include all the field"})
     // }
-
-    student.save((err,product) => {
+    student.save((err,data) => {
         if(err){
             res.status(400).json({
                 error:err 
             })
         }
-        res.json(product)
+        res.json(data)
     })
+}
+else{
+    res.status(404).json({error:"Email is already use"})
+   
+}
+
+})
+.catch(e=> console.log(e))
+
+
+//encrypting student password
+
 
 }
 
 
 exports.getAllStudents = (req,res) => {
-studentList.find().exec((err,student)=> {
+User.find().exec((err,student)=> {
     if(err){
         res.status(400).json({error:'Unable to get all student'})
     }
@@ -101,7 +128,7 @@ studentList.find().exec((err,student)=> {
 exports.updateStudent = (req,res) => {
 
     console.log(req.body)
-studentList.findByIdAndUpdate(
+User.findByIdAndUpdate(
     {_id:req.student._id},
     {$set:req.body},
     {new:true,findByIdAndUpdate:false},
@@ -118,7 +145,7 @@ studentList.findByIdAndUpdate(
 exports.deleteStudent = (req,res) => {
  console.log(req.student)
     const student = req.student;
-    studentList.remove(student,(err,data)=>{
+    User.remove(student,(err,data)=>{
         if(err){
             res.status(400).json({error:'Unable to delete student'})
         }

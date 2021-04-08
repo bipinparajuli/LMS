@@ -1,6 +1,8 @@
 const {validationResult} = require("express-validator")
 //signin
 const User = require("../models/user")
+const Student = require("../models/studentList")
+const bycrypt = require('bcrypt')
 const jwt= require('jsonwebtoken')
 const expressJwt= require("express-jwt")
 
@@ -14,69 +16,80 @@ exports.signup=(req,res)=>{
         })
     }
     const user = new User(req.body);
-    console.log(req.body)
-    user.save((err,data)=>{
-if(err){
-return res.status(400).json({error:"Unable to save data in db" + err})
-}
-res.json({
-    name:data.name,
-    email:data.email,
-    password:data.enc_password
-})
+    console.log(user.enc_password)
 
-
+    bycrypt.hash(user.enc_password,11,(err,hash)=>{
+        console.log(hash)
+        user.enc_password = hash
+        user.save((err,data)=>{
+            if(err){
+            return res.status(400).json({error:"Unable to save data in db" + err})
+            }
+            res.json({
+                name:data.name,
+                email:data.email,
+                password:data.enc_password
+            })
+                        
+                })
+            
     })
 
+    
 
 }
 
 
 exports.signin =(req,res,next) => {
-  const {email,password,name} = req.body;
+  const {email,enc_password,name} = req.body;
   const errors = validationResult(req);
 
-//   console.log("Signin",email,password)
+//   console.log(email,enc_password)
 
   if(!errors.isEmpty()) {
-    // return res.status(422).json({
-    //     error:errors.array()[0].msg
-    // })
+    return res.status(422).json({
+        error:errors.array()[0].msg
+    })
+  }
+    // const error = new Error(errors.array()[0].msg)
+    //  error.info=error.message;
+    //  error.statuscode= 422;
 
-    const error = new Error(errors.array()[0].msg)
-     error.info=error.message;
-     error.statuscode= 422;
-
-     throw error 
+    //  throw error 
     //  next(error)
-}
+
 User.findOne({email},(err,user) => {
     if(err || !user){
-        res.status(400).json({
+
+
+        return        res.status(400).json({
             error:"USER email does not exists"
         })
     }
-    // console.log(user)
-    if(!user.authenticate(password)){
-return res.status(401).json({
-    error:"User Password and Email does not match"
-})
-    };
+    console.log(enc_password,user.enc_password)
+    bycrypt.compare(enc_password,user.enc_password,(err,result)=>{
+        if(err)
+        {
+            res.json({success:false,status:403,error:err,messege:["Password don't match"]})
+        }
 
-    //creating a Token
-const token = jwt.sign({_id:user._id},process.env.SECRET);
+        const token = jwt.sign({_id:user._id},process.env.SECRET);
 
     //sending tokem into cookies
-res.cookie("token",token,{expire:new Date() + 9999})
+// res.cookie("token",token,{expire:new Date() + 9999})
 
 //sending res to frontend
-// console.log(user);
 const {_id,role,name,email} = user;
-res.send({token,user:{_id,name,email,role}})
+console.log(token)
+
+return res.send({token,user:{_id,name,email,role}})
 
 
 })
     
+
+    })
+
 }
 
 exports.signOut = (req,res) => {

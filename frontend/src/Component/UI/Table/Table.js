@@ -12,8 +12,8 @@ const [{search},dispatch] = useStateValue()
 
 // console.log(search.value)
 
-const Searchdata = () => {
-
+const Searchdata = (e) => {
+// e.preventDefault()
     if(search.value !== undefined)
     {
         searchBookByName(search.value)

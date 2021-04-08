@@ -27,6 +27,8 @@ const AddUser = () => {
 
 setvalues({...values,adding:true})
 
+// console.log(user._id,token)
+
 addStudent(user._id,token,{name,email,phone,roll,address,department})
 .then(d=>
   {
@@ -34,11 +36,14 @@ addStudent(user._id,token,{name,email,phone,roll,address,department})
     {
       toast("Failed to add user",{type:"error"})
     }
-setvalues({...values,name:" ",email:" ",phone:" ",roll:" ",address:" ",department:"",adding:false})
-toast("Successfully added user",{type:"success"})
-Array.from(document.querySelectorAll("input")).forEach(
-  input => (input.value = "")
-)
+    else{
+      setvalues({...values,name:" ",email:" ",phone:" ",roll:" ",address:" ",department:"",adding:false})
+      toast("Successfully added user",{type:"success"})
+      Array.from(document.querySelectorAll("input")).forEach(
+        input => (input.value = "")
+      )
+    }
+
 
   }
   )
@@ -59,26 +64,26 @@ Array.from(document.querySelectorAll("input")).forEach(
 <div>
             <form className="row g-3">
   <div className="col-md-6">
-    <label  className="form-label">Student Name</label>
-    <input type="text" className="form-control" onChange={e=>setvalues({...values,name:e.target.value})}  />
+    <label  className="form-label">Student Name*</label>
+    <input required type="text" className="form-control" onChange={e=>setvalues({...values,name:e.target.value})}  />
   </div>
   <div className="col-md-6">
-    <label  className="form-label">Email</label>
-    <input type="text" className="form-control" onChange={e=>setvalues({...values,email:e.target.value})}  />
-  </div>
-
-  <div className="col-md-6">
-    <label  className="form-label">Address</label>
-    <input type="text" className="form-control" onChange={e=>setvalues({...values,address:e.target.value})} />
+    <label  className="form-label">Email*</label>
+    <input required type="text" className="form-control" onChange={e=>setvalues({...values,email:e.target.value})}  />
   </div>
 
   <div className="col-md-6">
-    <label  className="form-label">Phone No.</label>
-    <input type="text" className="form-control" onChange={e=>setvalues({...values,phone:e.target.value})} />
+    <label  className="form-label">Address*</label>
+    <input required type="text" className="form-control" onChange={e=>setvalues({...values,address:e.target.value})} />
+  </div>
+
+  <div className="col-md-6">
+    <label  className="form-label">Phone No.*</label>
+    <input type="text" required className="form-control" onChange={e=>setvalues({...values,phone:e.target.value})} />
   </div>
   <div className="col-md-6">
-    <label  className="form-label">Roll no.</label>
-    <input type="text" className="form-control" onChange={e=>setvalues({...values,roll:e.target.value})} />
+    <label  className="form-label">Roll no.*</label>
+    <input required type="text" className="form-control" onChange={e=>setvalues({...values,roll:e.target.value})} />
   </div>
   <div className="col-md-4">
     <label  className="form-label">Department</label>

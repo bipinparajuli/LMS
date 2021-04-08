@@ -45,6 +45,8 @@ if(data.error || !data)
 e.preventDefault()
 setvalues({...values,updating:true})
 
+console.log(user._id)
+
 updateBook(user._id,match.params.bookid,token,{authorname,bookname,publication,stocks,department})
  
 .then(data=>

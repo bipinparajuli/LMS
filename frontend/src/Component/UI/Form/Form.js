@@ -68,22 +68,22 @@ setvalues({...values,[name]:value})
           {errorMessege()}
             <form className="row g-3">
   <div className="col-md-6">
-    <label  className="form-label">{labelone}</label>
-    <input type="text" className="form-control" onChange={e=>setvalues({...values,bookname:e.target.value})}  />
+    <label  className="form-label">{labelone}*</label>
+    <input type="text" className="form-control" required onChange={e=>setvalues({...values,bookname:e.target.value})}  />
   </div>
 
   <div className="col-md-6">
-    <label  className="form-label">{labelfour}</label>
-    <input type="text" className="form-control" onChange={e=>setvalues({...values,publication:e.target.value})} />
+    <label  className="form-label">{labelfour}*</label>
+    <input type="text" className="form-control" required onChange={e=>setvalues({...values,publication:e.target.value})} />
   </div>
 
   <div className="col-md-6">
-    <label  className="form-label">{labelseven}</label>
-    <input type="text" className="form-control" onChange={e=>setvalues({...values,stocks:e.target.value})} />
+    <label  className="form-label">{labelseven}*</label>
+    <input type="text" className="form-control" required onChange={e=>setvalues({...values,stocks:e.target.value})} />
   </div>
   <div className="col-md-6">
-    <label  className="form-label">{labelsix}</label>
-    <input type="text" className="form-control" onChange={e=>setvalues({...values,authorname:e.target.value})} />
+    <label  className="form-label">{labelsix}*</label>
+    <input type="text" className="form-control" required onChange={e=>setvalues({...values,authorname:e.target.value})} />
   </div>
   <div className="col-md-4">
     <label  className="form-label">{labelthree}</label>

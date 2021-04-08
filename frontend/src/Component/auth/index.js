@@ -27,7 +27,7 @@ export const signout = (next) => {
      localStorage.removeItem("jwt");
     //  next();
 
-     return fetch(`http://localhost:8000/api/signout`,{
+     return fetch(`https://mysterious-woodland-24801.herokuapp.com/api/signout`,{
          method:"GET"
      }).then(e => console.log("signout successfuly"))
  }   

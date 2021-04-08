@@ -4,37 +4,37 @@ import {NavLink} from 'react-router-dom'
 import {} from 'react-icons'
 import {signout} from "../auth/index"
 
-const Sidebar = () => {
-const data = ['Dashboard','All User','All Books','Add User','Add Book','Renew/Issue request',];
+const Sidebar = ({data,one,two,three,four,five,six,seven,header}) => {
+// const data = ['/dashboard','All User','All Books','Add User','Add Book','Renew/Issue request',];
     return(
     <div>
         <ProSidebar>
 <SidebarHeader>
-    <h5>Admin Dashboard</h5>
+    <h5>{one,two,three,four,five,six,seven,header}</h5>
 </SidebarHeader>
 
 <SidebarContent>
     <Menu>
         <MenuItem>
-        <NavLink exact to="dashboard">Dashboard</NavLink>
+        <NavLink exact to={data[0]}>{one}</NavLink>
         </MenuItem>
         <MenuItem>
-        <NavLink exact to="allbook">All Book</NavLink>
+        <NavLink exact to={data[1]}>{two}</NavLink>
         </MenuItem>
         <MenuItem>
-        <NavLink exact to="alluser">All User</NavLink>
+        <NavLink exact to={data[2]}>{three}</NavLink>
         </MenuItem>
         <MenuItem>
-        <NavLink exact to="issuebook">Issue/Renew Book</NavLink>
+        <NavLink exact to={data[3]}>{four}</NavLink>
         </MenuItem>
         <MenuItem>
-        <NavLink exact to='addbook'>Add Book</NavLink>
+        <NavLink exact to={data[4]}>{five}</NavLink>
         </MenuItem>
         <MenuItem>
-        <NavLink to='adduser' exact>Add User</NavLink>
+        <NavLink to={data[5]} exact>{six}</NavLink>
         </MenuItem>
         <MenuItem>
-        <NavLink exact to='/' onClick={signout}>Log Out</NavLink>
+        <NavLink exact to={data[6]} onClick={signout}>{seven}</NavLink>
         </MenuItem>
     </Menu>
 </SidebarContent>

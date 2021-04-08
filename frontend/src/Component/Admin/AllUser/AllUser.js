@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { useStateValue } from '../../../Container/Serviceprovider'
 import { deleteStudent, getallusers } from '../../APIHelper/auth'
 import { isAuthenticate } from '../../auth'
 import Layout from '../../Layout/Layout'
@@ -12,9 +13,11 @@ const {user,token} = isAuthenticate();
 
 function AllUser() {
     const [value, setvalue] = useState([{_id:"please wait...",name:"please wait...",address:"please wait...",phone:"please wait...",}])
+
+    const [{searchStudent},dispatch] = useStateValue();
     
     const deleteHandler = (sid) => {
-// console.log(sid)
+console.log(sid)
         deleteStudent(user._id,sid,token)
 .then(d=>
     { 
@@ -52,7 +55,11 @@ const preload = ()=> {
     useEffect(() => {
         preload()
     }, [])
-    
+
+
+    useEffect(() => {
+        setvalue(searchStudent)
+    }, [searchStudent])
     return (
         <Layout>
         <div>

@@ -4,7 +4,10 @@ import { isAuthenticate } from './index';
 
 
 const PrivateRoutes = ({ component:Component, ...rest }) => {
-    return (
+  
+console.log("Checking")
+  
+  return (
       <Route
         {...rest}
         render={(props) =>

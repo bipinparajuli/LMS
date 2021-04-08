@@ -16,8 +16,7 @@ const Layout = lazy(()=> import("../../Layout/Layout"))
   }
   
     useEffect(() => {
-        AOS.init();
-        AOS.refresh();
+       
 preload()
     }, []);
     
@@ -27,9 +26,6 @@ preload()
      <div>
   <h1 className="animate__animated animate__bounce"> Welcome to Dashboard Page</h1> 
   <div 
-   data-aos={"flip-left"}
-   data-aos-easing={"ease-out-cubic"}
-   data-aos-duration={"2000"}
    className="row"
    >
       <div

@@ -13,7 +13,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 const Signin =  () => {
 const [values,setvalue] = useState({
     email:"",
-    password:"",
+    enc_enc_password:"",
     didredirect:false,
     loader:false,
     error:"",
@@ -21,7 +21,7 @@ const [values,setvalue] = useState({
 })
 // const [email, setemail] = useState("")
 
-const {email,password,didredirect,loader,error} = values;
+const {email,enc_password,didredirect,loader,error} = values;
 
 const errorMessege = () => {
     return (
@@ -44,7 +44,7 @@ const Submit = async (e)=> {
 e.preventDefault()
      setvalue({...values,error:false,loader:true})
 
-        Login({email,password}).then((data)=>{
+        Login({email,enc_password}).then((data)=>{
 
     if(data.error)
     {
@@ -60,7 +60,7 @@ else{
 
     
 })
-// .catch(e=>console.log(e),setvalue({...values,password:"",error:true,loader:true}))
+// .catch(e=>console.log(e),setvalue({...values,enc_password:"",error:true,loader:true}))
     }
 
 const performRedirect = () =>{
@@ -70,6 +70,10 @@ const performRedirect = () =>{
        {
    
            return <Redirect to="/dashboard" />
+       }
+       else if(user && user.role === 0){
+        return <Redirect to="/student" />
+
        }
    }
 }
@@ -89,7 +93,7 @@ const signinForm = () => {
 <div className="login_main color-black">
 <FaUser style={{height:"100px",width:"100px"}}  />
 <TextField required rounded   placeholder="Email" color="black" type="email" value={email} onChange={e=>setvalue({...values,email:e.value})} />
-<TextField required rounded type="password" placeholder="Password" value={password} onChange={e=>setvalue({...values,password:e.value})} />
+<TextField required rounded type="password" placeholder="password" value={enc_password} onChange={e=>setvalue({...values,enc_password:e.value})} />
 <Button  onClick={Submit}>Login</Button>
 </div>
 </form>
