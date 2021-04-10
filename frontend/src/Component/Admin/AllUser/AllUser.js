@@ -12,7 +12,7 @@ import Search from '../../UI/Search/Search'
 const {user,token} = isAuthenticate();
 
 function AllUser() {
-    const [value, setvalue] = useState([{_id:"please wait...",name:"please wait...",address:"please wait...",phone:"please wait...",}])
+    const [value, setvalue] = useState([{_id:"please wait...",name:"please wait...",address:"please wait...",phone:"please wait..."}])
 
     const [{searchStudent},dispatch] = useStateValue();
     
@@ -76,17 +76,13 @@ const preload = ()=> {
                 </tr>
             </thead>
 {
-    value.map((d,i)=>{
+    console.log(value),value.map((d,i)=>{
         // console.log(d)
         return (
             <>
            
             <tbody key={i + 1}>
-            <tr 
-               data-aos={"flip-left"}
-               data-aos-easing={"ease-out-cubic"}
-               data-aos-duration={"2000"}
-            >
+            <tr>
                 <td>{d._id}</td>
                 <td>{d.name}</td>
           

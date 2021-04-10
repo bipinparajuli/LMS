@@ -13,13 +13,13 @@ const AddUser = () => {
     name:"",
     email:"",
     phone:"",
-    roll:"",
+    roll_no:"",
     address:"",
     department:"",
     adding:false
   })
 
-  const {name,email,phone,roll,address,department,adding} = values;
+  const {name,email,phone,roll_no,address,department,adding} = values;
 
   const onsubmit = e =>{
 
@@ -29,12 +29,17 @@ setvalues({...values,adding:true})
 
 // console.log(user._id,token)
 
-addStudent(user._id,token,{name,email,phone,roll,address,department})
+addStudent(user._id,token,{name,email,phone,roll_no,address,department})
 .then(d=>
   {
     if(d.error)
     {
-      toast("Failed to add user",{type:"error"})
+      console.log(d.error)
+      toast("Failed to add user" + d.error,{type:"error"})
+      setvalues({...values,adding:false})
+      Array.from(document.querySelectorAll("input")).forEach(
+        input => (input.value = "")
+      )
     }
     else{
       setvalues({...values,name:" ",email:" ",phone:" ",roll:" ",address:" ",department:"",adding:false})
@@ -83,7 +88,7 @@ addStudent(user._id,token,{name,email,phone,roll,address,department})
   </div>
   <div className="col-md-6">
     <label  className="form-label">Roll no.*</label>
-    <input required type="text" className="form-control" onChange={e=>setvalues({...values,roll:e.target.value})} />
+    <input required type="text" className="form-control" onChange={e=>setvalues({...values,roll_no:e.target.value})} />
   </div>
   <div className="col-md-4">
     <label  className="form-label">Department</label>

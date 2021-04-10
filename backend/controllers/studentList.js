@@ -3,7 +3,6 @@ const User = require("../models/user")
 const bycrypt = require('bcrypt')
 
 exports.getUserByID = (req,res,next,id) => {
-// console.log(id)
     User.findById(id).exec((err,user) => {
 // console.log(user,err)
         if(err || !user)
@@ -12,8 +11,11 @@ exports.getUserByID = (req,res,next,id) => {
             error :"No User was Found in DB"
         })
     }
+
     req.profile = user;
-next();
+// console.log(req.profile)s
+
+    next();
 })
 }
 
@@ -28,7 +30,7 @@ exports.getStudentByname =(req,res,next,name) => {
         }
 
 const newuser =[...user]
-console.log("Newuser",newuser)
+// console.log("Newuser",newuser)
 newuser[0].password = undefined
         req.search = user;
     next();

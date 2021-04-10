@@ -9,7 +9,8 @@ if(window !== undefined)
 }
 
 export const isAuthenticate = () => {
-if(typeof window == "undefined")
+// console.log(localStorage.getItem("jwt"))
+    if(typeof window == "undefined")
 {
     return false
 }

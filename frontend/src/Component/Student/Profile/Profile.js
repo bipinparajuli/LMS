@@ -18,7 +18,12 @@ const Profile = () => {
 const preload = async () => {
 
    await getStudentById(user._id)
-    .then(data=>setstate(data))
+    .then(data=>
+        {
+console.log(data)
+            setstate(data)
+
+        })
     .catch(e=> console.log(e))
     }
 

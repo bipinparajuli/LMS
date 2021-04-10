@@ -12,6 +12,11 @@ Order.findById({id})
     
 }
 
+exports.getAllBookOrder = (req,res) => {
+  console.log("GETTING BACK")
+  res.json(req.profile.books)
+}
+
 exports.createOrder = (req,res) => {
     // req.body.order.user = req.profile;
     const order = new Order(req.body);
@@ -35,7 +40,8 @@ exports.createOrder = (req,res) => {
                     // description: product.description,
                     department: data.book.department,
                     publication: data.book.publication,
-                    authorname:data.book.authorname
+                    authorname:data.book.authorname,
+                    status:Pending
                   });
 
       
@@ -86,13 +92,11 @@ exports.updateStatus = (req, res) => {
             error: "Cannot update order status"
           });
         }
+
+
         res.json(order);
       }
     );
   };
   
-exports.getMyAllBooks = (req,res,next,id) =>{
-console.log("GETTING")
-  res.json(req.profile.books)
-
-  }
+  
