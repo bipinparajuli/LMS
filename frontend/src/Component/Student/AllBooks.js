@@ -1,7 +1,11 @@
 import React,{useEffect,useState} from 'react'
 import { useStateValue } from '../../Container/Serviceprovider'
 import { getAllBook, searchBookByName } from '../APIHelper/bookapi'
+import { Authenticate } from '../auth'
 import StudentHome from './StudentHome'
+
+
+const {user,token} = Authenticate;
 
 const AllBooks = () => {
 
@@ -36,7 +40,7 @@ const Searchdata = (e) => {
     
 } 
 
-const orderBook =()=> {
+const orderBook =(id,name,stocks)=> {
 
 }
 
@@ -71,7 +75,7 @@ preload()
                     <td>{d._id}</td>
                     <td>{d.bookname}</td>              
                     <td>{d.stocks}</td>
-                    <td><button onClick={orderBook} className='btn btn-secondary'>Order Now</button></td>                            
+                    <td><button onClick={()=>orderBook(d._id,d.bookname,d.stocks)} className='btn btn-secondary'>Order Now</button></td>                            
                 </tr>
                 </tbody>
     </>

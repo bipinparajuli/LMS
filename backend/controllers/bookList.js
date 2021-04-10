@@ -93,3 +93,25 @@ bookList.remove(book,(err,data)=>{
 })
 
 }
+
+exports.updateStock = (req, res, next) => {
+    console.log(req.body)
+    let myOperations = req.body.order.book.map(bok => {
+      return {
+        updateOne: {
+          filter: { _id: bok._id },
+          update: { $inc: { stock: -bok.stock,  } }
+        }
+      };
+    });
+  
+    Product.bulkWrite(myOperations, {}, (err, products) => {
+      if (err) {
+        return res.status(400).json({
+          error: "Bulk operation failed"
+        });
+      }
+      next();
+    });
+  };
+  

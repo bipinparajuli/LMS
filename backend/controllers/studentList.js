@@ -3,9 +3,9 @@ const User = require("../models/user")
 const bycrypt = require('bcrypt')
 
 exports.getUserByID = (req,res,next,id) => {
-console.log(id)
+// console.log(id)
     User.findById(id).exec((err,user) => {
-console.log(user,err)
+// console.log(user,err)
         if(err || !user)
     {
         return res.status(400).json({
@@ -73,32 +73,34 @@ if(!req.student)
 
 
 exports.addStudent= async (req,res)=>{
-    console.log(req.body)
+    //  console.log(req.body)
 
     const student = new User (req.body);
 
-const {email} = student
+const {email,enc_password} = student
  User.findOne({email})
 .then(data=>{
 if(data == null)
 {
-    bycrypt.hash(student.password,11,  (err,hash)=>{
-        console.log(hash)
-        student.password=hash;
+    bycrypt.hash(enc_password,11).then(hash=>{
+        console.log("HASING",hash)
+        student.enc_password=  hash;
+        student.save((err,data) => {
+ console.log(data)
+            if(err){
+                res.status(400).json({
+                    error:err 
+                })
+            }
+            res.json(data)
+        })    
     })
 
     // if(!roll || !name || !email || !address || !phone || !department)
     // {
     //     res.status(400).json({error:"Please Include all the field"})
     // }
-    student.save((err,data) => {
-        if(err){
-            res.status(400).json({
-                error:err 
-            })
-        }
-        res.json(data)
-    })
+    
 }
 else{
     res.status(404).json({error:"Email is already use"})
@@ -153,3 +155,35 @@ exports.deleteStudent = (req,res) => {
     })
 
 }
+
+//updating books Array
+// exports.pushOrderInBooksArray = (req, res, next) => {
+//     console.log("res",req.body)
+//     let books = [];
+//     req.body.book.forEach(book => {
+//       books.push({
+//         _id: book._id,
+//         bookname: book.bookname,
+//         // description: product.description,
+//         department: book.department,
+//         publication: book.publication,
+//       });
+//     });
+  
+//     //store thi in DB
+//     User.findOneAndUpdate(
+//       { _id: req.profile._id },
+//       { $push: { books: books } },
+//       { new: true },
+//       (err, books) => {
+//         if (err) {
+//           return res.status(400).json({
+//             error: "Unable to save purchase list"
+//           });
+//         }
+//         next();
+//       }
+//     );
+//   };
+  
+

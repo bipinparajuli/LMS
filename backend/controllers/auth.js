@@ -16,10 +16,10 @@ exports.signup=(req,res)=>{
         })
     }
     const user = new User(req.body);
-    console.log(user.enc_password)
+    // console.log(user.enc_password)
 
     bycrypt.hash(user.enc_password,11,(err,hash)=>{
-        console.log(hash)
+        // console.log(hash)
         user.enc_password = hash
         user.save((err,data)=>{
             if(err){
@@ -40,11 +40,11 @@ exports.signup=(req,res)=>{
 }
 
 
-exports.signin =(req,res,next) => {
+exports.signin = async (req,res,next) => {
   const {email,enc_password,name} = req.body;
-  const errors = validationResult(req);
+  
+  const errors = await validationResult(req);
 
-//   console.log(email,enc_password)
 
   if(!errors.isEmpty()) {
     return res.status(422).json({
@@ -59,36 +59,46 @@ exports.signin =(req,res,next) => {
     //  next(error)
 
 User.findOne({email},(err,user) => {
+  
     if(err || !user){
 
 
-        return        res.status(400).json({
-            error:"USER email does not exists"
-        })
+                return        res.status(400).json({
+                    error:"USER email does not exists"
+                })
     }
-    console.log(enc_password,user.enc_password)
-    bycrypt.compare(enc_password,user.enc_password,(err,result)=>{
-        if(err)
+
+
+    // console.log(user)
+      const result = bycrypt.compareSync(enc_password,user.enc_password)
+    
+    console.log(result)
+      
+    if(result)
+    {
+        const token = jwt.sign({_id:user._id},process.env.SECRET);
+
+        //sending tokem into cookies
+        res.cookie("token",token,{expire:new Date() + 9999})
+        
+        //sending res to frontend
+        const {_id,role,name,email} = user;
+        // console.log(token)
+        
+        return res.send({token,user:{_id,name,email,role}})
+        
+    }
+    
+        
+    
+        
+    
+    else
         {
             res.json({success:false,status:403,error:err,messege:["Password don't match"]})
         }
 
-        const token = jwt.sign({_id:user._id},process.env.SECRET);
-
-    //sending tokem into cookies
-// res.cookie("token",token,{expire:new Date() + 9999})
-
-//sending res to frontend
-const {_id,role,name,email} = user;
-console.log(token)
-
-return res.send({token,user:{_id,name,email,role}})
-
-
-})
-    
-
-    })
+    })   
 
 }
 
@@ -105,7 +115,7 @@ exports.isSignedIn = expressJwt({
 })
 
 exports.isAuthenticated = (req,res,next) => {
-    console.log(req.profile,req.auth)
+    // console.log(req.profile,req.auth)
     let checker = req.profile&&req.auth&&req.profile._id == req.auth._id;
     if(!checker)
     {

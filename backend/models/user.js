@@ -52,6 +52,10 @@ const userSchema = new mongoose.Schema({
     bookissue:{
         type:Number,
         trim:true
+    },
+    books:{
+        type:Array,
+        default:[]
     }
 });
 
