@@ -12,10 +12,14 @@ const initialState ={
 }
 
 const [order, setorder] = useState([])
-    const preload = () => {
+const [loading, setloading] = useState(false)
+
+const preload = () => {
+    setloading(true)
 getAllOrder(user._id,token)
 .then(data=>{
 setorder(data)
+setloading(false)
 }).catch(error=> console.log(error))
     }
 
@@ -43,10 +47,10 @@ return (
   </thead>
   <tbody>
       {
-    order !== undefined && order !==[] ? order.map(data=>(
+    loading == false ? order.map(data=>(
 <tr>
       <td>{data.book.bookname}</td>
-      <td>{data.publication}</td>
+      <td>{data.book.publication}</td>
       <td>{data.user.name}</td>
       <td>{data.user.email}</td>
       <td>{data.user.address}</td>
@@ -60,11 +64,11 @@ return (
 
           :(
 <tr>
-      <td>loaing . . .</td>
-      <td>loaing . . .</td>
-      <td> loaing . . .</td>
-      <td>loaing . . .</td>
-      <td>loaing . . .</td>
+      <td>loading . . .</td>
+      <td>loading . . .</td>
+      <td> loading . . .</td>
+      <td>loading . . .</td>
+      <td>loading . . .</td>
 
       <td><span className="badge rounded-pill bg-info text-dark">loading ...</span>
 </td>

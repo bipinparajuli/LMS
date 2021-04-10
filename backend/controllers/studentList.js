@@ -31,7 +31,7 @@ exports.getStudentByname =(req,res,next,name) => {
 
 const newuser =[...user]
 // console.log("Newuser",newuser)
-newuser[0].password = undefined
+newuser[0].enc_password = undefined
         req.search = user;
     next();
     })

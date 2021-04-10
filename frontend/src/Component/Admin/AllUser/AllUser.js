@@ -13,6 +13,7 @@ const {user,token} = isAuthenticate();
 
 function AllUser() {
     const [value, setvalue] = useState([{_id:"please wait...",name:"please wait...",address:"please wait...",phone:"please wait..."}])
+const [loading, setloading] = useState(false)
 
     const [{searchStudent},dispatch] = useStateValue();
     
@@ -32,13 +33,14 @@ console.log(sid)
     }
 
 const preload = ()=> {
+    setloading(true)
 // console.log("inital load")
     getallusers().then(data =>
         {
             if(data)
             {
                 setvalue(data)
-
+setloading(false)
             }
             else{
                 return (
@@ -59,7 +61,7 @@ const preload = ()=> {
 
     useEffect(() => {
         setvalue(searchStudent)
-    }, [searchStudent])
+    }, [])
     return (
         <Layout>
         <div>
@@ -76,7 +78,7 @@ const preload = ()=> {
                 </tr>
             </thead>
 {
-    console.log(value),value.map((d,i)=>{
+   loading ==false ? value.map((d,i)=>{
         // console.log(d)
         return (
             <>
@@ -95,7 +97,20 @@ const preload = ()=> {
             </tbody>
 </>
         )
-    })
+    }):
+    (
+        <tbody>
+        <tr>
+            <td>loading . . . </td>
+            <td>loading . . .</td> 
+            <td>loading . . .</td>
+            <td>loading . . .</td>
+      
+            <td><button type="button" className="btn btn-danger mr-1" >Delete</button><Link className="btn btn-primary" >Update</Link></td>
+      
+        </tr>
+        </tbody>
+    )
 }
 
 </table>
