@@ -6,9 +6,9 @@ export const getStudentById =(studentid) => {
 }
 
 
-    export const updateStudent = (uid,sid,token,data) => {
+    export const updateStudent = (uid,token,data) => {
         console.log(data)
-        return fetch(`http://localhost:8000/api/student/updatestudent/${uid}/${sid}`
+        return fetch(`http://localhost:8000/api/student/updatestudent/${uid}`
         ,{
           method:"PUT",
           headers:{

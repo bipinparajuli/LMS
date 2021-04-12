@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Profile from "./Component/Student/Profile/Profile";
 import AllBooks from "./Component/Student/AllBooks";
 import Mybooks from "./Component/Student/Mybooks";
+import UpdateProfile from "./Component/Student/UpdateProfile/UpdateProfile";
 
 
 const Signin = React.lazy(()=> import( './Component/User/Signin')) ;
@@ -64,7 +65,7 @@ function App() {
 
 <PrivateRoute exact path="/mybooklist" component={Mybooks} />
 
-{/* <PrivateRoute exact path="/student" component={StudentHome} /> */}
+<PrivateRoute exact path="/updatestudentprofile" component={UpdateProfile} />
 
   </Switch>
 

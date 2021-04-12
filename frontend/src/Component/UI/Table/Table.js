@@ -4,6 +4,7 @@ import { isAuthenticate } from '../../auth';
 import {Link} from "react-router-dom"
 import { toast } from 'react-toastify';
 import {useStateValue} from '../../../Container/Serviceprovider'
+import './Table.css'
 
 const Table = () => {
     const [book, setbook] = useState([{_id:"please wait...",bookname:"please wait...",stocks:"please wait...",createdAt:"please wait...",}]);
@@ -87,7 +88,7 @@ book == [] || undefined ? console.log("loading..") :
                 <td>{d.stocks}</td>
                 <td>{d.createdAt}</td>
           
-                <td><button type="button" className="btn btn-danger mr-1" onClick={()=>deleteHandler(d._id)}>Delete</button><Link className="btn btn-primary" to={`admin/book/updatebook/${d._id}`}>Update</Link></td>
+                <td><button type="button" className="btn btn-danger mr-1" onClick={()=>deleteHandler(d._id)}>Delete</button><Link  className="btn btn-primary" to={`admin/book/updatebook/${d._id}`}>Update</Link></td>
           
             </tr>
             </tbody>

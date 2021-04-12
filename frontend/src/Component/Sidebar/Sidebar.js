@@ -1,13 +1,14 @@
 import  React from 'react'
 import {Menu,MenuItem,SidebarHeader,SidebarContent,SidebarFooter,ProSidebar} from "react-pro-sidebar"
 import {NavLink} from 'react-router-dom'
-import {} from 'react-icons'
+import {FiMessageSquare} from 'react-icons/fi'
 import {signout} from "../auth/index"
+import './Sidebar.css'
 
 const Sidebar = ({data,one,two,three,four,five,six,seven,header}) => {
 // const data = ['/dashboard','All User','All Books','Add User','Add Book','Renew/Issue request',];
     return(
-    <div>
+    <div className="sidebar_container">
         <ProSidebar>
 <SidebarHeader>
     <h5>{one,two,three,four,five,six,seven,header}</h5>
@@ -16,6 +17,7 @@ const Sidebar = ({data,one,two,three,four,five,six,seven,header}) => {
 <SidebarContent>
     <Menu>
         <MenuItem>
+<FiMessageSquare />
         <NavLink exact to={data[0]}>{one}</NavLink>
         </MenuItem>
         <MenuItem>

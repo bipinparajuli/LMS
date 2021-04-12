@@ -3,7 +3,7 @@ import Sidebar from '../Sidebar/Sidebar'
 import Navbar from '../UI/Navbar/Navbar'
 
 const StudentHome = ({children}) => {
-    const data =["/student","/allbooks","/mybooklist","/issuebook","/addbook","/adduser","/"]
+    const data =["/student","/allbooks","/mybooklist","/issuebook","/addbook","/updatestudentprofile","/"]
 
     return (
         <div className="container">

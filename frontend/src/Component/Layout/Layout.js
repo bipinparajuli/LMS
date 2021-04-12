@@ -5,7 +5,7 @@ import Navbar from '../UI/Navbar/Navbar'
 const Layout = ({children}) => {
 const data =['/dashboard',"/allbook","/alluser","/issuebook","/addbook","/adduser","/"]
     return (
-        <div className="container">
+        <div className="container-fluid">
 <Navbar name="Admin" />
             <div className="row">
 <div className="col-2">

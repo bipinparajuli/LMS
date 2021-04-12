@@ -19,7 +19,7 @@ router.get("/student/:studentid",getStudent)
 router.get("/search/student/:studentname",searchStudent)
 
 
-router.put("/student/updatestudent/:userid/:studentid",isSignedIn,isAuthenticated,updateStudent)
+router.put("/student/updatestudent/:userid",isSignedIn,isAuthenticated,updateStudent)
 
 router.delete("/student/deletestudent/:userid/:studentid",isSignedIn,isAuthenticated,isAdmin,deleteStudent)
 
