@@ -1,7 +1,10 @@
 export const initailState={
 search:[],
 searchStudent:[],
-layout:[]
+layout:[],
+totalUser:[],
+totalOrder:[],
+totalBook:[]
 }
 
 
@@ -20,6 +23,17 @@ switch(action.type){
         //logic for adding
         return {...state,layout:action.item}
         
+        case 'TOTALUSER':
+        //logic for adding
+        return {...state,totalUser:action.item}
+
+        case 'TOTALBOOK':
+            //logic for adding
+            return {...state,totalBook:action.item}
+
+            case 'TOTALORDER':
+                //logic for adding
+                return {...state,totalOrder:action.item}
                 default:
                 return state
 }

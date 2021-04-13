@@ -9,7 +9,9 @@ import './Table.css'
 const Table = () => {
     const [book, setbook] = useState([{_id:"please wait...",bookname:"please wait...",stocks:"please wait...",createdAt:"please wait...",}]);
 
-const [{search},dispatch] = useStateValue()
+    const [loading,setloading] = useState(false)
+
+    const [{search},dispatch] = useStateValue()
 
 // console.log(search.value)
 
@@ -44,11 +46,13 @@ const Searchdata = (e) => {
     }
     
     const preload =()=> {
+    setloading(true)
         getAllBook().then(data=>{
             // console.log(data)
             if(data)
             {
                 setbook(data)
+                setloading(false)
             }
             else console.log(data)
         })
@@ -88,8 +92,32 @@ book == [] || undefined ? console.log("loading..") :
                 <td>{d.stocks}</td>
                 <td>{d.createdAt}</td>
           
-                <td><button type="button" className="btn btn-danger mr-1" onClick={()=>deleteHandler(d._id)}>Delete</button><Link  className="btn btn-primary" to={`admin/book/updatebook/${d._id}`}>Update</Link></td>
-          
+                <td>
+                    {
+                    loading?
+                    (
+                        <>
+                    <button type="button" className="btn btn-danger mr-1 disabled" style={{marginRight:"10px"}} >
+                        Delete
+                    </button>
+                    <Link  className="btn btn-primary disabled" >Update</Link>
+                    </>
+                    )
+:
+(
+    <>
+<button type="button" className="btn btn-danger mr-1" style={{marginRight:"10px"}} onClick={()=>deleteHandler(d._id)}>
+    Delete
+</button>
+
+<Link  className="btn btn-primary" to={`admin/book/updatebook/${d._id}`}>
+    Update
+</Link>
+    </>
+)
+
+                    }
+          </td>
             </tr>
             </tbody>
 

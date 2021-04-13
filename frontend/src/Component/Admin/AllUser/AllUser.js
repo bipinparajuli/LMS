@@ -15,7 +15,7 @@ function AllUser() {
     const [value, setvalue] = useState([{_id:"please wait...",name:"please wait...",address:"please wait...",phone:"please wait..."}])
 const [loading, setloading] = useState(false)
 
-    const [{searchStudent},dispatch] = useStateValue();
+    const [{searchStudent,totalUser},dispatch] = useStateValue();
     
     const deleteHandler = (sid) => {
 console.log(sid)
@@ -41,6 +41,10 @@ const preload = ()=> {
             {
                 setvalue(data)
 setloading(false)
+dispatch({
+    type:"TOTALUSER",
+    item:data.length
+})
             }
             else{
                 return (
@@ -66,7 +70,7 @@ setloading(false)
         <Layout>
         <div>
 <Search placeholder="Search Users" />
-<table className="table table-dark table-hover">
+<table className="table table-dark table-hover" style={{marginTop:"20px"}}>
 <thead>
             <tr>
                 <th>User id</th>
@@ -91,7 +95,7 @@ setloading(false)
                 <td>{d.address}</td>
                 <td>{d.phone}</td>
           
-                <td><button type="button" className="btn btn-danger mr-1" onClick={()=>deleteHandler(d._id)}>Delete</button><Link className="btn btn-primary" to={`admin/student/updatestudent/${d._id}`}>Update</Link></td>
+                <td><button type="button" className="btn btn-danger mr-1" style={{marginRight:"10px"}} onClick={()=>deleteHandler(d._id)}>Delete</button><Link className="btn btn-primary" to={`admin/student/updatestudent/${d._id}`}>Update</Link></td>
           
             </tr>
             </tbody>
@@ -106,7 +110,7 @@ setloading(false)
             <td>loading . . .</td>
             <td>loading . . .</td>
       
-            <td><button type="button" className="btn btn-danger mr-1" >Delete</button><Link className="btn btn-primary" >Update</Link></td>
+            <td><button type="button" className="btn btn-danger mr-1 disabled" style={{marginRight:"10px"}} >Delete</button><Link className="btn btn-primary disabled" >Update</Link></td>
       
         </tr>
         </tbody>

@@ -40,12 +40,12 @@ const submit = (e)=> {
 const bookAvailable  = () => {
 return (
 <Layout>
-    <div>
+    <div >
     <form className="d-flex">
       <input className="form-control me-2" type="search" placeholder="Search book" onChange={e=>setvalue(e.target.value)} aria-label="Search" />
       <button className="btn btn-outline-success" onClick={submit} type="submit">Search</button>
     </form>
-    <table className="table table-dark table-hover">
+    <table className="table table-dark table-hover" style={{marginTop:"20px"}}>
 <thead>
             <tr>
                 <th>Book ID</th>

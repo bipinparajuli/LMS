@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react'
 import { getStudentById, updateStudent } from '../../APIHelper/Studentapi';
 import { isAuthenticate } from '../../auth';
 import StudentHome from '../StudentHome';
+import Arrow from '../../UI/Icons/Arrows'
 
 const {user,token} = isAuthenticate();
 
@@ -94,8 +95,15 @@ preload()
   </div> */}
 
   <div className="col-12">
-{updating? <button  className="btn btn-secondary"  >Updating Profile</button> : <button  className="btn btn-success" onClick={onsubmit} >Update Profile</button>}
-{/* <a className="btn btn-primary" href="/dashboard" role="button" style={{marginLeft:"10px"}}>Go Back</a> */}
+{
+updating? 
+  <button  className="btn btn-secondary"  >
+    Updating Profile
+  </button> 
+:
+ <button  className="btn btn-success" onClick={onsubmit} >
+   Update Profile {<Arrow/>}
+  </button>}
 
   </div>
 </form>  

@@ -8,7 +8,7 @@ color: #758283;
 }
 .sidebar_container{
     /* background-color: aqua; */
-    height: 83vh;
+    height: 80vh;
 display: flex;
 flex-direction: column;
 justify-content: space-between;

@@ -1,13 +1,19 @@
 import React from 'react'
 import {Line} from 'react-chartjs-2'
+import { useStateValue } from '../../../Container/Serviceprovider'
 
-function Chart() {
-    const data = {
-        labels: ['New Book Last Day', 'Book Issued', 'New Member', 'Not Returened'],
+
+
+const  Chart =  () =>  {
+
+  const [{totalBook,totalUser,totalOrder},dispatch] = useStateValue()
+
+  const data =  {
+        labels: ['Books', 'Users', 'Order'],
         datasets: [
           {
             label: 'Book Issued in month',
-            data: [1, 19, 3, 5, ],
+            data: [totalBook,totalUser,  totalOrder],
             fill: false,
             backgroundColor: 'rgb(255, 99, 132)',
             borderColor: 'rgba(255, 99, 132, 0.2)',
@@ -33,8 +39,8 @@ function Chart() {
             <Line 
  data={data}
  width={100}
- height={200}
- options={{options, maintainAspectRatio: false }}
+ height={400}
+ options={{options,maintainAspectRatio:false }}
             />
         </div>
     )
