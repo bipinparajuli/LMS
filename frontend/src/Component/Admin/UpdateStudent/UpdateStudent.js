@@ -4,7 +4,8 @@ import { toast } from 'react-toastify'
 import { getStudentById, updateStudent } from '../../APIHelper/Studentapi'
 import { isAuthenticate } from '../../auth/index'
 import Layout from '../../Layout/Layout'
-
+import Arrow from '../../UI/Icons/Arrows'
+// import Arrow from '@material-ui/icons/ArrowRightAlt'
 
 const {user,token} = isAuthenticate()
 
@@ -107,8 +108,9 @@ toast("Updated Successfully",{type:"success"})
   </div>
 
   <div className="col-12">
-    <button  className="btn btn-success" onClick={onsubmit} >Update Student</button>
-  <Link to="/dashboard" style={{marginLeft:"10px"}}>  Go Back</Link>
+    <button  className="btn btn-success" onClick={onsubmit} >Update Student <Arrow/></button>
+  {/* <Link to="/dashboard" className="" style={{marginLeft:"10px"}}>Go Back</Link> */}
+  <Link className="btn btn-primary" href="/dashboard" role="button" style={{marginLeft:"10px"}}>Go Back</Link>
   </div>
 </form>
 

@@ -1,7 +1,9 @@
 import React, { lazy,useEffect,useState } from 'react'
 import { Card } from '../../UI/Card/Card'
 import Chart from "../../UI/Chart/Chart"
-import AOS from 'aos'
+import image from '../../Assets/Image/a.svg'
+import './Dasboard.css'
+
 import { getAllBook } from '../../APIHelper/bookapi'
 const Layout = lazy(()=> import("../../Layout/Layout")) 
 
@@ -24,7 +26,17 @@ preload()
    return (
 <Layout>
      <div>
-  <h1 className="animate__animated animate__bounce"> Welcome to Dashboard Page</h1> 
+         <div className="row dashboard_banner">
+                    <div className="col-8">
+                    <h1 className="animate__animated animate__bounce"> Welcome to Dashboard Page</h1> 
+                    </div>
+
+         <div className="col-4">
+         <img src={image} class="img-fluid" alt="Responsive image" />
+         </div>
+
+        
+         </div>
   <div 
    className="row"
    >

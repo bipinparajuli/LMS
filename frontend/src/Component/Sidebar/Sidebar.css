@@ -4,8 +4,28 @@ li{
 }
 a{
     text-decoration: none;
+color: #758283;
 }
 .sidebar_container{
-    background-color: aqua;
+    /* background-color: aqua; */
     height: 83vh;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+align-items: flex-start;
+box-shadow:         3px 3px 5px 3px #ccc; 
+
+}
+.sidebar_container  *{
+    margin: 8% 0 8% 0;
+
+}
+.pro-menu-item {
+    transition: all 15s ease-in-out;
+    -webkit-transition: background 1s;
+}
+.pro-menu-item :hover {
+    background: #8D3DAF;
+    box-shadow:         3px 3px 5px 6px #ccc; 
+color: white;
 }

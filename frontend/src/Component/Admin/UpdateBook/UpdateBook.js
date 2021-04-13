@@ -3,6 +3,9 @@ import { getBookById, updateBook } from '../../APIHelper/bookapi'
 import { isAuthenticate } from '../../auth/index'
 import Layout from '../../Layout/Layout'
 import {toast} from 'react-toastify'
+// import Arrow from '@material-ui/icons/ArrowRightAlt'
+import Arrow from '../../UI/Icons/Arrows'
+import { Link } from 'react-router-dom'
 
 const {user,token} = isAuthenticate()
 
@@ -100,8 +103,8 @@ updateBook(user._id,match.params.bookid,token,{authorname,bookname,publication,s
   </div>
 
   <div className="col-12">
-{updating? <button  className="btn btn-secondary"  >Updating Book</button> : <button  className="btn btn-success" onClick={onsubmit} >Update Book</button>}
-<a className="btn btn-primary" href="/dashboard" role="button" style={{marginLeft:"10px"}}>Go Back</a>
+{updating? <button  className="btn btn-secondary"  >Updating Book</button> : <button  className="btn btn-success" onClick={onsubmit} >Update Book <Arrow /></button>}
+<Link className="btn btn-primary" href="/dashboard" role="button" style={{marginLeft:"10px"}}>Go Back</Link>
 
   </div>
 </form>

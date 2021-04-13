@@ -1,13 +1,16 @@
 import React from 'react'
 import {FaBookOpen} from 'react-icons/fa'
+import './Navbar.css'
 const Navbar = ({name}) => {
+
+const date = new Date();
     return (
-        <div>
-            <nav className="navbar navbar-light bg-light">
+        <div className="container-fluid nav_main" >
+            <nav style={{boxShadow:"3px 3px 5px 6px #ccc; "}} className="navbar navbar-light bg-light">
   <div className="container-fluid">
     <a className="navbar-brand">
     <div className="row">
-    <div className="col-6">
+    <div style={{marginRight:"1%"}} className="col-6">
 <FaBookOpen />
     </div>
     <div className="col-6">
@@ -20,6 +23,7 @@ const Navbar = ({name}) => {
     </a>
     <div>
         <h3>{name}</h3>
+        <p className="leap"> Date: {date.toDateString()}</p>
     </div>
   </div>
 </nav>
