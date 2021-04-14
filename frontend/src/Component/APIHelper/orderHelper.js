@@ -1,5 +1,5 @@
 export const createOrder = (uid,token,data) => {
-return fetch(`http://localhost:8000/api/order/create/${uid}`,{
+return fetch(`https://mysterious-woodland-24801.herokuapp.com/api/order/create/${uid}`,{
     method:"POST",
     headers:{
         "Content-Type":"application/json",
@@ -10,7 +10,7 @@ return fetch(`http://localhost:8000/api/order/create/${uid}`,{
 }
 
 export const getStudentBookList = (uid,token) => {
-    return fetch(`http://localhost:8000/api/order/getmybooks/${uid}`,{
+    return fetch(`https://mysterious-woodland-24801.herokuapp.com/api/order/getmybooks/${uid}`,{
         method:"GET",
         headers:{
             "Content-Type":"application/json",
@@ -23,7 +23,7 @@ export const getStudentBookList = (uid,token) => {
     .catch(er => console.log(er))
     }
     export const getAllOrder = (uid,token) => {
-        return fetch(`http://localhost:8000/api/order/getAllOrder/${uid}`,{
+        return fetch(`https://mysterious-woodland-24801.herokuapp.com/api/order/getAllOrder/${uid}`,{
             method:"GET",
             headers:{
                 "Content-Type":"application/json",

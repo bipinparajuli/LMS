@@ -2,7 +2,7 @@
 // const {API} = require("../Backend")
 
 export const Login  = (user) => {
- return fetch (`http://localhost:8000/api/signin`,{
+ return fetch (`https://mysterious-woodland-24801.herokuapp.com/api/signin`,{
      method:"POST",
      headers:{
         Accept:"application/json",
@@ -16,7 +16,7 @@ export const Login  = (user) => {
 }
 
 export const getallusers = () => {
-    return fetch(`http://localhost:8000/api/students`,
+    return fetch(`https://mysterious-woodland-24801.herokuapp.com/api/students`,
     {
         method:"GET",
     headers:{
@@ -31,7 +31,7 @@ export const getallusers = () => {
 //adding student by admin
 export const addStudent = (id,token,data) => {
 console.log(id)
-    return fetch(`http://localhost:8000/api/addstudent/${id}`,{
+    return fetch(`https://mysterious-woodland-24801.herokuapp.com/api/addstudent/${id}`,{
 method:"POST",
 headers:{
     "Content-Type":"Application/json",
@@ -44,7 +44,7 @@ body:JSON.stringify(data)
 //deleting student by admin
 export const deleteStudent = (uid,sid,token) => {
  console.log(uid,sid)
-    return fetch(`http://localhost:8000/api/student/deletestudent/${uid}/${sid}`,
+    return fetch(`https://mysterious-woodland-24801.herokuapp.com/api/student/deletestudent/${uid}/${sid}`,
     {
         method:"DELETE",
         headers:{
