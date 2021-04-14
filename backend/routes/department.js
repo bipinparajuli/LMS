@@ -5,18 +5,21 @@ const router = express.Router();
 
 const {isSignedIn,isAuthenticated,isAdmin} = require('../controllers/auth')
 
-const {} = require('../controllers/department')
+const {createDepartment,deleteDepartment,getAllDepartment,updateDepartment,getDepartmentById} = require('../controllers/department');
+const { getUserByID } = require("../controllers/studentList");
+
 
 
 router.param("departmentId",getDepartmentById);
+router.param("userId",getUserByID)
 
-router.get("/department/alldepartment",isSignedIn,isAuthenticated,getAllDepartment);
+router.get("/department/alldepartment/:userId",isSignedIn,isAuthenticated,getAllDepartment);
 
-router.put("/department/updatedepartment/:departmentId",isSignedIn,isAuthenticated,isAdmin,updateDepartment)
+router.put("/department/updatedepartment/:userId/:departmentId",isSignedIn,isAuthenticated,isAdmin,updateDepartment)
 
-router.post('/department/adddepartment',isSignedIn,isAuthenticated,isAdmin,createDepartment)
+router.post('/department/adddepartment/:userId',isSignedIn,isAuthenticated,isAdmin,createDepartment)
 
-router.delete("/department/deletedepartment/:departmentId",isSignedIn,isAuthenticated,isAdmin,deleteDepartment)
+router.delete("/department/deletedepartment/:userId/:departmentId",isSignedIn,isAuthenticated,isAdmin,deleteDepartment)
 
 
 module.exports = router

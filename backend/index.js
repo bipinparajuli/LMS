@@ -6,6 +6,7 @@ const adminRoutes = require ("./routes/admin")
 const studentRoutes = require ("./routes/studentList")
 const bookRoutes = require ("./routes/bookList")
 const orderRoutes = require("./routes/order")
+const departmentRoutes = require("./routes/department")
 
 
 const app=express();
@@ -37,6 +38,8 @@ app.use("/api",adminRoutes)
 app.use("/api",studentRoutes)
 app.use("/api",bookRoutes)
 app.use("/api",orderRoutes)
+app.use("/api",departmentRoutes)
+
 
 
 app.use((error,req,res,next)=>{
