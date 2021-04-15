@@ -35,6 +35,8 @@ exports.getAllBookOrder = (req,res) => {
 
 exports.createOrder = (req,res) => {
     // req.body.order.user = req.profile;
+    console.log("creating order")
+
     const order = new Order(req.body);
     order.save((err, order) => {
       if (err) {
@@ -42,6 +44,7 @@ exports.createOrder = (req,res) => {
                         error: "Failed to save your order in DB" + err
                       });
                 }
+                console.log(order)
 
       Order.findById(order._id)
       .populate("book")
@@ -57,11 +60,11 @@ exports.createOrder = (req,res) => {
                     department: data.book.department,
                     publication: data.book.publication,
                     authorname:data.book.authorname,
-                    status:Pending
+                    status:"Pending"
                   });
 
       
-        //store thi in DB
+        //store this in DB
         User.findOneAndUpdate(
           { _id: order.user._id },
           { $push: { books: books } },

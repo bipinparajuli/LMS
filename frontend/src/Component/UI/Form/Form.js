@@ -1,14 +1,14 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import {addBook} from '../../APIHelper/bookapi'
 import { isAuthenticate } from '../../auth'
 import {toast} from 'react-toastify'
 import ClipLoader from "react-spinners/ClipLoader";
 import { useStateValue } from '../../../Container/Serviceprovider';
-
+import { getDepartment,getAllDepartment } from '../../APIHelper/departmentHelper';
 
 const Form = ({labelone,labeltwo,labelthree,labelfour,labelfive,labelsix,labelseven}) => {
 
-const [{departments}]= useStateValue()
+const [{departments},dispatch]= useStateValue()
 
   const {user,token} = isAuthenticate()
   const [values, setvalues] = useState({
@@ -35,6 +35,17 @@ error:""
     )
     
     }
+    useEffect(()=>{
+      getAllDepartment(user._id,token)
+        .then(data=>{
+           console.log(data)
+            dispatch({
+                type:"DEPARTMENT",
+                item:data
+            })
+        })
+        .catch(err=> console.log(err))  
+    })
 
 
   const onsubmit = e =>{
@@ -62,12 +73,7 @@ addBook(user._id,token,{bookname,publication,stocks,authorname,department})
   }
 
 
-  const handleChange = name => event=> {
-const value = event.target.value;
-// console.log(value,name)
-// formData.set(name,value)
-setvalues({...values,[name]:value})
-}
+
   return (
         <div>
           {errorMessege()}

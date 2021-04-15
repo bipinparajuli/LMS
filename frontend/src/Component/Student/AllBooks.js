@@ -60,11 +60,16 @@ preload()
         <>
 <StudentHome>
 <h1>All books are here</h1>
+<nav className="navbar navbar-light">
+  <div className="container-fluid">
 <form className="d-flex">
       <input className="form-control me-2" type="search" placeholder="Search book" onChange={e=>setvalue(e.target.value)} aria-label="Search" />
       <button className="btn btn-outline-success" onClick={Searchdata} type="submit">Search</button>
     </form>
-    <table className="table table-dark table-hover">
+</div>
+</nav>
+
+    <table style={{marginTop:"20px"}} className="table table-border table-hover">
 <thead>
             <tr>
                 <th>Book ID</th>

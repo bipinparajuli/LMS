@@ -61,15 +61,7 @@ getAllOrder(user._id,token)
     }
   
     useEffect(() => {
-        getAllDepartment(user._id,token)
-        .then(data=>{
-           console.log(data)
-            dispatch({
-                type:"DEPARTMENT",
-                item:data
-            })
-        })
-        .catch(err=> console.log(err))       
+             
 preload()
     }, []);
     

@@ -1,5 +1,5 @@
 export const getAllBook = () => {
-    return fetch(`http://localhost:8000/api/book/getallbooks`, {
+    return fetch(`https://mysterious-woodland-24801.herokuapp.com/api/book/getallbooks`, {
         method: "GET"
       })
         .then(response => {

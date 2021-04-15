@@ -61,9 +61,11 @@ preload()
     <span className="lead">Department</span>
     <input type="text" value={state.department} /><br/>
     <span className="lead">Roll no</span>
-    <input type="text" /><br/>
+    <input type="text" value={state.roll_no} /><br/>
+    {/* <input type="text" /><br/> */}
     <span className="lead">Contact no.</span>
-    <input type="text" /><br/>
+    <input type="text" value={state.phone} /><br/>
+    {/* <input type="text" /><br/> */}
 </div>
 
 

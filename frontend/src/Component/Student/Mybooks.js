@@ -25,13 +25,13 @@ useEffect(() => {
         <div>
 <StudentHome>
 <h1>My all books are here !</h1>    
-<table className="table table-dark table-hover">
+<table className="table table-border table-hover">
 <thead>
             <tr>
                 <th>Book Name</th>
                 <th>Publication</th>
                 <th>Author</th>
-                {/* <th></th> */}
+                <th>Status</th>
           
             </tr>
 </thead>
@@ -50,7 +50,8 @@ useEffect(() => {
                     <td>{d.bookname}</td>
                     <td>{d.publication}</td>              
                     <td>{d.authorname}</td>
-                    {/* <td><button onClick={()=>orderBook(d._id)} className='btn btn-secondary'>Order Now</button></td>                             */}
+                    <td><span className="badge rounded-pill bg-info text-dark">{d.status}</span></td>
+
                 </tr>
                 </tbody>
     </>

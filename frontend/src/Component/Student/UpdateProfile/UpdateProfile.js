@@ -3,6 +3,7 @@ import { getStudentById, updateStudent } from '../../APIHelper/Studentapi';
 import { isAuthenticate } from '../../auth';
 import StudentHome from '../StudentHome';
 import Arrow from '../../UI/Icons/Arrows'
+import ClipLoader from 'react-spinners/ClipLoader'
 
 const {user,token} = isAuthenticate();
 
@@ -15,19 +16,21 @@ const UpdateProfile = () => {
         roll_no:"",
         enc_password:'',
         phone:"",
-        address:""
-
+        address:"",
+_id:""
     })
-const {name,email,roll_no,enc_password,phone,address} = state; 
+const {name,email,roll_no,enc_password,phone,address,_id} = state; 
 
 const onsubmit = (e) => {
 e.preventDefault();
 setupdating(true)
 
-updateStudent(user._id,token,{name,email,enc_password,roll_no,address,phone})
+updateStudent(user._id,_id,token,{name,email,enc_password,roll_no,address,phone})
 .then(data=> {
-    setupdating(false)
-})
+console.log(data)
+  setupdating(false)
+
+  })
 .catch(err=>console.log(err))
 
 }
@@ -97,8 +100,8 @@ preload()
   <div className="col-12">
 {
 updating? 
-  <button  className="btn btn-secondary"  >
-    Updating Profile
+  <button  className="btn btn-success"  >
+                    <ClipLoader color={"#8D3DAF"} loading={updating}  size={50} /> 
   </button> 
 :
  <button  className="btn btn-success" onClick={onsubmit} >

@@ -6,7 +6,7 @@ a{
     text-decoration: none;
 color: #758283;
 }
-.sidebar_container{
+.sidebar_containers{
     /* background-color: aqua; */
     height: 80vh;
 display: flex;
@@ -26,6 +26,6 @@ box-shadow:         3px 3px 5px 3px #ccc;
 }
 .pro-menu-item :hover {
     background: #8D3DAF;
-    box-shadow:         3px 3px 5px 6px #ccc; 
+    /* box-shadow:         3px 3px 5px 6px #ccc;  */
 color: white;
 }

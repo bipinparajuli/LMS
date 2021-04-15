@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import { addStudent } from '../../APIHelper/auth'
 // import {addBook} from '../../APIHelper/bookapi'
 import { isAuthenticate } from '../../auth'
@@ -6,12 +6,13 @@ import Layout from '../../Layout/Layout'
 import {toast} from 'react-toastify'
 import ClipLoader from "react-spinners/ClipLoader";
 import { useStateValue } from '../../../Container/Serviceprovider'
+import { getAllDepartment } from '../../APIHelper/departmentHelper'
 
 
 
 const AddUser = () => {
 
- const [{departments}] = useStateValue()
+ const [{departments},dispatch] = useStateValue()
   const {user,token} = isAuthenticate()
 
 
@@ -62,14 +63,17 @@ addStudent(user._id,token,{name,email,phone,roll_no,address,department})
 )
 
   }
-
-
-//   const handleChange = name => event=> {
-// const value = event.target.value;
-// // console.log(value,name)
-// // formData.set(name,value)
-// setvalues({...values,[name]:value})
-// }
+  useEffect(()=>{
+    getAllDepartment(user._id,token)
+      .then(data=>{
+         console.log(data)
+          dispatch({
+              type:"DEPARTMENT",
+              item:data
+          })
+      })
+      .catch(err=> console.log(err))  
+  })
   return (
 <Layout>
 <div>
