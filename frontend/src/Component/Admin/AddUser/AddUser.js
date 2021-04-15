@@ -4,8 +4,14 @@ import { addStudent } from '../../APIHelper/auth'
 import { isAuthenticate } from '../../auth'
 import Layout from '../../Layout/Layout'
 import {toast} from 'react-toastify'
+import ClipLoader from "react-spinners/ClipLoader";
+import { useStateValue } from '../../../Container/Serviceprovider'
+
+
+
 const AddUser = () => {
 
+ const [{departments}] = useStateValue()
   const {user,token} = isAuthenticate()
 
 
@@ -67,6 +73,8 @@ addStudent(user._id,token,{name,email,phone,roll_no,address,department})
   return (
 <Layout>
 <div>
+<h2>Add User</h2>
+
             <form className="row g-3">
   <div className="col-md-6">
     <label  className="form-label">Student Name*</label>
@@ -93,15 +101,21 @@ addStudent(user._id,token,{name,email,phone,roll_no,address,department})
   <div className="col-md-4">
     <label  className="form-label">Department</label>
     <select id="inputState" className="form-select" onChange={e=>setvalues({...values,department:e.target.value})}>
-      <option value="BCA">BCA</option>
-      <option value="BBM">BBM</option>
-      <option value="BBS">BBS</option>
-      <option value="BSW">BSW</option>
+      {
+        departments.map((data,i)=>{
+          return (
+            <option key={i} value={data.name}>{data.name}</option>
+
+          )
+        })
+      }
+      
     </select>
   </div>
 
   <div className="col-12">
-{adding ? <button  className="btn btn-secondary"  >Adding User</button> : <button  class="btn btn-success" onClick={onsubmit} >Add User</button>}    
+{adding ? <button  className="btn btn-success"  ><ClipLoader color={"#8D3DAF"} loading={adding}  size={50} /> 
+</button> : <button  class="btn btn-success" onClick={onsubmit} >Add User</button>}    
   </div>
 </form>
         </div>

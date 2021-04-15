@@ -133,7 +133,7 @@ exports.updateStudent = (req,res) => {
 
     console.log(req.body)
 User.findByIdAndUpdate(
-    {_id:req.profile._id},
+    {_id:req.student._id},
     {$set:req.body},
     {new:true,findByIdAndUpdate:false},
     (err,std)=>{

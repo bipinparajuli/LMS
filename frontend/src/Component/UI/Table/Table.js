@@ -4,6 +4,7 @@ import { isAuthenticate } from '../../auth';
 import {Link} from "react-router-dom"
 import { toast } from 'react-toastify';
 import {useStateValue} from '../../../Container/Serviceprovider'
+import ClipLoader from "react-spinners/ClipLoader";
 import './Table.css'
 
 const Table = () => {
@@ -31,14 +32,15 @@ const Searchdata = (e) => {
     const {user,token} = isAuthenticate();
 
     const deleteHandler = (book_id) => {
-
+setloading(true)
         deleteBook(user._id,book_id,token)
         .then(
                d=>
             {
             
                 toast("Deleted",{type:"error"})
-  preload()          
+  preload()     
+  setloading(false)     
             }
             
             )
@@ -73,7 +75,9 @@ preload()
            
 {
 
-book == [] || undefined ? console.log("loading..") :
+book == [] || book == undefined ? (
+    <h1>You No Book In database</h1>
+) :
 
     book.map((d,i)=>{
         return (
@@ -81,11 +85,7 @@ book == [] || undefined ? console.log("loading..") :
            {/* <Suspense fallback={<h1>Loading profile...</h1>}> */}
 
             <tbody key={i}>
-            <tr 
-               data-aos={"flip-left"}
-               data-aos-easing={"ease-out-cubic"}
-               data-aos-duration={"2000"}
-            >
+            <tr>
                 <td>{d._id}</td>
                 <td>{d.bookname}</td>
           
@@ -97,10 +97,9 @@ book == [] || undefined ? console.log("loading..") :
                     loading?
                     (
                         <>
-                    <button type="button" className="btn btn-danger mr-1 disabled" style={{marginRight:"10px"}} >
-                        Delete
-                    </button>
-                    <Link  className="btn btn-primary disabled" >Update</Link>
+
+    <ClipLoader color={"#8D3DAF"} loading={loading}  size={50} /> 
+
                     </>
                     )
 :

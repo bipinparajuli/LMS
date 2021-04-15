@@ -87,7 +87,7 @@ const signinForm = () => {
         <>
 <div className=".container-fluid signin">
 <Card>
-            <ClipLoader color={"red"} loading={loader}  size={150} /> 
+            <ClipLoader color={"#8D3DAF"} loading={loader}  size={150} /> 
             {errorMessege()}
 <form>
 <div className="login_main color-black">

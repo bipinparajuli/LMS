@@ -1,4 +1,8 @@
 .nav_main{
-box-shadow: 3px 3px 4px 0px #ccc;
 margin-bottom: 20px;
+}
+
+nav{
+box-shadow: 3px 3px 5px 2px #ccc;
+
 }

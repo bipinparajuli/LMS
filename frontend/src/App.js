@@ -10,6 +10,9 @@ import Profile from "./Component/Student/Profile/Profile";
 import AllBooks from "./Component/Student/AllBooks";
 import Mybooks from "./Component/Student/Mybooks";
 import UpdateProfile from "./Component/Student/UpdateProfile/UpdateProfile";
+import Department from './Component/Admin/Department/Department'
+import AddDepartment from './Component/Admin/Department/AddDepartment'
+import UpdateDepartment from './Component/Admin/Department/UpdateDepartment'
 
 
 const Signin = React.lazy(()=> import( './Component/User/Signin')) ;
@@ -26,6 +29,8 @@ const UpdateStudent = React.lazy(()=> import( './Component/Admin/UpdateStudent/U
 const StudentHome = React.lazy(()=> import( './Component/Student/StudentHome')) ;
 
 function App() {
+
+  
   return (
     <div className="App">
 
@@ -47,6 +52,12 @@ function App() {
 
 
 <AdminRoute exact path="/issuebook" component={IssueRetuenRequest}  />
+
+<AdminRoute exact path="/department" component={Department}  />
+
+<AdminRoute exact path="/department/adddepartment" component={AddDepartment}  />
+
+<AdminRoute exact path="/department/updatedepartment/:departmentid" component={UpdateDepartment}  />
 
 {/* <AdminRoute exact path="/issuebook" component={IssueRetuenRequest}  /> */}
 

@@ -70,7 +70,8 @@ dispatch({
         <Layout>
         <div>
 <Search placeholder="Search Users" />
-<table className="table table-dark table-hover" style={{marginTop:"20px"}}>
+<div className="table-responsive">
+<table className="table table table-bordered" style={{marginTop:"20px"}}>
 <thead>
             <tr>
                 <th>User id</th>
@@ -118,6 +119,7 @@ dispatch({
 }
 
 </table>
+</div>
         </div>
 </Layout>
     )

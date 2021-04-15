@@ -12,7 +12,7 @@ import Power from '@material-ui/icons/SettingsPower'
 
 import './Sidebar.css'
 
-const Sidebar = ({data,one,two,three,four,five,six,seven,header}) => {
+const Sidebar = ({data,one,two,three,four,five,six,seven,header,eight}) => {
 // const data = ['/dashboard','All User','All Books','Add User','Add Book','Renew/Issue request',];
     return(
     <div className="sidebar_container">
@@ -47,8 +47,12 @@ const Sidebar = ({data,one,two,three,four,five,six,seven,header}) => {
         <NavLink to={data[5]} exact>{six}</NavLink>
         </MenuItem>
         <MenuItem>
+        <GroupAdd style={{marginRight:"15px"}} />
+        <NavLink to={data[6]} exact>{seven}</NavLink>
+        </MenuItem>
+        <MenuItem>
         <Power style={{marginRight:"15px"}} />
-        <NavLink exact to={data[6]} onClick={signout}>{seven}</NavLink>
+        <NavLink exact to={data[7]} onClick={signout}>{eight}</NavLink>
         </MenuItem>
     </Menu>
 </SidebarContent>

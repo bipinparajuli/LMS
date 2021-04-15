@@ -2,8 +2,13 @@ import React,{useState} from 'react'
 import {addBook} from '../../APIHelper/bookapi'
 import { isAuthenticate } from '../../auth'
 import {toast} from 'react-toastify'
+import ClipLoader from "react-spinners/ClipLoader";
+import { useStateValue } from '../../../Container/Serviceprovider';
+
 
 const Form = ({labelone,labeltwo,labelthree,labelfour,labelfive,labelsix,labelseven}) => {
+
+const [{departments}]= useStateValue()
 
   const {user,token} = isAuthenticate()
   const [values, setvalues] = useState({
@@ -88,15 +93,24 @@ setvalues({...values,[name]:value})
   <div className="col-md-4">
     <label  className="form-label">{labelthree}</label>
     <select id="inputState" className="form-select" onChange={e=>setvalues({...values,department:e.target.value})}>
-      <option value="BCA">BCA</option>
-      <option value="BBM">BBM</option>
-      <option value="BBS">BBS</option>
-      <option value="BSW">BSW</option>
+     {
+console.log(departments),
+departments.map((data,i)=>{
+  console.log(data)
+  return(
+    <option key={i} value={data.name}>{data.name}</option>
+
+  )
+
+})
+     }
+      
     </select>
   </div>
 
   <div className="col-12">
-{adding? <button  className="btn btn-secondary" >Adding . . .</button> :<button  className="btn btn-success" onClick={onsubmit} >Add Book</button>}    
+{adding? <button  className="btn btn-success" ><ClipLoader color={"#8D3DAF"} loading={adding}  size={50} /> 
+</button> :<button  className="btn btn-success" onClick={onsubmit} >Add Book</button>}    
   </div>
 </form>
         </div>

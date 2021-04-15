@@ -31,7 +31,7 @@ return (
 <Layout>
 <div>
             <h3>Issue and Return Request</h3>
-            <table className="table table-dark table-hover">
+            <table className="table table-border table-hover">
   <thead>
   <tr>
       <th>Book Name</th>
@@ -57,7 +57,7 @@ return (
 
       <td><span className="badge rounded-pill bg-info text-dark">{data.status}</span>
 </td>
-      <td><button type="button" className="btn btn-danger mr-1">Reject</button><button type="button" className="btn btn-success">Accept</button></td>
+      <td><button type="button" className="btn btn-danger mr-1" style={{marginRight:"10px"}}>Reject</button><button type="button" className="btn btn-success">Accept</button></td>
 
   </tr>
           ))
@@ -72,7 +72,7 @@ return (
 
       <td><span className="badge rounded-pill bg-info text-dark">loading ...</span>
 </td>
-      <td><button type="button" className="btn btn-danger mr-1">Reject</button><button type="button" className="btn btn-success">Accept</button></td>
+      <td><button type="button" className="btn btn-danger disabled mr-5 " style={{marginRight:"10px"}}>Reject</button><button type="button" className="btn btn-success disabled">Accept</button></td>
 
   </tr>              
           )

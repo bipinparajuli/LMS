@@ -5,6 +5,10 @@ import { getStudentById, updateStudent } from '../../APIHelper/Studentapi'
 import { isAuthenticate } from '../../auth/index'
 import Layout from '../../Layout/Layout'
 import Arrow from '../../UI/Icons/Arrows'
+import ClipLoader from "react-spinners/ClipLoader";
+import {ArrowBackSharp} from '@material-ui/icons'
+
+
 // import Arrow from '@material-ui/icons/ArrowRightAlt'
 
 const {user,token} = isAuthenticate()
@@ -18,8 +22,9 @@ const UpdateBook = ({labelone,labeltwo,labelthree,labelfour,labelfive,labelsix,l
         roll:"",
         address:"",
         department:"",
+        loading:false
     })
-    const {name,email,contact,roll,address,department} = values;
+    const {name,email,contact,roll,address,department,loading} = values;
 
 
     const preload = (studentid) =>{
@@ -46,16 +51,22 @@ const UpdateBook = ({labelone,labeltwo,labelthree,labelfour,labelfive,labelsix,l
 //SUBMITING THE UPDATED TO BACKEND
     const onsubmit = (e) => {
 e.preventDefault()
-
+setvalues({...values,loading:true})
 console.log("Updating . . .")
       updateStudent(user._id,match.params.studentid,token,{name,email,contact,roll,address,department})
       .then(data=>
         {
-if(data.error)
+if(data.error || !data)
 {
   toast(data.error,{type:"error"})
+setvalues({...values,loading:false})
+
 }
-toast("Updated Successfully",{type:"success"})
+else{
+  toast("Updated Successfully",{type:"success"})
+  setvalues({...values,loading:false})
+
+}
 
         }
         
@@ -73,6 +84,7 @@ toast("Updated Successfully",{type:"success"})
 
     return (
       <Layout>
+<Link style={{position:"absolute",left:"250px"}} to="/alluser"><ArrowBackSharp/></Link>
         <div>
                <form className="row g-3">
   <div className="col-md-6">
@@ -108,9 +120,17 @@ toast("Updated Successfully",{type:"success"})
   </div>
 
   <div className="col-12">
+    {
+      loading ? 
+      <button  className="btn btn-success" onClick={onsubmit} >
+                <ClipLoader color={"#8D3DAF"} loading={loading}  size={50} /> 
+      </button>
+    :
     <button  className="btn btn-success" onClick={onsubmit} >Update Student <Arrow/></button>
+
+    }
+    
   {/* <Link to="/dashboard" className="" style={{marginLeft:"10px"}}>Go Back</Link> */}
-  <Link className="btn btn-primary" href="/dashboard" role="button" style={{marginLeft:"10px"}}>Go Back</Link>
   </div>
 </form>
 

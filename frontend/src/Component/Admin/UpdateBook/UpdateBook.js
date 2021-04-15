@@ -5,6 +5,9 @@ import Layout from '../../Layout/Layout'
 import {toast} from 'react-toastify'
 // import Arrow from '@material-ui/icons/ArrowRightAlt'
 import Arrow from '../../UI/Icons/Arrows'
+import ClipLoader from "react-spinners/ClipLoader";
+import {ArrowBackSharp} from '@material-ui/icons'
+
 import { Link } from 'react-router-dom'
 
 const {user,token} = isAuthenticate()
@@ -72,6 +75,8 @@ updateBook(user._id,match.params.bookid,token,{authorname,bookname,publication,s
 
     return (
       <Layout>
+<Link style={{position:"absolute",left:"250px"}} to="/allbook"><ArrowBackSharp/></Link>
+
         <div>
                <form className="row g-3">
   <div className="col-md-6">
@@ -103,8 +108,14 @@ updateBook(user._id,match.params.bookid,token,{authorname,bookname,publication,s
   </div>
 
   <div className="col-12">
-{updating? <button  className="btn btn-secondary"  >Updating Book</button> : <button  className="btn btn-success" onClick={onsubmit} >Update Book <Arrow /></button>}
-<Link className="btn btn-primary" href="/dashboard" role="button" style={{marginLeft:"10px"}}>Go Back</Link>
+{updating? 
+
+<button className="btn btn-success">
+<ClipLoader color={"#8D3DAF"} loading={updating}  size={50} /> 
+</button>
+ 
+
+: <button  className="btn btn-success" onClick={onsubmit} >Update Book <Arrow /></button>}
 
   </div>
 </form>

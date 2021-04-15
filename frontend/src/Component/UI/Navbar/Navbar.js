@@ -6,7 +6,7 @@ const Navbar = ({name}) => {
 const date = new Date();
     return (
         <div className="container-fluid nav_main" >
-            <nav style={{boxShadow:"3px 3px 5px 6px #ccc; "}} className="navbar navbar-light bg-light">
+            <nav  className="navbar fixed-top navbar-light bg-light">
   <div className="container-fluid">
     <a className="navbar-brand">
     <div className="row">

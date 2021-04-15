@@ -12,11 +12,16 @@ next()
 
 }
 
-exports.getAllDepartment = (req,res) => {
+exports.getDepartment = (req,res) => {
+    res.json(req.department)
+}
 
+
+exports.getAllDepartment = (req,res) => {
+// console.log(req.headers)
     Department.find()
     .then(department => {
-
+// console.log(department)
         res.status(200).json(department)
 
     })
@@ -29,15 +34,12 @@ exports.getAllDepartment = (req,res) => {
 
 exports.createDepartment = (req,res) => {
 
-    // console.log(req.body)
+    console.log(req.body)
     const department = new Department(req.body);
 
     department.save()
     .then(data=>{
-        res.json({
-            messege:"Data Save successfully",
-            data:data
-        })
+        res.json(data)
     })
     .catch(err=>{
         res.json({
@@ -49,6 +51,7 @@ exports.createDepartment = (req,res) => {
 }
 
 exports.updateDepartment = (req,res) => {
+    console.log(req.body)
 Department.findOneAndUpdate(
     {_id:req.department._id},
     {$set:req.body},

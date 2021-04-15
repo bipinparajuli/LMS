@@ -11,6 +11,7 @@ import { isAuthenticate } from '../../auth'
 import BookIcon from '@material-ui/icons/MenuBookSharp'
 import Order from '@material-ui/icons/LibraryBooksSharp'
 import {FaUser} from 'react-icons/fa'
+import { getAllDepartment } from '../../APIHelper/departmentHelper'
 
 const Layout = lazy(()=> import("../../Layout/Layout")) 
 
@@ -26,7 +27,8 @@ const Dashboard = () => {
   
   
     const preload = () => {
-      getAllBook().then(data=>{
+
+        getAllBook().then(data=>{
           setTotal(data.length)
           dispatch({
             type:"TOTALBOOK",
@@ -56,11 +58,18 @@ getAllOrder(user._id,token)
 
 
 
-
     }
   
     useEffect(() => {
-       
+        getAllDepartment(user._id,token)
+        .then(data=>{
+           console.log(data)
+            dispatch({
+                type:"DEPARTMENT",
+                item:data
+            })
+        })
+        .catch(err=> console.log(err))       
 preload()
     }, []);
     

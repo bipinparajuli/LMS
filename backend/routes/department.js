@@ -5,7 +5,7 @@ const router = express.Router();
 
 const {isSignedIn,isAuthenticated,isAdmin} = require('../controllers/auth')
 
-const {createDepartment,deleteDepartment,getAllDepartment,updateDepartment,getDepartmentById} = require('../controllers/department');
+const {getDepartment,createDepartment,deleteDepartment,getAllDepartment,updateDepartment,getDepartmentById} = require('../controllers/department');
 const { getUserByID } = require("../controllers/studentList");
 
 
@@ -14,6 +14,8 @@ router.param("departmentId",getDepartmentById);
 router.param("userId",getUserByID)
 
 router.get("/department/alldepartment/:userId",isSignedIn,isAuthenticated,getAllDepartment);
+
+router.get("/department/department/:userId/:departmentId",isSignedIn,isAuthenticated,getDepartment);
 
 router.put("/department/updatedepartment/:userId/:departmentId",isSignedIn,isAuthenticated,isAdmin,updateDepartment)
 

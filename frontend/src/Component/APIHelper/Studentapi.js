@@ -6,9 +6,9 @@ export const getStudentById =(studentid) => {
 }
 
 
-    export const updateStudent = (uid,token,data) => {
+    export const updateStudent = (uid,stid,token,data) => {
         console.log(data)
-        return fetch(`https://mysterious-woodland-24801.herokuapp.com/api/student/updatestudent/${uid}`
+        return fetch(`http://localhost:8000/api/student/updatestudent/${uid}/${stid}`
         ,{
           method:"PUT",
           headers:{
