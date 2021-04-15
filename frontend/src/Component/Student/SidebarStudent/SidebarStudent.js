@@ -2,23 +2,24 @@ import  React from 'react'
 import {Menu,MenuItem,SidebarHeader,SidebarContent,SidebarFooter,ProSidebar} from "react-pro-sidebar"
 import {NavLink} from 'react-router-dom'
 import {FiMessageSquare} from 'react-icons/fi'
-import {signout} from "../auth/index"
-import Dashboard from '@material-ui/icons/Dashboard'
+import {signout} from "../../auth/index"
+import Dashboard from '@material-ui/icons/Person'
 import GroupAdd from '@material-ui/icons/GroupAdd'
 import LibraryBooks from '@material-ui/icons/LibraryBooks'
 import LibraryAdd from '@material-ui/icons/LibraryAdd'
-import Group from '@material-ui/icons/Group'
+import Group from '@material-ui/icons/MenuBook'
 import Power from '@material-ui/icons/SettingsPower'
+import Update from '@material-ui/icons/Update'
 
 import './Sidebar.css'
 
-const Sidebar = ({data,one,two,three,four,five,six,seven,header,eight}) => {
+const SidebarStudent = ({data,one,two,three,four,five,header}) => {
 // const data = ['/dashboard','All User','All Books','Add User','Add Book','Renew/Issue request',];
     return(
     <div className="sidebar_container">
         <ProSidebar>
 <SidebarHeader>
-    <h5>{one,two,three,four,five,six,seven,header}</h5>
+    <h5>{one,two,three,four,five,header}</h5>
 </SidebarHeader>
 
 <SidebarContent>
@@ -36,23 +37,22 @@ const Sidebar = ({data,one,two,three,four,five,six,seven,header,eight}) => {
         <NavLink exact to={data[2]}>{three}</NavLink>
         </MenuItem>
         <MenuItem>
+        <Update style={{marginRight:"15px"}} />
         <NavLink exact to={data[3]}>{four}</NavLink>
         </MenuItem>
-        <MenuItem>
-        <LibraryAdd style={{marginRight:"15px"}} />
-        <NavLink exact to={data[4]}>{five}</NavLink>
-        </MenuItem>
-        <MenuItem>
+        {/* <MenuItem> */}
+        
+        {/* <MenuItem>
         <GroupAdd style={{marginRight:"15px"}} />
         <NavLink to={data[5]} exact>{six}</NavLink>
         </MenuItem>
         <MenuItem>
         <GroupAdd style={{marginRight:"15px"}} />
         <NavLink to={data[6]} exact>{seven}</NavLink>
-        </MenuItem>
+        </MenuItem> */}
         <MenuItem>
         <Power style={{marginRight:"15px"}} />
-        <NavLink exact to={data[7]} onClick={signout}>{eight}</NavLink>
+        <NavLink exact to={data[4]} onClick={signout}>{five}</NavLink>
         </MenuItem>
     </Menu>
 </SidebarContent>
@@ -65,4 +65,4 @@ const Sidebar = ({data,one,two,three,four,five,six,seven,header,eight}) => {
 
 }
 
-export default Sidebar
+export default SidebarStudent

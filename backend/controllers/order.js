@@ -1,7 +1,8 @@
 const Order = require("../models/order")
 const User = require("../models/user")
 exports.getOrderById =(req,res,next,id)=>{
-Order.findById({id})
+console.log(id)
+  Order.findById(id)
 .then(data=>{
 
     req.order= data;
@@ -11,6 +12,21 @@ Order.findById({id})
 .catch(e=> console.log(e))
     
 }
+
+//TODO
+exports.getOrderByBookId =(req,res,next,id)=>{
+  console.log("I am in Book Order By Id")
+    Order.findById(id)
+  .then(data=>{
+  
+      req.order= data;
+console.log("BOOK BY ID",req.order)
+      next();
+  
+  })
+  .catch(e=> console.log(e))
+      
+  }
 
 exports.getAllBookOrder = (req,res) => {
   console.log("GETTING BACK")
@@ -99,4 +115,16 @@ exports.updateStatus = (req, res) => {
     );
   };
   
-  
+  exports.deleteOrder =(req,res,next)=>{
+    console.log(req.order.book)
+
+   Order.deleteOne({book:req.order._id})
+   .then(data=>{
+     console.log(data)
+     next()
+     res.json({messege:"Order Deleted Successfully"})
+   }) .catch(err=>{
+    res.json({error:"Order Deleted Successfully"})
+
+   })
+  }

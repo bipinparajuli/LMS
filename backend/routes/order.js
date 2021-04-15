@@ -2,7 +2,7 @@ const express = require ("express");
 const { getUserByID,pushOrderInBooksArray } = require("../controllers/studentList");
 const {isSignedIn,isAdmin,isAuthenticated} = require("../controllers/auth");
 const { updateStock } = require("../controllers/bookList");
-const { createOrder,getAllOrder,getOrderById,updateStatus,getAllBookOrder } = require("../controllers/order");
+const { createOrder,getAllOrder,getOrderById,updateStatus,getAllBookOrder, deleteOrder } = require("../controllers/order");
 
 const router = express.Router();
 
@@ -25,6 +25,9 @@ router.get("/order/getmybooks/:userId",isSignedIn,isAuthenticated,getAllBookOrde
 
 //updateStatus
 router.post("/order/UpdateOrderStatus/:userId",isSignedIn,isAuthenticated,isAdmin,updateStatus);
+
+//deleteorder
+router.delete("/order/deleteOrder/:userId/:orderId",isSignedIn,isAuthenticated,isAdmin,deleteOrder);
 
 
 module.exports = router

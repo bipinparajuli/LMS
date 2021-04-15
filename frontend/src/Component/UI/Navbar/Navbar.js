@@ -1,8 +1,13 @@
 import React from 'react'
 import {FaBookOpen} from 'react-icons/fa'
+import ClipLoader from "react-spinners/ClipLoader";
+import { useStateValue } from '../../../Container/Serviceprovider';
 import './Navbar.css'
-const Navbar = ({name}) => {
 
+
+const Navbar = ({name}) => {
+const [{deleting}]=useStateValue()
+console.log(deleting)
 const date = new Date();
     return (
         <div className="container-fluid nav_main" >
@@ -22,6 +27,9 @@ const date = new Date();
     </div>
     </a>
     <div>
+<span>
+<ClipLoader color={"red"} loading={deleting}  size={50} /> 
+</span>
         <h3>{name}</h3>
         <p className="leap"> Date: {date.toDateString()}</p>
     </div>

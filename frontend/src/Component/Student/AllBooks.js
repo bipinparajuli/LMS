@@ -75,7 +75,14 @@ preload()
             </tr>
 </thead>
 {
-    book.map((d,i)=>{
+   book.length == 0 ?
+    
+   (
+       <>
+   <p className="lead" style={{color:"black"}}>No Books are available</p >
+   </>
+   )
+ :  book.map((d,i)=>{
             return (
                 < >
     

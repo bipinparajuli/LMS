@@ -7,9 +7,13 @@ const {geBookByName,searchBook,createBook, updateBook, getAllBooks, getBook, del
 
 const {getUserByID} = require('../controllers/studentList')
 
+const {getOrderByBookId, deleteOrder} = require('../controllers/order')
+
+
 router.param("bookid",getBookById)
 router.param("userid",getUserByID)
 router.param("bookname",geBookByName)
+router.param("bookid",getOrderByBookId)
 
 
 
@@ -23,8 +27,7 @@ router.get("/book/getbook/:bookid",getBook)
 
 router.get("/search/book/:bookname",searchBook)
 
-
-router.delete("/book/deletebook/:userid/:bookid",isSignedIn,isAuthenticated,isAdmin,deleteBook)
+router.delete("/book/deletebook/:userid/:bookid",isSignedIn,isAuthenticated,isAdmin,deleteOrder,deleteBook)
 // router.delete("/student/deletestudent/:userid/:studentid",isSignedIn,isAuthenticated,isAdmin,deleteStudent)
 
 module.exports = router;

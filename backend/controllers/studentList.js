@@ -147,13 +147,12 @@ User.findByIdAndUpdate(
 }
 
 exports.deleteStudent = (req,res) => {
- console.log(req.student)
     const student = req.student;
-    User.remove(student,(err,data)=>{
-        if(err){
-            res.status(400).json({error:'Unable to delete student'})
-        }
+
+    User.deleteOne({_id:req.student._id}).then(data=>{
         res.json({messege:"Success removed student"})
+    }).catch(err=>{
+        res.json({error:"Failed to delete"})
     })
 
 }

@@ -7,9 +7,7 @@ const {user,token} = isAuthenticate();
 
 
 const IssueRetuenRequest = () => {
-const initialState ={
-    bookname:""
-}
+
 
 const [order, setorder] = useState([])
 const [loading, setloading] = useState(false)
@@ -18,7 +16,7 @@ const preload = () => {
     setloading(true)
 getAllOrder(user._id,token)
 .then(data=>{
-setorder(data)
+    setorder(data)
 setloading(false)
 }).catch(error=> console.log(error))
     }
@@ -47,7 +45,13 @@ return (
   </thead>
   <tbody>
       {
-    loading == false ? order.map(data=>(
+order.length == 0?
+(
+    <h1>You have no order </h1>
+)
+:
+    order.length > 0  ? order.map(data=>(
+    console.log(data),
 <tr>
       <td>{data.book.bookname}</td>
       <td>{data.book.publication}</td>
@@ -60,7 +64,8 @@ return (
       <td><button type="button" className="btn btn-danger mr-1" style={{marginRight:"10px"}}>Reject</button><button type="button" className="btn btn-success">Accept</button></td>
 
   </tr>
-          ))
+
+))
 
           :(
 <tr>

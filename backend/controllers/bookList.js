@@ -1,5 +1,6 @@
 const { json } = require("body-parser")
 const bookList = require("../models/bookList")
+const Order = require("../models/order")
 
 exports.getBookById = (req,res,next,id) => {
     // console.log("fire me")
@@ -54,12 +55,20 @@ res.json(req.book)
 }
 
 exports.getAllBooks = (req,res) => {
-bookList.find((err,books)=> {
-    if(err)
+
+    bookList.find((err,books)=> {
+    console.log(err,books)
+    if(err )
     {
         res.status(403).json({error:"Could not find all book"})
     }
-    res.json(books)
+ 
+    else{
+
+        res.json(books)
+
+    }
+    
 })
 
 }
@@ -83,12 +92,18 @@ bookList.findByIdAndUpdate(
 
 exports.deleteBook = (req,res) => {
 const book = req.book;
-console.log(book)
 bookList.remove(book,(err,data)=>{
+console.log(req.book)
+    Order.deleteOne({book:req.book._id})
+    .then(data=>{
+    res.json({messege:"Order  Deleted Successfully"})
+
+    })
     if(err)
     {
         json.status(404).json({error:"Error in deleting Book "})
     }
+
     res.json({messege:"Book Deleted Successfully"})
 })
 

@@ -6,6 +6,7 @@ import { deleteStudent, getallusers } from '../../APIHelper/auth'
 import { isAuthenticate } from '../../auth'
 import Layout from '../../Layout/Layout'
 import Search from '../../UI/Search/Search'
+import Modal from '@material-ui/core/Modal';
 // import Table from '../../UI/Table/Table'
 
 
@@ -14,17 +15,25 @@ const {user,token} = isAuthenticate();
 function AllUser() {
     const [value, setvalue] = useState([{_id:"please wait...",name:"please wait...",address:"please wait...",phone:"please wait..."}])
 const [loading, setloading] = useState(false)
+const [deleting, setdeleting] = useState(false)
 
     const [{searchStudent,totalUser},dispatch] = useStateValue();
     
     const deleteHandler = (sid) => {
-console.log(sid)
+dispatch({
+    type:"DELETING",
+    item:true
+})
         deleteStudent(user._id,sid,token)
 .then(d=>
     { 
-    
+        console.log(d)    
     toast("Deleted Successfuly",{type:"error"})
         preload()
+        dispatch({
+            type:"DELETING",
+            item:false
+        })
 }
 
 )
@@ -90,6 +99,7 @@ dispatch({
            
             <tbody key={i + 1}>
             <tr>
+            
                 <td>{d._id}</td>
                 <td>{d.name}</td>
           

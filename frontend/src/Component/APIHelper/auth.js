@@ -44,7 +44,7 @@ body:JSON.stringify(data)
 //deleting student by admin
 export const deleteStudent = (uid,sid,token) => {
  console.log(uid,sid)
-    return fetch(`https://mysterious-woodland-24801.herokuapp.com/api/student/deletestudent/${uid}/${sid}`,
+    return fetch(`http://localhost:8000/api/student/deletestudent/${uid}/${sid}`,
     {
         method:"DELETE",
         headers:{

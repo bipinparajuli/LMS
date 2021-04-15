@@ -41,10 +41,15 @@ const bookAvailable  = () => {
 return (
 <Layout>
     <div >
+    <nav className="navbar navbar-light">
+  <div className="container-fluid">
     <form className="d-flex">
       <input className="form-control me-2" type="search" placeholder="Search book" onChange={e=>setvalue(e.target.value)} aria-label="Search" />
       <button className="btn btn-outline-success" onClick={submit} type="submit">Search</button>
     </form>
+    </div>
+    
+    </nav>
     <div className="table-responsive">
     <table className="table table-bordered" style={{marginTop:"20px"}}>
 <thead>

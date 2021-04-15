@@ -32,7 +32,10 @@ const Searchdata = (e) => {
     const {user,token} = isAuthenticate();
 
     const deleteHandler = (book_id) => {
-setloading(true)
+dispatch({
+    type:"DELETING",
+    item:true
+})
         deleteBook(user._id,book_id,token)
         .then(
                d=>
@@ -40,7 +43,10 @@ setloading(true)
             
                 toast("Deleted",{type:"error"})
   preload()     
-  setloading(false)     
+  dispatch({
+    type:"DELETING",
+    item:false
+})     
             }
             
             )
@@ -50,7 +56,7 @@ setloading(true)
     const preload =()=> {
     setloading(true)
         getAllBook().then(data=>{
-            // console.log(data)
+            console.log(data)
             if(data)
             {
                 setbook(data)
@@ -75,8 +81,8 @@ preload()
            
 {
 
-book == [] || book == undefined ? (
-    <h1>You No Book In database</h1>
+book.length == 0 || book == undefined ? (
+    <h1>You have no books In database</h1>
 ) :
 
     book.map((d,i)=>{
@@ -93,18 +99,7 @@ book == [] || book == undefined ? (
                 <td>{d.createdAt}</td>
           
                 <td>
-                    {
-                    loading?
-                    (
-                        <>
-
-    <ClipLoader color={"#8D3DAF"} loading={loading}  size={50} /> 
-
-                    </>
-                    )
-:
-(
-    <>
+                    
 <button type="button" className="btn btn-danger mr-1" style={{marginRight:"10px"}} onClick={()=>deleteHandler(d._id)}>
     Delete
 </button>
@@ -112,10 +107,7 @@ book == [] || book == undefined ? (
 <Link  className="btn btn-primary" to={`admin/book/updatebook/${d._id}`}>
     Update
 </Link>
-    </>
-)
 
-                    }
           </td>
             </tr>
             </tbody>
