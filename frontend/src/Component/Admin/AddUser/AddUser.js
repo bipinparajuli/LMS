@@ -118,8 +118,8 @@ addStudent(user._id,token,{name,email,phone,roll_no,address,department})
   </div>
 
   <div className="col-12">
-{adding ? <button  className="btn btn-success"  ><ClipLoader color={"#8D3DAF"} loading={adding}  size={50} /> 
-</button> : <button  class="btn btn-success" onClick={onsubmit} >Add User</button>}    
+{adding ? <button style={{boxShadow:"3px 3px 4px 3px #ccc",background:"#8D3DAF"}} className="btn btn-success"  ><ClipLoader color={"white"} loading={adding}  size={50} /> 
+</button> : <button  class="btn btn-success" onClick={onsubmit} style={{boxShadow:"3px 3px 4px 3px #ccc",background:"#8D3DAF"}} >Add User</button>}    
   </div>
 </form>
         </div>

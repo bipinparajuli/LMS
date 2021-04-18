@@ -64,11 +64,11 @@ setadding(false)
 {
 
 adding ? 
-<button  className="btn btn-success"  >
-                <ClipLoader color={"#8D3DAF"} loading={adding}  size={50} /> 
+<button style={{boxShadow:"3px 3px 4px 3px #ccc",background:"#8D3DAF"}}  className="btn btn-success"  >
+                <ClipLoader color={"white"} loading={adding}  size={50} /> 
 </button> 
         :
- <button  class="btn btn-success" onClick={onsubmit} >
+ <button  class="btn btn-success" style={{boxShadow:"3px 3px 4px 3px #ccc",background:"#8D3DAF"}} onClick={onsubmit} >
 
      Add Department <ArrowRightAlt/>
     </button>

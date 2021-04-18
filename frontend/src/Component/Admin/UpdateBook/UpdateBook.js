@@ -110,12 +110,12 @@ updateBook(user._id,match.params.bookid,token,{authorname,bookname,publication,s
   <div className="col-12">
 {updating? 
 
-<button className="btn btn-success">
-<ClipLoader color={"#8D3DAF"} loading={updating}  size={50} /> 
+<button style={{background:"#8D3DAF"}} className="btn btn-success">
+<ClipLoader  color={"white"} loading={updating}  size={50} /> 
 </button>
  
 
-: <button  className="btn btn-success" onClick={onsubmit} >Update Book <Arrow /></button>}
+: <button  className="btn btn-success" style={{background:"#8D3DAF"}} onClick={onsubmit} >Update Book <Arrow /></button>}
 
   </div>
 </form>
