@@ -94,11 +94,11 @@ exports.deleteBook = (req,res) => {
 const book = req.book;
 bookList.remove(book,(err,data)=>{
 console.log(req.book)
-    Order.deleteOne({book:req.book._id})
-    .then(data=>{
-    res.json({messege:"Order  Deleted Successfully"})
+    // Order.deleteOne({book:req.book._id})
+    // .then(data=>{
+    // res.json({messege:"Order  Deleted Successfully"})
 
-    })
+    // })
     if(err)
     {
         json.status(404).json({error:"Error in deleting Book "})

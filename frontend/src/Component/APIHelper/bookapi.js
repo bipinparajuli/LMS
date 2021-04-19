@@ -10,7 +10,7 @@ export const getAllBook = () => {
 }
 //delete book
 export const deleteBook = (userid,bookid,token) => {
-  // console.log(token)
+  console.log(userid,bookid,token)
   return fetch(`https://mysterious-woodland-24801.herokuapp.com/api/book/deletebook/${userid}/${bookid}`, {
       method: "DELETE",
       headers: {

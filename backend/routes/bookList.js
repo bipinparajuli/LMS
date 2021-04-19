@@ -27,7 +27,8 @@ router.get("/book/getbook/:bookid",getBook)
 
 router.get("/search/book/:bookname",searchBook)
 
-router.delete("/book/deletebook/:userid/:bookid",isSignedIn,isAuthenticated,isAdmin,deleteOrder,deleteBook)
+// deleteOrder, TODO:
+router.delete("/book/deletebook/:userid/:bookid",isSignedIn,isAuthenticated,isAdmin,deleteBook)
 // router.delete("/student/deletestudent/:userid/:studentid",isSignedIn,isAuthenticated,isAdmin,deleteStudent)
 
 module.exports = router;
