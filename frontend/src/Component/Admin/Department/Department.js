@@ -5,18 +5,27 @@ import {Link} from 'react-router-dom'
 import { isAuthenticate } from '../../auth'
 import { deleteDepartment, getAllDepartment } from '../../APIHelper/departmentHelper'
 import {toast} from 'react-toastify'
+import { useStateValue } from '../../../Container/Serviceprovider'
 
 const {user,token} = isAuthenticate()
 
 const Department = () => {
+    const [{},dispatch] = useStateValue();
 
     const [state, setstate] = useState([{name:"Loading . . ."}])
 
 const deleteHandler =(id) => {
-
+    dispatch({
+        type:"DELETING",
+        item:true
+    })
     deleteDepartment(user._id,token,id).then(data=>{
 toast("Successfully deleted",{type:"success"})
 preload()
+dispatch({
+    type:"DELETING",
+    item:false
+})
 }
 )
 .catch(err=>{

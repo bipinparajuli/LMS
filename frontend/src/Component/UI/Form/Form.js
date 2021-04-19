@@ -54,21 +54,32 @@ setvalues({...values,adding:true})
 addBook(user._id,token,{bookname,publication,stocks,authorname,department})
 .then(d=> 
   {
-    if(d.error)
-    {
-      setvalues({...values,error:d.error})
-      toast(`${d.error}`,{type:'error'})
-  
-    }
-    toast("Book Added",{type:'success'})
+console.log(d)
+      if(d.error)
+      {
+        setvalues({...values,error:d.error})
+        toast(`${d.error}`,{type:'error'})
+    
+      }
+      else{
+        toast("Book Added",
+        {
+          type:'success'
+        })
+      }
+    
     setvalues({...values,adding:false})
+   
     Array.from(document.querySelectorAll("input")).forEach(
       input => (input.value = "")
     )
-  }
-)
+  })
   
-.catch(e=>console.log(e))
+.catch(e=>{
+  toast("Book Added" + e,
+{
+  type:'success'
+})})
 
   }
 
@@ -104,7 +115,7 @@ console.log(departments),
 departments.map((data,i)=>{
   console.log(data)
   return(
-    <option key={i} value={data.name}>{data.name}</option>
+    <option defaultValue={data.name} key={i} value={data.name}>{data.name}</option>
 
   )
 

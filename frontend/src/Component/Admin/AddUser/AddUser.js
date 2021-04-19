@@ -41,15 +41,15 @@ addStudent(user._id,token,{name,email,phone,roll_no,address,department})
   {
     if(d.error)
     {
-      console.log(d.error)
-      toast("Failed to add user" + d.error,{type:"error"})
+      // console.log(d.error)
+      toast("Failed to add user",{type:"error"})
       setvalues({...values,adding:false})
       Array.from(document.querySelectorAll("input")).forEach(
         input => (input.value = "")
       )
     }
     else{
-      setvalues({...values,name:" ",email:" ",phone:" ",roll:" ",address:" ",department:"",adding:false})
+      // setvalues({...values,name:" ",email:" ",phone:" ",roll:" ",address:" ",department:"",adding:false})
       toast("Successfully added user",{type:"success"})
       Array.from(document.querySelectorAll("input")).forEach(
         input => (input.value = "")
@@ -108,7 +108,7 @@ addStudent(user._id,token,{name,email,phone,roll_no,address,department})
       {
         departments.map((data,i)=>{
           return (
-            <option key={i} value={data.name}>{data.name}</option>
+            <option key={i} defaultValue={data.name} value={data.name}>{data.name}</option>
 
           )
         })

@@ -42,7 +42,7 @@ exports.createBook = (req,res) => {
     book.save((err,book)=>{
         if(err)
         {
-            res.status(403).json({error:err})
+            res.status(403).json({error:"Unable to save book in db"})
         }
         res.json(book)
     })
