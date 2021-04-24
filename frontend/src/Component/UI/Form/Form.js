@@ -38,7 +38,6 @@ error:""
     useEffect(()=>{
       getAllDepartment(user._id,token)
         .then(data=>{
-           console.log(data)
             dispatch({
                 type:"DEPARTMENT",
                 item:data
@@ -112,6 +111,7 @@ console.log(d)
     <select id="inputState" value={departments[departments.length - 1].name} className="form-select" onChange={e=>setvalues({...values,department:e.target.value})}>
      {
 departments.map((data,i)=>{
+console.log(departments)
   return(
     <option   key={i} value={data.name}>{data.name}</option>
 

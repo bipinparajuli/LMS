@@ -5,22 +5,31 @@ import { createOrder } from '../APIHelper/orderHelper'
 import { isAuthenticate } from '../auth'
 import StudentHome from './StudentHome'
 import {toast} from 'react-toastify'
-
+import { getStudentById } from '../APIHelper/Studentapi'
 const {user,token} = isAuthenticate();
 
 const AllBooks = () => {
 
-    const [{},dispatch] = useStateValue()
+    const [{student},dispatch] = useStateValue()
 
 const [value, setvalue] = useState("Loading Please wait...")
 const [book, setbook] = useState([{_id:"please wait...",bookname:"please wait...",stocks:"please wait...",createdAt:"please wait...",}]);
 const [order,setorder] = useState(false);
+const [students,setstudents] = useState(false);
+
 const preload = () =>{
     getAllBook()
     .then(data=> {
         setbook(data)
     })
     .catch()
+
+    getStudentById(user._id).then(data=>{
+setstudents(data)
+    }).catch(err=>{
+
+    })
+
 }
 
 const Searchdata = (e) => {
@@ -43,11 +52,26 @@ const Searchdata = (e) => {
 
 const orderBook =(id)=> {
     setorder(true)
-console.log(user)
-    createOrder(user._id,token,{book:id,user:user._id})
+   const orderbook = book.filter((b)=>{
+return b._id === id
+    })
+    const newstudent =[students]
+    
+console.log(orderbook,students)
+    createOrder(user._id,token,{book:id,user:user._id,books:orderbook,users:newstudent})
     .then(data=>{
-toast("Your Order has been placed successfully",{type:"success"})
+        console.log(data)
+if(data.error)
+{
+    toast("Failed to order please try again",{type:"error"})
+    setorder(false)
+
+}
+else{
+    toast("Your Order has been placed successfully",{type:"success"})
 setorder(false)
+}
+    
 })
     .catch(err=>console.log(err))
 

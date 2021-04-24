@@ -35,11 +35,12 @@ exports.getAllBookOrder = (req,res) => {
 
 exports.createOrder = (req,res) => {
     // req.body.order.user = req.profile;
-    console.log("creating order")
+    console.log("creating order",req.body)
 
     const order = new Order(req.body);
     order.save((err, order) => {
       if (err) {
+        console.log(err)
                       return res.status(400).json({
                         error: "Failed to save your order in DB" + err
                       });
@@ -92,6 +93,7 @@ exports.getAllOrder = (req,res) => {
     .populate("book")
     .populate("user")
     .then(data=>{
+      console.log("Order",data[0].user)
         res.json(data)
     })
     .catch(e=> console.log(e))

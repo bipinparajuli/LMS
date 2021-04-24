@@ -3,12 +3,12 @@ import {Route,Redirect} from 'react-router-dom'
 import { isAuthenticate } from './index';
 
 
-const AdminRoute = ({ component:Component, ...rest }) => {
+const AdminRoute =  ({ component:Component, ...rest }) => {
     return (
       <Route
         {...rest}
         render={(props) =>
-          isAuthenticate() && isAuthenticate().user.role === 1 ? (
+          isAuthenticate() &&  isAuthenticate().user.role === 1 ? (
             <Component {...props} />
           ) : (
             <Redirect

@@ -89,14 +89,20 @@ addStudent(user._id,token,{name,email,phone,roll_no,address,department})
 
 
             <form onSubmit={onsubmit}>
+              <div className="row">
+  
   <div className="col-md-6">
     <label  className="form-label">Student Name*</label>
     <input required type="text" className="form-control" onChange={e=>setvalues({...values,name:e.target.value})}  />
   </div>
+  
   <div className="col-md-6">
     <label  className="form-label">Email*</label>
     <input required type="text"  className="form-control" onChange={e=>setvalues({...values,email:e.target.value})}  />
   </div>
+
+  </div>
+  <div className="row">
 
   <div className="col-md-6">
     <label  className="form-label">Address*</label>
@@ -107,6 +113,10 @@ addStudent(user._id,token,{name,email,phone,roll_no,address,department})
     <label  className="form-label">Phone No.*</label>
     <input type="text" required className="form-control" onChange={e=>setvalues({...values,phone:e.target.value})} />
   </div>
+</div>
+
+<div className="row">
+
   <div className="col-md-6">
     <label  className="form-label">Roll no.*</label>
     <input required type="text" className="form-control" onChange={e=>setvalues({...values,roll_no:e.target.value})} />
@@ -125,6 +135,10 @@ addStudent(user._id,token,{name,email,phone,roll_no,address,department})
       
     </select>
   </div>
+</div>
+<br/>
+<br/>
+<br/>
 
   <div className="col-12">
 {adding ? <button style={{boxShadow:"3px 3px 4px 3px #ccc",background:"#8D3DAF"}} className="btn btn-success"  ><ClipLoader color={"white"} loading={adding}  size={50} /> 

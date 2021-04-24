@@ -17,6 +17,12 @@ const Order = new mongoose.Schema({
 // _id:{
 // type:ObjectId    
 // },
+books:{
+    type:Array
+},
+users:{
+    type:Array
+},
 book:{
     type:ObjectId,
     ref:"bookList",

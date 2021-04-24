@@ -6,6 +6,7 @@ totalUser:[],
 totalOrder:[],
 totalBook:[],
 departments:[],
+student:[],
 deleting:false
 }
 
@@ -40,6 +41,10 @@ switch(action.type){
                 case 'DEPARTMENT':
                     //logic for adding
                     return {...state,departments:action.item}
+
+                    case 'STUDENT':
+                    //logic for adding
+                    return {...state,student:action.item}
 
                     case 'DELETING':
                         //logic for adding

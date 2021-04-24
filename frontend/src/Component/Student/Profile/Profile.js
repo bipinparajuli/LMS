@@ -5,22 +5,30 @@ import { Card } from '../../UI/Card/Card'
 import "./Profile.css"
 import { isAuthenticate } from '../../auth'
 import { getStudentById } from '../../APIHelper/Studentapi'
-
+import { useStateValue } from '../../../Container/Serviceprovider'
 
 const {user,token} = isAuthenticate();
 
 
 const Profile = () => {
+ const [{},dispatch] = useStateValue();
 
     const [state, setstate] = useState("Loading ...")
 
 
-const preload = async () => {
+const preload = (id) => {
 
-   await getStudentById(user._id)
+    console.log(id)
+
+    getStudentById(id)
     .then(data=>
         {
-console.log(data)
+            console.log(data)
+
+            dispatch({
+    type:"STUDENT",
+    item:data
+})
             setstate(data)
 
         })
@@ -28,7 +36,7 @@ console.log(data)
     }
 
 useEffect(()=>{
-preload()
+preload(user._id)
 },[])
 
     return (
