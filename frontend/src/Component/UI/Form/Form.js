@@ -45,7 +45,7 @@ error:""
             })
         })
         .catch(err=> console.log(err))  
-    })
+    },[])
 
 
   const onsubmit = e =>{
@@ -109,13 +109,11 @@ console.log(d)
   </div>
   <div className="col-md-4">
     <label  className="form-label">{labelthree}</label>
-    <select id="inputState" className="form-select" onChange={e=>setvalues({...values,department:e.target.value})}>
+    <select id="inputState" value={departments[departments.length - 1].name} className="form-select" onChange={e=>setvalues({...values,department:e.target.value})}>
      {
-console.log(departments),
 departments.map((data,i)=>{
-  console.log(data)
   return(
-    <option defaultValue={data.name} key={i} value={data.name}>{data.name}</option>
+    <option   key={i} value={data.name}>{data.name}</option>
 
   )
 

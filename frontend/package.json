@@ -10,6 +10,7 @@
     "@testing-library/react": "^11.2.3",
     "@testing-library/user-event": "^12.6.0",
     "aos": "^2.3.4",
+    "calidation": "^1.17.0",
     "chart.js": "^2.9.4",
     "neumorphic-ui": "^1.1.0",
     "react": "^17.0.1",

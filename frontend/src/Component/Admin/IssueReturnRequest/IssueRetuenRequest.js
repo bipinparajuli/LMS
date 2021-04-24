@@ -16,6 +16,7 @@ const preload = () => {
     setloading(true)
 getAllOrder(user._id,token)
 .then(data=>{
+console.log(data)
     setorder(data)
 setloading(false)
 }).catch(error=> console.log(error))

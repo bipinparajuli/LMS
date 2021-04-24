@@ -6,7 +6,9 @@ export const getAllBook = () => {
        console.log(response)
           return response.json();
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+          return err
+        })
 }
 //delete book
 export const deleteBook = (userid,bookid,token) => {
@@ -22,7 +24,9 @@ export const deleteBook = (userid,bookid,token) => {
      console.log(response)
         return response.json();
       })
-      .catch(err => console.log(err))
+      .catch(err => {
+        return err
+      })
 }
 
 //add book
@@ -40,7 +44,9 @@ export const addBook = (id,token,data) => {
    console.log(response)
       return response.json();
     })
-    .catch(err => console.log(err))
+    .catch(err => {
+      return err
+    })
 }
 
 //getting book by id 
@@ -57,7 +63,9 @@ console.log(response)
     })
     
     
-  .catch(e=>console.log(e))
+  .catch(e=>{
+    return e
+  })
 }
 
 //update book 
@@ -72,6 +80,8 @@ export const updateBook = (uid,bid,token,data) => {
  "Authorization":`Bearer ${token}`     
     },
     body:JSON.stringify(data)
+  }).then(response=>{
+    response.json()
   })
 }
 
@@ -84,10 +94,12 @@ export const searchBookByName = (name)=> {
   }
   ).then(response => 
     {
-console.log(response)
+// console.log(response)
       return response.json()
     })
     
     
-  .catch(e=>console.log(e))
+  .catch(e=>{
+    return e
+  })
 }

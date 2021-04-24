@@ -25,12 +25,12 @@ export const getallusers = () => {
 }
     )
     .then(response =>  {return response.json()})
-    .catch(e=> console.log(e))
+    .catch(e=> {return e})
 }
 
 //adding student by admin
 export const addStudent = (id,token,data) => {
-console.log(id)
+// console.log(id)
     return fetch(`https://mysterious-woodland-24801.herokuapp.com/api/addstudent/${id}`,{
 method:"POST",
 headers:{
@@ -39,7 +39,7 @@ headers:{
 },
 body:JSON.stringify(data)
     }).then(data=> data.json())
-    .catch(e=> console.log(e))
+    .catch(e=> {return e})
 }
 //deleting student by admin
 export const deleteStudent = (uid,sid,token) => {
@@ -53,5 +53,10 @@ export const deleteStudent = (uid,sid,token) => {
         }
     }
     
-    )
+    ).then(response=>{
+        response.json()
+    })
+    .catch(e => {
+        return e
+    })
 }

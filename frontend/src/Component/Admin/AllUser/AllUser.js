@@ -75,6 +75,9 @@ dispatch({
     useEffect(() => {
         setvalue(searchStudent)
     }, [])
+    useEffect(() => {
+        setvalue(searchStudent)
+    }, [searchStudent])
     return (
         <Layout>
         <div>
