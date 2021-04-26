@@ -20,7 +20,8 @@ console.log(data)
     setorder(data)
 setloading(false)
 }).catch(error=> console.log(error))
-    }
+    
+}
 
 
     useEffect(()=>{
@@ -51,15 +52,14 @@ order.length == 0?
     <h1>You have no order </h1>
 )
 :
-    order.length > 0  ? order.map((data,i)=>(
-    // console.log(data.books[0].bookname),
-
+    order.length > 0  ? order.map(data=>(
+    console.log(data),
 <tr>
-      <td>{data.books[0].bookname}</td>
-      <td>{data.books[0].publication}</td>
-      <td>{data.users[0].name}</td>
-      <td>{data.users[0].email}</td>
-      <td>{data.users[0].address}</td>
+      <td>{data.book.bookname}</td>
+      <td>{data.book.publication}</td>
+      <td>{data.user.name}</td>
+      <td>{data.user.email}</td>
+      <td>{data.user.address}</td>
 
       <td><span className="badge rounded-pill bg-info text-dark">{data.status}</span>
 </td>
