@@ -20,6 +20,7 @@ const [{departments},dispatch]= useStateValue()
 adding:false,
 error:""
   })
+const [d,setd]=useState()
 
   const {authorname,bookname,publication,stocks,department,adding,error} = values;
 
@@ -36,6 +37,7 @@ error:""
     
     }
     useEffect(()=>{
+setd(departments) 
       getAllDepartment(user._id,token)
         .then(data=>{
             dispatch({
@@ -108,7 +110,7 @@ console.log(d)
   </div>
   <div className="col-md-4">
     <label  className="form-label">{labelthree}</label>
-    <select id="inputState" value={departments[departments.length - 1].name} className="form-select" onChange={e=>setvalues({...values,department:e.target.value})}>
+    <select id="inputState"  className="form-select" onChange={e=>setvalues({...values,department:e.target.value})}>
      {
 departments.map((data,i)=>{
 console.log(departments)
