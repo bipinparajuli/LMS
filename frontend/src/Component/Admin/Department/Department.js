@@ -36,8 +36,14 @@ dispatch({
 
     const preload = () => {
 getAllDepartment(user._id,token).then(data=>{
-console.log(data)
-    setstate(data)
+// console.log(data)
+
+if(data.error)
+{
+    return toast(data.error,{type:"info"})
+}
+
+setstate(data)
 }).catch(err=>console.log(err))
     }
 

@@ -25,7 +25,10 @@ useNewUrlParser: true,
  useCreateIndex:true
 })
 .then(()=>console.log("DB connected"))
-.catch((e)=>console.log(e));
+.catch((e)=>{
+    console.log("failed to connect")
+    return "Failed to Connect to database"
+});
 
 
 

@@ -1,13 +1,13 @@
 import React,{useState,useEffect} from 'react'
 import StudentHome from '../StudentHome'
 import img from '../../Assets/Image/femlae.png'
-import { Card } from '../../UI/Card/Card'
+// import { Card } from '../../UI/Card/Card'
 import "./Profile.css"
 import { isAuthenticate } from '../../auth'
 import { getStudentById } from '../../APIHelper/Studentapi'
 import { useStateValue } from '../../../Container/Serviceprovider'
 
-const {user,token} = isAuthenticate();
+const {user,} = isAuthenticate();
 
 
 const Profile = () => {
@@ -45,7 +45,7 @@ preload(user._id)
       <div className="row">
       <div className="col-3">
            <div class="text-center" style={{borderRadius:"50%"}}>
-  <img src={img} class="rounded" alt="image" style={{height:"200px",width:"200px"}} />
+  <img src={img} class="rounded" alt="logoes" style={{height:"200px",width:"200px"}} />
 </div> 
 </div>
 {/* <div className="row">

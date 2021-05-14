@@ -1,4 +1,5 @@
 import React,{useEffect,useState} from 'react'
+import { toast } from 'react-toastify';
 import { getAllOrder } from '../../APIHelper/orderHelper';
 import { isAuthenticate } from '../../auth'
 import Layout from '../../Layout/Layout'
@@ -16,7 +17,13 @@ const preload = () => {
     setloading(true)
 getAllOrder(user._id,token)
 .then(data=>{
-console.log(data)
+// console.log(data)
+
+if(data.error)
+{
+   return toast(`${data.error}`,{type:"info"})
+}
+
     setorder(data)
 setloading(false)
 }).catch(error=> console.log(error))
@@ -47,13 +54,12 @@ return (
   </thead>
   <tbody>
       {
-order.length == 0?
+order.length === 0?
 (
     <h1>You have no order </h1>
 )
 :
     order.length > 0  ? order.map(data=>(
-    console.log(data),
 <tr>
       <td>{data.books[0].bookname}</td>
       <td>{data.books[0].publication}</td>

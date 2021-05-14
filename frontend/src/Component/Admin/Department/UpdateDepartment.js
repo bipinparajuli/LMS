@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import Layout from '../../Layout/Layout'
-import {Link,Redirect} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import {ArrowBackSharp} from '@material-ui/icons'
 import { getDepartment,updateDepartment } from '../../APIHelper/departmentHelper'
 import { isAuthenticate } from '../../auth'

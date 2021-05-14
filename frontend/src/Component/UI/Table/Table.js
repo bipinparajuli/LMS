@@ -1,16 +1,16 @@
-import React,{useState,useEffect,Suspense} from 'react'
+import React,{useState,useEffect} from 'react'
 import { deleteBook, getAllBook, searchBookByName } from '../../APIHelper/bookapi';
 import { isAuthenticate } from '../../auth';
 import {Link} from "react-router-dom"
 import { toast } from 'react-toastify';
 import {useStateValue} from '../../../Container/Serviceprovider'
-import ClipLoader from "react-spinners/ClipLoader";
+// import ClipLoader from "react-spinners/ClipLoader";
 import './Table.css'
 
 const Table = () => {
     const [book, setbook] = useState([{_id:"please wait...",bookname:"please wait...",stocks:"please wait...",createdAt:"please wait...",}]);
 
-    const [loading,setloading] = useState(false)
+    // const [loading,setloading] = useState(false)
 
     const [{search},dispatch] = useStateValue()
 
@@ -54,13 +54,19 @@ dispatch({
     }
     
     const preload =()=> {
-    setloading(true)
+    // setloading(true)
         getAllBook().then(data=>{
-            console.log(data)
+            // console.log(data)
+
+            if(data.error)
+            {
+                return toast("server failed to get data",{type:"info"})
+            }
+
             if(data)
             {
                 setbook(data)
-                setloading(false)
+                // setloading(false)
             }
             else console.log(data)
         })
@@ -81,7 +87,7 @@ preload()
            
 {
 
-book.length == 0 || book == undefined ? (
+book.length === 0 || book === undefined ? (
     <h1>You have no books In database</h1>
 ) :
 

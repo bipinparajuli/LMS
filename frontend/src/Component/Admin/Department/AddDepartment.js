@@ -1,8 +1,8 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState} from 'react'
 import Layout from '../../Layout/Layout'
-import {Link,Redirect} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import {ArrowBackSharp} from '@material-ui/icons'
-import { getDepartment,createDepartment } from '../../APIHelper/departmentHelper'
+import { createDepartment } from '../../APIHelper/departmentHelper'
 import { isAuthenticate } from '../../auth'
 import {toast} from 'react-toastify'
 import ClipLoader from "react-spinners/ClipLoader";

@@ -36,7 +36,7 @@ useEffect(() => {
             </tr>
 </thead>
 {
-    state.length == 0 ?(
+    state.length === 0 ?(
         <p className="lead" style={{color:"black"}}>Your booklist is empty please order</p>
     )
 

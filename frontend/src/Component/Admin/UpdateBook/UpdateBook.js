@@ -13,7 +13,7 @@ import { Link } from 'react-router-dom'
 const {user,token} = isAuthenticate()
 
 
-const UpdateBook = ({labelone,labeltwo,labelthree,labelfour,labelfive,labelsix,labelseven,match}) => {
+const UpdateBook = ({match}) => {
 
   const [values, setvalues] = useState({
       authorname:"",

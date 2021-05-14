@@ -1,5 +1,5 @@
 export const getAllBook = () => {
-    return fetch(`https://mysterious-woodland-24801.herokuapp.com/api/book/getallbooks`, {
+    return fetch(`http://localhost:8000/api/book/getallbooks`, {
         method: "GET"
       })
         .then(response => {
@@ -13,7 +13,7 @@ export const getAllBook = () => {
 //delete book
 export const deleteBook = (userid,bookid,token) => {
   console.log(userid,bookid,token)
-  return fetch(`https://mysterious-woodland-24801.herokuapp.com/api/book/deletebook/${userid}/${bookid}`, {
+  return fetch(`http://localhost:8000/api/book/deletebook/${userid}/${bookid}`, {
       method: "DELETE",
       headers: {
         Accept: "application/json",
@@ -32,7 +32,7 @@ export const deleteBook = (userid,bookid,token) => {
 //add book
 export const addBook = (id,token,data) => {
  console.log(JSON.stringify(data))
-  return fetch(`https://mysterious-woodland-24801.herokuapp.com/api/book/createbook/${id}`, {
+  return fetch(`http://localhost:8000/api/book/createbook/${id}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -51,7 +51,7 @@ export const addBook = (id,token,data) => {
 
 //getting book by id 
 export const getBookById = (id)=> {
-  return fetch(`https://mysterious-woodland-24801.herokuapp.com/api/book/getbook/${id}`,
+  return fetch(`http://localhost:8000/api/book/getbook/${id}`,
   {
     method:"GET",
   
@@ -72,7 +72,7 @@ console.log(response)
 
 export const updateBook = (uid,bid,token,data) => {
   console.log(data)
-  return fetch(`https://mysterious-woodland-24801.herokuapp.com/api/book/updatebook/${uid}/${bid}`,
+  return fetch(`http://localhost:8000/api/book/updatebook/${uid}/${bid}`,
   {
     method:"PUT",
     headers:{
@@ -87,7 +87,7 @@ export const updateBook = (uid,bid,token,data) => {
 
 //getting book by id 
 export const searchBookByName = (name)=> {
-  return fetch(`https://mysterious-woodland-24801.herokuapp.com/api/search/book/${name}`,
+  return fetch(`http://localhost:8000/api/search/book/${name}`,
   {
     method:"GET",
   

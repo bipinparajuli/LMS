@@ -14,7 +14,7 @@ import {ArrowBackSharp} from '@material-ui/icons'
 const {user,token} = isAuthenticate()
 
 
-const UpdateBook = ({labelone,labeltwo,labelthree,labelfour,labelfive,labelsix,labelseven,match}) => {
+const UpdateBook = ({labelthree,match}) => {
     const [values, setvalues] = useState({
         name:"",
         email:"",

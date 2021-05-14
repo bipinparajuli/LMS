@@ -1,7 +1,7 @@
 //get all deprtment list
 export const getAllDepartment = (userId,token) => {
-console.log(userId,token)
-    return fetch (`https://mysterious-woodland-24801.herokuapp.com/api/department/alldepartment/${userId}`,{
+console.log("ALLDEPARTMENT",userId,token)
+    return fetch (`http://localhost:8000/api/department/alldepartment/${userId}`,{
 method:"GET",
 
 headers:{
@@ -13,13 +13,13 @@ headers:{
   return response.json()
 })
 .catch(er=>{
-    console.log(er)
+    return er
 })
 }
 
 //get single department
 export const getDepartment = (userId,token,departmentId) => {
-        return fetch (`https://mysterious-woodland-24801.herokuapp.com/api/department/department/${userId}/${departmentId}`,{
+        return fetch (`http://localhost:8000/api/department/department/${userId}/${departmentId}`,{
     method:"GET",
     
     headers:{
@@ -38,7 +38,7 @@ export const getDepartment = (userId,token,departmentId) => {
 //create new department
 export const createDepartment = (userId,token,data) => {
     console.log(userId,token,data)
-    return fetch(`https://mysterious-woodland-24801.herokuapp.com/api/department/adddepartment/${userId}`,{
+    return fetch(`http://localhost:8000/api/department/adddepartment/${userId}`,{
         method:"POST",
         headers:{
             "Content-Type":"application/json",
@@ -56,7 +56,7 @@ return  response.json()
 //update department
 export const updateDepartment = (userId,token,departmentId,data) => {
     console.log(userId,token,departmentId,data)
-    return fetch(`https://mysterious-woodland-24801.herokuapp.com/api/department/updatedepartment/${userId}/${departmentId}`,
+    return fetch(`http://localhost:8000/api/department/updatedepartment/${userId}/${departmentId}`,
         {
             method:"PUT",
             headers:{
@@ -70,7 +70,7 @@ export const updateDepartment = (userId,token,departmentId,data) => {
 //delete department
 export const deleteDepartment = (userId,token,departmentId) => {
     
-    return fetch(`https://mysterious-woodland-24801.herokuapp.com/api/department/deletedepartment/${userId}/${departmentId}`,{
+    return fetch(`http://localhost:8000/api/department/deletedepartment/${userId}/${departmentId}`,{
         method:"DELETE",
         headers:{
             "Content-Type":"application/json",

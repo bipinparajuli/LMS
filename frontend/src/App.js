@@ -1,9 +1,9 @@
 
-import React,{Suspense} from "react"
+import React from "react"
 
-import Admin from './Component/Admin/Admin';
+// import Admin from './Component/Admin/Admin';
 import './App.css';
-import {BrowserRouter,Switch,Route} from 'react-router-dom'
+import {Switch,Route} from 'react-router-dom'
 import {ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import Profile from "./Component/Student/Profile/Profile";
@@ -26,7 +26,7 @@ const AdminRoute = React.lazy(()=> import( './Component/auth/AdminRoutes')) ;
 const PrivateRoute = React.lazy(()=> import( './Component/auth/PrivateRoutes')) ;
 const UpdateBook = React.lazy(()=> import( './Component/Admin/UpdateBook/UpdateBook')) ;
 const UpdateStudent = React.lazy(()=> import( './Component/Admin/UpdateStudent/UpdateStudent')) ;
-const StudentHome = React.lazy(()=> import( './Component/Student/StudentHome')) ;
+// const StudentHome = React.lazy(()=> import( './Component/Student/StudentHome')) ;
 
 function App() {
 

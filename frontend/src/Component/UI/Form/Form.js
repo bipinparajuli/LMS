@@ -4,9 +4,9 @@ import { isAuthenticate } from '../../auth'
 import {toast} from 'react-toastify'
 import ClipLoader from "react-spinners/ClipLoader";
 import { useStateValue } from '../../../Container/Serviceprovider';
-import { getDepartment,getAllDepartment } from '../../APIHelper/departmentHelper';
+import { getAllDepartment } from '../../APIHelper/departmentHelper';
 
-const Form = ({labelone,labeltwo,labelthree,labelfour,labelfive,labelsix,labelseven}) => {
+const Form = ({labelone,labelthree,labelfour,labelsix,labelseven}) => {
 
 const [{departments},dispatch]= useStateValue()
 
@@ -20,7 +20,7 @@ const [{departments},dispatch]= useStateValue()
 adding:false,
 error:""
   })
-const [d,setd]=useState()
+// const [d,setd]=useState()
 
   const {authorname,bookname,publication,stocks,department,adding,error} = values;
 
@@ -37,10 +37,15 @@ const [d,setd]=useState()
     
     }
     useEffect(()=>{
-setd(departments) 
+// setd(departments) 
       getAllDepartment(user._id,token)
         .then(data=>{
-            dispatch({
+
+          if(data.error)
+          {
+            return toast(data.error,{type:"info"})
+          }
+          dispatch({
                 type:"DEPARTMENT",
                 item:data
             })
@@ -55,7 +60,7 @@ setvalues({...values,adding:true})
 addBook(user._id,token,{bookname,publication,stocks,authorname,department})
 .then(d=> 
   {
-console.log(d)
+// console.log(d)
       if(d.error)
       {
         setvalues({...values,error:d.error})
@@ -113,7 +118,7 @@ console.log(d)
     <select id="inputState"  className="form-select" onChange={e=>setvalues({...values,department:e.target.value})}>
      {
 departments.map((data,i)=>{
-console.log(departments)
+// console.log(departments)
   return(
     <option   key={i} value={data.name}>{data.name}</option>
 

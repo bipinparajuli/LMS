@@ -3,7 +3,6 @@ const { isAdmin, isSignedIn, isAuthenticated } = require("../controllers/auth");
 const {getStudentByname,searchStudent,addStudent, getStudentByID,getAllStudents,getUserByID,getStudent, updateStudent,deleteStudent } = require("../controllers/studentList");
 const router= express.Router();
 
-
 router.param("userid",getUserByID)
 
 router.param("studentid",getStudentByID)

@@ -1,5 +1,5 @@
 import React,{useEffect,useState} from 'react'
-import { useStateValue } from '../../Container/Serviceprovider'
+// import { useStateValue } from '../../Container/Serviceprovider'
 import { getAllBook, searchBookByName } from '../APIHelper/bookapi'
 import { createOrder } from '../APIHelper/orderHelper'
 import { isAuthenticate } from '../auth'
@@ -10,7 +10,7 @@ const {user,token} = isAuthenticate();
 
 const AllBooks = () => {
 
-    const [{student},dispatch] = useStateValue()
+    // const [{student},dispatch] = useStateValue()
 
 const [value, setvalue] = useState("Loading Please wait...")
 const [book, setbook] = useState([{_id:"please wait...",bookname:"please wait...",stocks:"please wait...",createdAt:"please wait...",}]);
@@ -104,7 +104,7 @@ preload()
             </tr>
 </thead>
 {
-   book.length == 0 ?
+   book.length === 0 ?
     
    (
        <>

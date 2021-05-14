@@ -1,7 +1,6 @@
 import  React from 'react'
 import {Menu,MenuItem,SidebarHeader,SidebarContent,SidebarFooter,ProSidebar} from "react-pro-sidebar"
 import {NavLink} from 'react-router-dom'
-import {FiMessageSquare} from 'react-icons/fi'
 import {signout} from "../auth/index"
 import Dashboard from '@material-ui/icons/Dashboard'
 import GroupAdd from '@material-ui/icons/GroupAdd'

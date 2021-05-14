@@ -23,7 +23,13 @@ exports.signup=(req,res)=>{
         user.enc_password = hash
         user.save((err,data)=>{
             if(err){
-            return res.status(400).json({error:"Unable to save data in db" + err})
+            return res.status(400)
+            .json(
+                {
+                    statusCode:400,
+                    success:false,
+                    error:"Unable to save data in db" + err
+                })
             }
             res.json({
                 name:data.name,

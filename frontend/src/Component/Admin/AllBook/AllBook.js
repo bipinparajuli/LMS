@@ -1,8 +1,7 @@
-import React,{Suspense,lazy,useState} from 'react'
-import { searchBookByName } from '../../APIHelper/bookapi'
+import React,{lazy,useState} from 'react'
+// import { searchBookByName } from '../../APIHelper/bookapi'
 // import { getAllBook } from '../../APIHelper/bookapi'
 import Layout from '../../Layout/Layout'
-import Search from '../../UI/Search/Search'
 import {useStateValue} from '../../../Container/Serviceprovider'
 
 const Table = lazy(() => import('../../UI/Table/Table'))
