@@ -11,7 +11,7 @@ import { isAuthenticate } from '../../auth'
 import BookIcon from '@material-ui/icons/MenuBookSharp'
 import Order from '@material-ui/icons/LibraryBooksSharp'
 import {FaUser} from 'react-icons/fa'
-// import { getAllDepartment } from '../../APIHelper/departmentHelper'
+import { getAllDepartment } from '../../APIHelper/departmentHelper'
 
 const Layout = lazy(()=> import("../../Layout/Layout")) 
 

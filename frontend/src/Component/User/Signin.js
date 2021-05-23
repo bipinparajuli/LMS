@@ -45,7 +45,7 @@ e.preventDefault()
      setvalue({...values,error:false,loader:true})
 
         Login({email,enc_password}).then((data)=>{
-
+console.log(data);
     if(data.error)
     {
         // console.log(data.error)

@@ -7,7 +7,7 @@ import './Navbar.css'
 
 const Navbar = ({name}) => {
 const [{deleting}]=useStateValue()
-console.log(deleting)
+// console.log(deleting)
 const date = new Date();
     return (
         <div className="container-fluid nav_main" >

@@ -7,7 +7,7 @@ const jwt= require('jsonwebtoken')
 const expressJwt= require("express-jwt")
 
 
-exports.signup=(req,res)=>{
+exports.signup= async (req,res)=>{
     const errors = validationResult(req);
 
     if(!errors.isEmpty()){
@@ -15,7 +15,7 @@ exports.signup=(req,res)=>{
             error:errors.array()[0].msg
         })
     }
-    const user = new User(req.body);
+    const user = await new User(req.body);
     // console.log(user.enc_password)
 
     bycrypt.hash(user.enc_password,11,(err,hash)=>{
